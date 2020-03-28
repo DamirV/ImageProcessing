@@ -36,7 +36,7 @@ namespace ImageProcessing
             }
         }
 
-        virtual public Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        public virtual Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
 
@@ -44,7 +44,9 @@ namespace ImageProcessing
             {
                 worker.ReportProgress((int)((float)i / resultImage.Width * 100));
                 if (worker.CancellationPending)
+                {
                     return null;
+                }
 
                 for (int j = 0; j < sourceImage.Height; j++)
                 {
@@ -55,7 +57,6 @@ namespace ImageProcessing
             return resultImage;
         }
     }
-
     class BlackAndWhite : Filters
     {
         public BlackAndWhite()
@@ -64,59 +65,130 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
-            int R = sourceImage.GetPixel(x, y).R;
-            int G = sourceImage.GetPixel(x, y).G;
-            int B = sourceImage.GetPixel(x, y).B;
+            int r = sourceImage.GetPixel(x, y).R;
+            int g = sourceImage.GetPixel(x, y).G;
+            int b = sourceImage.GetPixel(x, y).B;
 
-            R = G = B = (R + G + B) / 3;
+            int result = (r + g + b) / 3;
 
-            return Color.FromArgb(R, G, B);
+            return Color.FromArgb(result, result, result);
         }
     }
 
     class SaltPepper : Filters
     {
-        int[,] matrix;
+        private readonly int[,] matrixOfRandomNumbers;
         public SaltPepper(int width, int height)
         {
-            matrix = new int[width, height];
+            matrixOfRandomNumbers = new int[width, height];
             Random rnd = new Random();
-
 
             for (int i = 0; i < width; ++i)
             {
                 for (int j = 0; j < height; ++j)
                 {
-                    matrix[i, j] = rnd.Next(0, 100);
+                    matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
                 }
             }
         }
         protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
-            int R = sourceImage.GetPixel(x, y).R;
-            int G = sourceImage.GetPixel(x, y).G;
-            int B = sourceImage.GetPixel(x, y).B;
+            int r = sourceImage.GetPixel(x, y).R;
+            int g = sourceImage.GetPixel(x, y).G;
+            int b = sourceImage.GetPixel(x, y).B;
 
-            if (matrix[x, y] < 10)
+            if (matrixOfRandomNumbers[x, y] < 10)
             {
                 return Color.FromArgb(255, 255, 255);
             }
-            if (matrix[x, y] > 95)
+            if (matrixOfRandomNumbers[x, y] > 95)
             {
                 return Color.FromArgb(0, 0, 0);
             }
 
-            return Color.FromArgb(R, G, B);
+            return Color.FromArgb(r, g, b);
+        }
+    }
+
+    class SaltAndPepper : Filters
+    {
+        private readonly int[,] matrixOfRandomNumbers;
+        private readonly int percent;
+        private readonly int mod;
+        public SaltAndPepper(int width, int height, int percent, int mod)
+        {
+            this.percent = percent;
+            this.mod = mod;
+
+            matrixOfRandomNumbers = new int[width, height];
+            Random rnd = new Random();
+
+            for (int i = 0; i < width; ++i)
+            {
+                for (int j = 0; j < height; ++j)
+                {
+                    matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
+                }
+            }
+        }
+        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        {
+            switch (mod)
+            {
+                case 1:
+                    return CalculateSalt(sourceImage, x, y);
+
+                case 2:
+                    return CalculatePepper(sourceImage, x, y);
+
+                case 3:
+                    return CalculateSaltAndPepper(sourceImage, x, y);
+
+                default:
+                    return sourceImage.GetPixel(x, y);
+            }
+        }
+
+        private Color CalculateSalt(Bitmap sourceImage, int x, int y)
+        {
+            if (matrixOfRandomNumbers[x, y] < percent)
+            {
+                return Color.FromArgb(255, 255, 255);
+            }
+
+            return sourceImage.GetPixel(x, y);
+        }
+        private Color CalculatePepper(Bitmap sourceImage, int x, int y)
+        {
+            if (matrixOfRandomNumbers[x, y] < percent)
+            {
+                return Color.FromArgb(0, 0, 0);
+            }
+
+            return sourceImage.GetPixel(x, y);
+        }
+        private Color CalculateSaltAndPepper(Bitmap sourceImage, int x, int y)
+        {
+            if (matrixOfRandomNumbers[x, y] <= percent / 2)
+            {
+                return Color.FromArgb(255, 255, 255);
+            }
+            if (matrixOfRandomNumbers[x, y] > 100 - percent / 2)
+            {
+                return Color.FromArgb(0, 0, 0);
+            }
+
+            return sourceImage.GetPixel(x, y);
         }
     }
 
     class Salt : Filters
     {
-        int[,] matrix;
-        private int percent;
+        private readonly int[,] matrixOfRandomNumbers;
+        private readonly int percent;
         public Salt(int width, int height, int percent)
         {
-            matrix = new int[width, height];
+            matrixOfRandomNumbers = new int[width, height];
             Random rnd = new Random();
             this.percent = percent;
 
@@ -124,32 +196,32 @@ namespace ImageProcessing
             {
                 for (int j = 0; j < height; ++j)
                 {
-                    matrix[i, j] = rnd.Next(0, 100);
+                    matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
                 }
             }
         }
         protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
-            int R = sourceImage.GetPixel(x, y).R;
-            int G = sourceImage.GetPixel(x, y).G;
-            int B = sourceImage.GetPixel(x, y).B;
+            int r = sourceImage.GetPixel(x, y).R;
+            int g = sourceImage.GetPixel(x, y).G;
+            int b = sourceImage.GetPixel(x, y).B;
 
-            if (matrix[x, y] < percent)
+            if (matrixOfRandomNumbers[x, y] < percent)
             {
                 return Color.FromArgb(255, 255, 255);
             }
 
-            return Color.FromArgb(R, G, B);
+            return Color.FromArgb(r, g, b);
         }
     }
 
     class Pepper : Filters
     {
-        int[,] matrix;
-        private int percent;
+        private readonly int[,] matrixOfRandomNumbers;
+        private readonly int percent;
         public Pepper(int width, int height, int percent)
         {
-            matrix = new int[width, height];
+            matrixOfRandomNumbers = new int[width, height];
             Random rnd = new Random();
             this.percent = percent;
 
@@ -157,33 +229,30 @@ namespace ImageProcessing
             {
                 for (int j = 0; j < height; ++j)
                 {
-                    matrix[i, j] = rnd.Next(0, 100);
+                    matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
                 }
             }
         }
         protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
         {
-            int R = sourceImage.GetPixel(x, y).R;
-            int G = sourceImage.GetPixel(x, y).G;
-            int B = sourceImage.GetPixel(x, y).B;
+            int r = sourceImage.GetPixel(x, y).R;
+            int g = sourceImage.GetPixel(x, y).G;
+            int b = sourceImage.GetPixel(x, y).B;
 
-            if (matrix[x, y] < percent)
+            if (matrixOfRandomNumbers[x, y] < percent)
             {
                 return Color.FromArgb(0, 0, 0);
             }
 
-            return Color.FromArgb(R, G, B);
+            return Color.FromArgb(r, g, b);
         }
     }
-
-
-
-
 
     class MatrixFilter : Filters
     {
         protected float[,] kernel = null;
         protected int size;
+
         protected MatrixFilter()
         {
 
@@ -225,7 +294,7 @@ namespace ImageProcessing
 
     class GaussianFilter : MatrixFilter
     {
-        float sigma;
+        private float sigma;
         public GaussianFilter(int size, float sigma)
         {
             this.sigma = sigma;
@@ -236,7 +305,7 @@ namespace ImageProcessing
         public void CreateGaussianKernel()
         {
             int radius = size / 2;
-            float distance = 0;
+           
             float constant = (float)(1 / (2 * Math.PI * sigma * sigma));
 
             kernel = new float[size, size];
@@ -246,6 +315,7 @@ namespace ImageProcessing
             {
                 for (int j = -radius; j <= radius; j++)
                 {
+                    float distance;
                     distance = (i * i + j * j) / (sigma * sigma);
                     kernel[i + radius, j + radius] = constant * (float)(Math.Exp(-distance));
                     norm += kernel[i + radius, j + radius];
@@ -290,8 +360,8 @@ namespace ImageProcessing
 
     class SobelFilter : MatrixFilter
     {
-        public float[,] kernelX;
-        public float[,] kernelY;
+        private float[,] kernelX;
+        private float[,] kernelY;
 
         public SobelFilter()
         {
@@ -365,7 +435,7 @@ namespace ImageProcessing
                         break;
                     case 5:
                         kernel = new float[5, 5] {
-                            { 1, 1, 1, 1, 1},
+                            {1, 1, 1, 1, 1},
                             {1, 1, 1, 1, 1 },
                             {1, 1, 1, 1, 1 },
                             {1, 1, 1, 1, 1 },
@@ -427,21 +497,21 @@ namespace ImageProcessing
             float resultR = 0;
             float resultG = 0;
             float resultB = 0;
-            int half = size / 2;
+            int radius = size / 2;
             float length = 0;
 
-            for (int i = -half; i <= half; i++)
-                for (int j = -half; j <= half; j++)
+            for (int i = -radius; i <= radius; i++)
+                for (int j = -radius; j <= radius; j++)
                 {
 
                     int idX = BorderProcessing(x + i, 0, sourceImage.Width - 1);
                     int idY = BorderProcessing(y + j, 0, sourceImage.Height - 1);
                     Color neighborColor = sourceImage.GetPixel(idX, idY);
 
-                    resultR += neighborColor.R * kernel[i + half, j + half];
-                    resultG += neighborColor.G * kernel[i + half, j + half];
-                    resultB += neighborColor.B * kernel[i + half, j + half];
-                    length += kernel[i + half, j + half];
+                    resultR += neighborColor.R * kernel[i + radius, j + radius];
+                    resultG += neighborColor.G * kernel[i + radius, j + radius];
+                    resultB += neighborColor.B * kernel[i + radius, j + radius];
+                    length += kernel[i + radius, j + radius];
                 }
 
             resultR /= length;
@@ -546,7 +616,6 @@ namespace ImageProcessing
             }
 
             // neighborColor = sourceImage.GetPixel(x, y);
-
             int R = (int)resultR;
             int G = (int)resultG;
             int B = (int)resultB;
@@ -610,7 +679,6 @@ namespace ImageProcessing
         }
 
     }
-
     class FrequencyIncrease : MatrixFilter
     {
         private float k;
@@ -627,7 +695,7 @@ namespace ImageProcessing
         {
             int radius = size / 2;
             float constant = (float)(1 / (2 * Math.PI * sigma * sigma));
-            float distance = 0;
+            
             kernel = new float[size, size];
             float norm = 0;
 
@@ -635,7 +703,7 @@ namespace ImageProcessing
             {
                 for (int j = -radius; j <= radius; j++)
                 {
-                    distance = (i * i + j * j) / (sigma * sigma);
+                    float distance = (i * i + j * j) / (sigma * sigma); ;
                     kernel[i + radius, j + radius] = constant * (float)(Math.Exp(-distance));
                     norm += kernel[i + radius, j + radius];
                 }
@@ -821,13 +889,13 @@ namespace ImageProcessing
         }
 
 
-        public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
 
             Erosion er = new Erosion(size);
             Dilation di = new Dilation(size);
 
-            return di.processImage(er.processImage(sourceImage, worker), worker);
+            return di.ProcessImage(er.ProcessImage(sourceImage, worker), worker);
 
         }
     }
@@ -854,11 +922,11 @@ namespace ImageProcessing
             }
         }
 
-        public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             Dilation di = new Dilation(size);
             Erosion er = new Erosion(size);
-            return er.processImage(di.processImage(sourceImage, worker), worker);
+            return er.ProcessImage(di.ProcessImage(sourceImage, worker), worker);
         }
     }
 
@@ -916,7 +984,7 @@ namespace ImageProcessing
             }
         }
 
-        public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             Bitmap tmp = new Bitmap(width, height);
 
@@ -930,7 +998,7 @@ namespace ImageProcessing
 
             Pepper pe = new Pepper(width, height, percent);
             Erosion er = new Erosion(size, kernel);
-            tmp = er.processImage(pe.processImage(tmp, worker), worker);
+            tmp = er.ProcessImage(pe.ProcessImage(tmp, worker), worker);
 
             for (int i = 0; i < width; ++i)
             {
@@ -1001,7 +1069,7 @@ namespace ImageProcessing
             }
         }
 
-        public override Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
+        public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             Bitmap tmp = new Bitmap(width, height);
 
@@ -1015,7 +1083,7 @@ namespace ImageProcessing
 
             Salt sa = new Salt(width, height, percent);
             Dilation di = new Dilation(size, kernel);
-            tmp = di.processImage(sa.processImage(tmp, worker), worker);
+            tmp = di.ProcessImage(sa.ProcessImage(tmp, worker), worker);
 
             for (int i = 0; i < width; ++i)
             {
