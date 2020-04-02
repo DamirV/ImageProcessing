@@ -69,7 +69,7 @@ namespace ImageProcessing
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            Bitmap newImage = ((Filters)e.Argument).processImage(image, backgroundWorker1);
+            Bitmap newImage = ((Filters)e.Argument).ProcessImage(image, backgroundWorker1);
             resultImage = null;
 
             if (backgroundWorker1.CancellationPending != true)
@@ -198,11 +198,9 @@ namespace ImageProcessing
                 return;
             }
 
-            float[,] kernel = new float[3, 3] { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } };
-
             stack.Push(new Images(image, resultImage, filterName));
             filterName = metroButton4.Text = "Маска Лапласа";
-            filter = new Laplass(kernel);
+            filter = new Laplass(false, false);
             backgroundWorker1.RunWorkerAsync(filter);
         }
 
@@ -214,11 +212,9 @@ namespace ImageProcessing
                 return;
             }
 
-            float[,] kernel = new float[3, 3] { { 1, 1, 1 }, { 1, -8, 1 }, { 1, 1, 1 } };
-
             stack.Push(new Images(image, resultImage, filterName));
             filterName = metroButton4.Text = "Маска Лапласа";
-            filter = new Laplass(kernel);
+            filter = new Laplass(true,false);
             backgroundWorker1.RunWorkerAsync(filter);
         }
 
@@ -236,7 +232,7 @@ namespace ImageProcessing
 
             stack.Push(new Images(image, resultImage, filterName));
             filterName = metroButton4.Text = "Оператор Лапласа с восстановленным фоном";
-            filter = new RestoredLaplass(kernel, k);
+            filter = new Laplass(false, true, k);
             backgroundWorker1.RunWorkerAsync(filter);
         }
 
@@ -256,7 +252,7 @@ namespace ImageProcessing
                 stack.Push(new Images(image, resultImage, filterName));
 
                 filterName = metroButton4.Text = "Оператор Лапласа с восстановленным фоном";
-                filter = new RestoredLaplass(kernel, k);
+                filter = new Laplass(true, true, k);
                 backgroundWorker1.RunWorkerAsync(filter);
             }
             catch
@@ -295,7 +291,6 @@ namespace ImageProcessing
 
         private void ОператорCобеляToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (image == null)
             {
                 return;
@@ -342,8 +337,10 @@ namespace ImageProcessing
                 return;
             }
             stack.Push(new Images(image, resultImage, filterName));
+            int saltPercent = (int)parseFloat(metroTextBox4.Text);
+            int pepperPercent = (int)parseFloat(metroTextBox5.Text);
             filterName = metroButton4.Text = "Соль и перец";
-            Filters filter = new SaltPepper(image.Width, image.Height);
+            Filters filter = new SaltPepper(image.Width, image.Height, saltPercent,pepperPercent);
             backgroundWorker1.RunWorkerAsync(filter);
         }
 
