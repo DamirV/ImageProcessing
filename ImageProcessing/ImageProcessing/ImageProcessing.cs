@@ -225,10 +225,7 @@ namespace ImageProcessing
             {
                 return;
             }
-
-            float[,] kernel = new float[3, 3] { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } };
             float k = parseFloat(metroTextBox3.Text);
-
 
             stack.Push(new Images(image, resultImage, filterName));
             filterName = metroButton4.Text = "Оператор Лапласа с восстановленным фоном";
@@ -246,9 +243,7 @@ namespace ImageProcessing
 
             try
             {
-                float[,] kernel = new float[3, 3] { { 1, 1, 1 }, { 1, -8, 1 }, { 1, 1, 1 } };
-                float k = parseFloat(metroTextBox2.Text);
-
+                float k = parseFloat(metroTextBox3.Text);
                 stack.Push(new Images(image, resultImage, filterName));
 
                 filterName = metroButton4.Text = "Оператор Лапласа с восстановленным фоном";
