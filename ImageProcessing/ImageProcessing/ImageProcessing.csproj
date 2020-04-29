@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auxiliary.cs" />
     <Compile Include="Filters.cs" />
     <Compile Include="ImageProcessing.cs">
       <SubType>Form</SubType>
@@ -59,8 +60,12 @@
     <Compile Include="ImageProcessing.Designer.cs">
       <DependentUpon>ImageProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Morphology.cs" />
+    <Compile Include="Noise.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sharpness.cs" />
+    <Compile Include="Smoothing.cs" />
     <EmbeddedResource Include="ImageProcessing.resx">
       <DependentUpon>ImageProcessing.cs</DependentUpon>
     </EmbeddedResource>

@@ -37,17 +37,17 @@ namespace ImageProcessing
         {
             Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
 
-            for (int i = 0; i < sourceImage.Width; ++i)
+            for (int i = 0; i < sourceImage.Height; ++i)
             {
-                worker.ReportProgress((int)((float)i / resultImage.Width * 100));
+                worker.ReportProgress((int)((float)i / resultImage.Height * 100));
                 if (worker.CancellationPending)
                 {
                     return null;
                 }
 
-                for (int j = 0; j < sourceImage.Height; ++j)
+                for (int j = 0; j < sourceImage.Width; ++j)
                 {
-                    resultImage.SetPixel(i, j, CalculateNewPixelColor(sourceImage, i, j));
+                    resultImage.SetPixel(j, i, CalculateNewPixelColor(sourceImage, j, i));
                 }
             }
 
