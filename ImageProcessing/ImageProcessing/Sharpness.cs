@@ -32,7 +32,7 @@ namespace ImageProcessing
             }
         }
 
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
             float xR = 0, xG = 0, xB = 0;
@@ -42,9 +42,9 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + i, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + j, 0, sourceImage.Height - 1);
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
+                    int idX = BorderProcessing(x + i, 0, Width - 1);
+                    int idY = BorderProcessing(y + j, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
 
                     xR += neighborColor.R * _kernelX[i + Radius, j + Radius];
                     xG += neighborColor.G * _kernelX[i + Radius, j + Radius];
@@ -95,7 +95,7 @@ namespace ImageProcessing
             Diameter = 3;
             Radius = Diameter / 2;
         }
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             float r = 0;
             float g = 0;
@@ -106,19 +106,19 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + i, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + j, 0, sourceImage.Height - 1);
-                    neighborColor = sourceImage.GetPixel(idX, idY);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    neighborColor = wrapImage[idX, idY];
 
-                    r += Kernel[i + Radius, j + Radius] * neighborColor.R;
-                    g += Kernel[i + Radius, j + Radius] * neighborColor.G;
-                    b += Kernel[i + Radius, j + Radius] * neighborColor.B;
+                    r += Kernel[j + Radius, i + Radius] * neighborColor.R;
+                    g += Kernel[j + Radius, i + Radius] * neighborColor.G;
+                    b += Kernel[j + Radius, i + Radius] * neighborColor.B;
                 }
             }
 
             if (_restoredBackground)
             {
-                neighborColor = sourceImage.GetPixel(x, y);
+                neighborColor = wrapImage[x, y];
                 r = neighborColor.R + (int)(-_multiplier * r);
                 g = neighborColor.G + (int)(-_multiplier * g);
                 b = neighborColor.B + (int)(-_multiplier * b);
@@ -173,7 +173,7 @@ namespace ImageProcessing
             }
         }
 
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             float r = 0;
             float g = 0;
@@ -184,9 +184,9 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + i, 0, sourceImage.Height - 1);
-                    neighborColor = sourceImage.GetPixel(idX, idY);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    neighborColor = wrapImage[idX, idY];
 
                     r += neighborColor.R * Kernel[j + Radius, i + Radius];
                     g += neighborColor.G * Kernel[j + Radius, i + Radius];
@@ -195,11 +195,10 @@ namespace ImageProcessing
 
             }
 
-            neighborColor = sourceImage.GetPixel(x, y);
+            neighborColor = wrapImage[x, y];
             r = Clamp(neighborColor.R + (int)(_multiplier * (neighborColor.R - r)), 0, 255);
             g = Clamp(neighborColor.G + (int)(_multiplier * (neighborColor.G - g)), 0, 255);
             b = Clamp(neighborColor.B + (int)(_multiplier * (neighborColor.B - b)), 0, 255);
-
 
             return Color.FromArgb((int)r, (int)g, (int)b);
         }

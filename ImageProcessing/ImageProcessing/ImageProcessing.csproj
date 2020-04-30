@@ -60,6 +60,7 @@
     <Compile Include="ImageProcessing.Designer.cs">
       <DependentUpon>ImageProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageWrapper.cs" />
     <Compile Include="Morphology.cs" />
     <Compile Include="Noise.cs" />
     <Compile Include="Program.cs" />

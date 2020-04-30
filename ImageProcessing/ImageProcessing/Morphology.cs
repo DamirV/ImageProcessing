@@ -28,7 +28,7 @@ namespace ImageProcessing
             Kernel = kernel;
         }
 
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             int max = 0;
 
@@ -38,10 +38,10 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + i, 0, sourceImage.Height - 1);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
 
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
+                    Color neighborColor = wrapImage[idX, idY];
                     int intensity = neighborColor.R;
 
                     if ((Kernel[j + Radius, i + Radius] > 0) && (intensity > max))
@@ -58,7 +58,6 @@ namespace ImageProcessing
 
     class Erosion : MatrixFilter
     {
-
         public Erosion(int diameter)
         {
             Diameter = diameter;
@@ -81,7 +80,7 @@ namespace ImageProcessing
             Kernel = kernel;
         }
 
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             int min = 255;
 
@@ -91,10 +90,10 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + i, 0, sourceImage.Height - 1);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
 
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
+                    Color neighborColor = wrapImage[idX, idY];
                     int intensity = neighborColor.R;
 
                     if ((Kernel[j + Radius, i + Radius] > 0) && (intensity < min))
@@ -111,7 +110,6 @@ namespace ImageProcessing
 
     class Opening : MatrixFilter
     {
-
         public Opening(int diameter)
         {
             Diameter = diameter;
@@ -125,12 +123,10 @@ namespace ImageProcessing
                 }
             }
         }
-
         public Opening()
         {
 
         }
-
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
@@ -139,13 +135,11 @@ namespace ImageProcessing
             Dilation di = new Dilation(Diameter);
 
             return di.ProcessImage(er.ProcessImage(sourceImage, worker), worker);
-
         }
     }
 
     class Closing : MatrixFilter
     {
-
         public Closing()
         {
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 
 namespace ImageProcessing
@@ -41,31 +42,6 @@ namespace ImageProcessing
                 }
             }
         }
-
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
-        {
-            int radius = Diameter / 2;
-
-            float resultR = 0;
-            float resultG = 0;
-            float resultB = 0;
-
-            for (int l = -radius; l <= radius; l++)
-            {
-                for (int k = -radius; k <= radius; k++)
-                {
-                    int idX = BorderProcessing(x + k, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + l, 0, sourceImage.Height - 1);
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
-
-                    resultR += neighborColor.R * Kernel[k + radius, l + radius];
-                    resultG += neighborColor.G * Kernel[k + radius, l + radius];
-                    resultB += neighborColor.B * Kernel[k + radius, l + radius];
-                }
-            }
-
-            return Color.FromArgb(Clamp((int)resultR, 0, 255), Clamp((int)resultG, 0, 255), Clamp((int)resultB, 0, 255));
-        }
     }
 
     class LinearSmoothing : MatrixFilter
@@ -73,6 +49,8 @@ namespace ImageProcessing
         public LinearSmoothing(int diameter, bool extendedMask)
         {
             Diameter = diameter;
+            Radius = Diameter / 2;
+
             if (!extendedMask)
             {
                 switch (Diameter)
@@ -165,28 +143,27 @@ namespace ImageProcessing
             }
         }
 
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-
             float r = 0;
             float g = 0;
             float b = 0;
-            int radius = Diameter / 2;
             float length = 0;
 
-            for (int i = -radius; i <= radius; ++i)
-                for (int j = -radius; j <= radius; ++j)
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
                 {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX,idY];
 
-                    int idX = BorderProcessing(x + i, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + j, 0, sourceImage.Height - 1);
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
-
-                    r += neighborColor.R * Kernel[i + radius, j + radius];
-                    g += neighborColor.G * Kernel[i + radius, j + radius];
-                    b += neighborColor.B * Kernel[i + radius, j + radius];
-                    length += Kernel[i + radius, j + radius];
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    length += Kernel[j + Radius, i + Radius];
                 }
+            }
 
             r /= length;
             g /= length;
@@ -199,6 +176,7 @@ namespace ImageProcessing
             return Color.FromArgb((int)r, (int)g, (int)b);
         }
 
+
     }
 
     class Mediana : MatrixFilter
@@ -209,7 +187,7 @@ namespace ImageProcessing
             Radius = Diameter / 2;
         }
 
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             int[] r = new int[Diameter * Diameter];
             int[] g = new int[Diameter * Diameter];
@@ -221,10 +199,10 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + i, 0, sourceImage.Height - 1);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
 
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
+                    Color neighborColor = wrapImage[idX, idY];
 
                     r[indexNum] = neighborColor.R;
                     g[indexNum] = neighborColor.G;

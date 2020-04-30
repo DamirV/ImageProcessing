@@ -25,18 +25,18 @@ namespace ImageProcessing
                 }
             }
         }
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            if (_matrixOfRandomNumbers[x, y] <= _saltPercent)
+            if (_matrixOfRandomNumbers[x, y] < _saltPercent)
             {
                 return Color.FromArgb(255, 255, 255);
             }
-            if (_matrixOfRandomNumbers[x, y] > 100 - _pepperPercent)
+            if (_matrixOfRandomNumbers[x, y] >= 100 - _pepperPercent)
             {
                 return Color.FromArgb(0, 0, 0);
             }
 
-            return sourceImage.GetPixel(x, y);
+            return wrapImage[x, y];
         }
     }
 
@@ -58,7 +58,7 @@ namespace ImageProcessing
                 }
             }
         }
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
             if (_matrixOfRandomNumbers[x, y] < _percent)
@@ -66,7 +66,7 @@ namespace ImageProcessing
                 return Color.FromArgb(255, 255, 255);
             }
 
-            return sourceImage.GetPixel(x, y);
+            return wrapImage[x, y];
         }
     }
 
@@ -88,7 +88,7 @@ namespace ImageProcessing
                 }
             }
         }
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
             if (_matrixOfRandomNumbers[x, y] < _percent)
@@ -96,7 +96,7 @@ namespace ImageProcessing
                 return Color.FromArgb(0, 0, 0);
             }
 
-            return sourceImage.GetPixel(x, y);
+            return wrapImage[x, y];
         }
     }
 
@@ -170,13 +170,18 @@ namespace ImageProcessing
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
+            Bitmap resultImage = new Bitmap(sourceImage);
             Bitmap tempBitmap = new Bitmap(_width, _height);
 
-            for (int i = 0; i < _width; ++i)
+            Width = resultImage.Width;
+            Height = resultImage.Height;
+            int checkProgress = -1;
+
+            using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
-                for (int j = 0; j < _height; ++j)
+                foreach (var point in wrapTempImage)
                 {
-                    tempBitmap.SetPixel(i, j, Color.White);
+                    wrapTempImage[point] = Color.White;
                 }
             }
 
@@ -184,19 +189,38 @@ namespace ImageProcessing
             Erosion er = new Erosion(Diameter, Kernel);
             tempBitmap = er.ProcessImage(pe.ProcessImage(tempBitmap, worker), worker);
 
-            for (int i = 0; i < _width; ++i)
+
+            using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
-                for (int j = 0; j < _height; ++j)
+                using (ImageWrapper wrapImage = new ImageWrapper(resultImage,true))
                 {
-                    Color neighborColor = tempBitmap.GetPixel(i, j);
-                    if (neighborColor.R != 0 && neighborColor.G != 0 && neighborColor.B != 0)
+                    for (int i = 0; i < Height; ++i)
                     {
-                        tempBitmap.SetPixel(i, j, sourceImage.GetPixel(i, j));
+                        if (i > checkProgress)
+                        {
+                            worker.ReportProgress((int) ((float) i / resultImage.Height * 100));
+                            if (worker.CancellationPending)
+                            {
+                                return null;
+                            }
+
+                            checkProgress += 100;
+                        }
+
+                        for (int j = 0; j < Width; ++j)
+                        {
+                            Color neighborColor = wrapTempImage[j, i];
+                            if (neighborColor.R == 0 && neighborColor.G == 0 && neighborColor.B == 0)
+                            {
+                                wrapImage[j, i] = wrapTempImage[j, i];
+                            }
+                            
+                        }
                     }
                 }
             }
 
-            return tempBitmap;
+            return resultImage;
         }
     }
 
@@ -269,13 +293,18 @@ namespace ImageProcessing
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
+            Bitmap resultImage = new Bitmap(sourceImage);
             Bitmap tempBitmap = new Bitmap(_width, _height);
 
-            for (int i = 0; i < _width; ++i)
+            Width = resultImage.Width;
+            Height = resultImage.Height;
+            int checkProgress = -1;
+
+            using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
-                for (int j = 0; j < _height; ++j)
+                foreach (var point in wrapTempImage)
                 {
-                    tempBitmap.SetPixel(i, j, Color.Black);
+                    wrapTempImage[point] = Color.Black;
                 }
             }
 
@@ -283,19 +312,36 @@ namespace ImageProcessing
             Dilation di = new Dilation(Diameter, Kernel);
             tempBitmap = di.ProcessImage(sa.ProcessImage(tempBitmap, worker), worker);
 
-            for (int i = 0; i < _width; ++i)
+            using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
-                for (int j = 0; j < _height; ++j)
+                using (ImageWrapper wrapImage = new ImageWrapper(resultImage, true))
                 {
-                    Color neighborColor = tempBitmap.GetPixel(i, j);
-                    if (neighborColor.R != 255 && neighborColor.G != 255 && neighborColor.B != 255)
+                    for (int i = 0; i < Height; ++i)
                     {
-                        tempBitmap.SetPixel(i, j, sourceImage.GetPixel(i, j));
+                        if (i > checkProgress)
+                        {
+                            worker.ReportProgress((int)((float)i / resultImage.Height * 100));
+                            if (worker.CancellationPending)
+                            {
+                                return null;
+                            }
+
+                            checkProgress += 100;
+                        }
+
+                        for (int j = 0; j < Width; ++j)
+                        {
+                            Color neighborColor = wrapTempImage[j, i];
+                            if (neighborColor.R == 255 && neighborColor.G == 255 && neighborColor.B == 255)
+                            {
+                                wrapImage[j, i] = wrapTempImage[j, i];
+                            }
+                        }
                     }
                 }
             }
 
-            return tempBitmap;
+            return resultImage;
         }
     }
 }

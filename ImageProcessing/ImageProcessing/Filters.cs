@@ -6,8 +6,10 @@ namespace ImageProcessing
 {
     abstract class Filters
     {
-        protected abstract Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y);
-
+        protected int Width;
+        protected int Height;
+        protected abstract Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y);
+     
         public int Clamp(int value, int min, int max)
         {
             if (value < min)
@@ -35,19 +37,30 @@ namespace ImageProcessing
 
         public virtual Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
-            Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+            Bitmap resultImage = new Bitmap(sourceImage);
+            Width = resultImage.Width;
+            Height = resultImage.Height;
+            int checkProgress = -1;
 
-            for (int i = 0; i < sourceImage.Height; ++i)
+            using (ImageWrapper wrapImage = new ImageWrapper(resultImage))
             {
-                worker.ReportProgress((int)((float)i / resultImage.Height * 100));
-                if (worker.CancellationPending)
+                for (int i = 0; i < Height; ++i)
                 {
-                    return null;
-                }
+                    if (i > checkProgress)
+                    {
+                        worker.ReportProgress((int)((float)i / resultImage.Height * 100));
+                        if (worker.CancellationPending)
+                        {
+                            return null;
+                        }
 
-                for (int j = 0; j < sourceImage.Width; ++j)
-                {
-                    resultImage.SetPixel(j, i, CalculateNewPixelColor(sourceImage, j, i));
+                        checkProgress += 100;
+                    }
+
+                    for (int j = 0; j < Width; ++j)
+                    {
+                        wrapImage[j, i] = CalculateNewPixelColor(wrapImage, j, i);
+                    }
                 }
             }
 
@@ -60,17 +73,15 @@ namespace ImageProcessing
         protected float[,] Kernel;
         protected int Diameter;
         protected int Radius;
-        protected MatrixFilter()
-        {
-
-        }
+        protected MatrixFilter() { }
         public MatrixFilter(float[,] kernel)
         {
             Kernel = kernel;
             Diameter = Kernel.GetLength(0);
             Radius = Diameter / 2;
         }
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             float r = 0;
             float g = 0;
@@ -80,9 +91,9 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, sourceImage.Width - 1);
-                    int idY = BorderProcessing(y + i, 0, sourceImage.Height - 1);
-                    Color neighborColor = sourceImage.GetPixel(idX, idY);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
 
                     r += neighborColor.R * Kernel[j + Radius, i + Radius];
                     g += neighborColor.G * Kernel[j + Radius, i + Radius];

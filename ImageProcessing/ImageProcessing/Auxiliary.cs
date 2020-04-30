@@ -4,11 +4,12 @@ namespace ImageProcessing
 {
     class BlackAndWhite : Filters
     {
-        protected override Color CalculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int r = sourceImage.GetPixel(x, y).R;
-            int g = sourceImage.GetPixel(x, y).G;
-            int b = sourceImage.GetPixel(x, y).B;
+            Color color = wrapImage[x, y];
+            int r = color.R;
+            int g = color.G;
+            int b = color.B;
 
             int result = (r + g + b) / 3;
 
