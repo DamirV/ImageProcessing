@@ -142,7 +142,6 @@ namespace ImageProcessing
                 }
             }
         }
-
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             float r = 0;

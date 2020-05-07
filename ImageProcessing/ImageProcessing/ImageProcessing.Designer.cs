@@ -32,6 +32,8 @@
             this.metroUserControl1 = new MetroFramework.Controls.MetroUserControl();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.metroButton9 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.metroButton7 = new MetroFramework.Controls.MetroButton();
             this.metroButton8 = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
@@ -121,9 +123,6 @@
             this.эрозияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.открытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metroContextMenu3 = new MetroFramework.Controls.MetroContextMenu(this.components);
-            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -137,7 +136,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.metroContextMenu1.SuspendLayout();
             this.metroContextMenu2.SuspendLayout();
-            this.metroContextMenu3.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroUserControl1
@@ -167,6 +165,8 @@
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.Controls.Add(this.metroButton9);
+            this.metroTabPage1.Controls.Add(this.metroLabel14);
             this.metroTabPage1.Controls.Add(this.metroButton7);
             this.metroTabPage1.Controls.Add(this.metroButton8);
             this.metroTabPage1.Controls.Add(this.metroButton3);
@@ -186,6 +186,29 @@
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
+            // 
+            // metroButton9
+            // 
+            this.metroButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.metroButton9.Location = new System.Drawing.Point(91, 466);
+            this.metroButton9.Name = "metroButton9";
+            this.metroButton9.Size = new System.Drawing.Size(75, 23);
+            this.metroButton9.TabIndex = 14;
+            this.metroButton9.Text = "Сохранить";
+            this.metroToolTip1.SetToolTip(this.metroButton9, "Сохранение результата обработки изображения");
+            this.metroButton9.UseSelectable = true;
+            this.metroButton9.Click += new System.EventHandler(this.MetroButton9_Click_1);
+            // 
+            // metroLabel14
+            // 
+            this.metroLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.metroLabel14.AutoSize = true;
+            this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel14.Location = new System.Drawing.Point(8, 405);
+            this.metroLabel14.Name = "metroLabel14";
+            this.metroLabel14.Size = new System.Drawing.Size(182, 25);
+            this.metroLabel14.TabIndex = 13;
+            this.metroLabel14.Text = "Ширина: 0; Высота: 0;";
             // 
             // metroButton7
             // 
@@ -218,8 +241,8 @@
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(75, 23);
             this.metroButton3.TabIndex = 8;
-            this.metroButton3.Text = "Файл";
-            this.metroToolTip1.SetToolTip(this.metroButton3, "Загрузка исходного изображения или сохранение результата");
+            this.metroButton3.Text = "Открыть";
+            this.metroToolTip1.SetToolTip(this.metroButton3, "Загрузка исходного изображения");
             this.metroButton3.UseSelectable = true;
             this.metroButton3.Click += new System.EventHandler(this.MetroButton3_Click);
             // 
@@ -579,7 +602,6 @@
             this.metroTextBox2.UseSelectable = true;
             this.metroTextBox2.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.metroTextBox2.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.metroTextBox2.Click += new System.EventHandler(this.MetroTextBox2_Click);
             // 
             // metroTextBox1
             // 
@@ -623,7 +645,6 @@
             this.metroLabel5.TabIndex = 5;
             this.metroLabel5.Text = "Вес маски";
             this.metroToolTip1.SetToolTip(this.metroLabel5, "Константа определяющая вес маски");
-            this.metroLabel5.Click += new System.EventHandler(this.MetroLabel5_Click);
             // 
             // metroLabel4
             // 
@@ -1187,28 +1208,6 @@
             this.закрытиеToolStripMenuItem.Text = "Замыкание";
             this.закрытиеToolStripMenuItem.Click += new System.EventHandler(this.ЗакрытиеToolStripMenuItem_Click);
             // 
-            // metroContextMenu3
-            // 
-            this.metroContextMenu3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьToolStripMenuItem,
-            this.сохранитьToolStripMenuItem});
-            this.metroContextMenu3.Name = "metroContextMenu3";
-            this.metroContextMenu3.Size = new System.Drawing.Size(133, 48);
-            // 
-            // открытьToolStripMenuItem
-            // 
-            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.открытьToolStripMenuItem.Text = "Открыть";
-            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьToolStripMenuItem_Click);
-            // 
-            // сохранитьToolStripMenuItem
-            // 
-            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
-            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.СохранитьToolStripMenuItem_Click);
-            // 
             // ImageProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1223,10 +1222,10 @@
             this.Name = "ImageProcessing";
             this.Text = "ImageProcessing";
             this.Activated += new System.EventHandler(this.ImageProcessing_Activated);
-            this.Load += new System.EventHandler(this.ImageProcessing_Load);
             this.Resize += new System.EventHandler(this.ImageProcessing_Resize);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
+            this.metroTabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.metroTabPage2.ResumeLayout(false);
@@ -1240,7 +1239,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             this.metroContextMenu1.ResumeLayout(false);
             this.metroContextMenu2.ResumeLayout(false);
-            this.metroContextMenu3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1316,9 +1314,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private MetroFramework.Controls.MetroContextMenu metroContextMenu3;
-        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem математическаяToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem наращиваниеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem эрозияToolStripMenuItem;
@@ -1343,6 +1338,8 @@
         private MetroFramework.Controls.MetroTextBox metroTextBox7;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private System.Windows.Forms.ToolStripMenuItem белыеДырыToolStripMenuItem;
+        private MetroFramework.Controls.MetroLabel metroLabel14;
+        private MetroFramework.Controls.MetroButton metroButton9;
     }
 }
 
