@@ -12,8 +12,16 @@ namespace ImageProcessing
         {
             Diameter = 3;
             Radius = Diameter / 2;
-            _kernelX = new float[,] { { -1, 0, 1 }, { -2, 0, 2 }, { -1, 0, 1 } };
-            _kernelY = new float[,] { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
+            _kernelX = new float[,] { 
+                { -1, 0, 1 },
+                { -2, 0, 2 }, 
+                { -1, 0, 1 } };
+            _kernelY = new float[,]
+            {
+                { -1, -2, -1 }, 
+                { 0, 0, 0 }, 
+                { 1, 2, 1 }
+            };
         }
 
         public SobelFilter(float[,] kernel, int diameter)
@@ -42,17 +50,17 @@ namespace ImageProcessing
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    int idX = BorderProcessing(x + i, 0, Width - 1);
-                    int idY = BorderProcessing(y + j, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
                     Color neighborColor = wrapImage[idX, idY];
 
-                    xR += neighborColor.R * _kernelX[i + Radius, j + Radius];
-                    xG += neighborColor.G * _kernelX[i + Radius, j + Radius];
-                    xB += neighborColor.B * _kernelX[i + Radius, j + Radius];
+                    xR += neighborColor.R * _kernelX[j + Radius, i + Radius];
+                    xG += neighborColor.G * _kernelX[j + Radius, i + Radius];
+                    xB += neighborColor.B * _kernelX[j + Radius, i + Radius];
 
-                    yR += neighborColor.R * _kernelY[i + Radius, j + Radius];
-                    yG += neighborColor.G * _kernelY[i + Radius, j + Radius];
-                    yB += neighborColor.B * _kernelY[i + Radius, j + Radius];
+                    yR += neighborColor.R * _kernelY[j + Radius, i + Radius];
+                    yG += neighborColor.G * _kernelY[j + Radius, i + Radius];
+                    yB += neighborColor.B * _kernelY[j + Radius, i + Radius];
                 }
             }
 
@@ -61,6 +69,84 @@ namespace ImageProcessing
             int b = Clamp((int)Math.Sqrt(xB * xB + yB * yB), 0, 255);
 
             return Color.FromArgb(r, g, b);
+        }
+    }
+
+    class SobelFilterColored : MatrixFilter
+    {
+        private readonly float[,] _kernelX;
+        private readonly float[,] _kernelY;
+
+        public SobelFilterColored()
+        {
+            Diameter = 3;
+            Radius = Diameter / 2;
+            _kernelX = new float[,] {
+                { -1, 0, 1 },
+                { -2, 0, 2 },
+                { -1, 0, 1 }
+            };
+            _kernelY = new float[,]
+            {
+                { -1, -2, -1 },
+                { 0, 0, 0 },
+                { 1, 2, 1 }
+            };
+        }
+
+        public SobelFilterColored(float[,] kernel, int diameter)
+        {
+            Diameter = diameter;
+            Radius = Diameter / 2;
+            _kernelX = new float[Diameter, Diameter];
+            _kernelY = new float[Diameter, Diameter];
+            for (int i = 0; i < Diameter; ++i)
+            {
+                for (int j = 0; j < Diameter; ++j)
+                {
+                    _kernelX[i, j] = kernel[i, j];
+                    _kernelY[i, j] = kernel[j, i];
+                }
+            }
+        }
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+
+            float xR = 0, xG = 0, xB = 0;
+            float yR = 0, yG = 0, yB = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    xR += neighborColor.R * _kernelX[j + Radius, i + Radius];
+                    xG += neighborColor.G * _kernelX[j + Radius, i + Radius];
+                    xB += neighborColor.B * _kernelX[j + Radius, i + Radius];
+
+                    yR += neighborColor.R * _kernelY[j + Radius, i + Radius];
+                    yG += neighborColor.G * _kernelY[j + Radius, i + Radius];
+                    yB += neighborColor.B * _kernelY[j + Radius, i + Radius];
+                }
+            }
+
+            double gxx, gyy, gxy;
+
+            gxx = Math.Pow(xR, 2) + Math.Pow(xG, 2) + Math.Pow(xB, 2);
+            gyy = Math.Pow(yR, 2) + Math.Pow(yG, 2) + Math.Pow(yB, 2);
+            gxy = xR * yR +  xG * yG + xB * yB;
+
+            double angle = Math.Atan(2 * gxy / (gxx - gyy))/2;
+
+            angle = 0;
+            
+            int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + (gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
+            
+            return Color.FromArgb(result, result, result);
         }
     }
 

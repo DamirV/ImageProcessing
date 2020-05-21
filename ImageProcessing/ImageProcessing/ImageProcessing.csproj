@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filters\Auxiliary.cs" />
+    <Compile Include="Filters\Components.cs" />
     <Compile Include="Filters\Filters.cs" />
     <Compile Include="ImageProcessing.cs">
       <SubType>Form</SubType>

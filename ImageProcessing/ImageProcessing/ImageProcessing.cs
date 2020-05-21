@@ -459,7 +459,7 @@ namespace ImageProcessing
 
         private void ВЧерноБелоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Черно-белое", new BlackAndWhite());
+           
         }
 
         private void НаращиваниеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -604,6 +604,31 @@ namespace ImageProcessing
         private void ImageProcessing_Resize(object sender, EventArgs e)
         {
             alignment();
+        }
+
+        private void ВЧерноБелоеToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Черно-белое", new BlackAndWhite());
+        }
+
+        private void КраснаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Красная компонента", new ComponentR());
+        }
+
+        private void ЗеленаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Зеленая компонента", new ComponentG());
+        }
+
+        private void СиняяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Синяя компонента", new ComponentB());
+        }
+
+        private void ОператорСобеляДляЦветногоИзображенияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Оператор Собеля для цветного изображения", new SobelFilterColored());
         }
     }
 }
