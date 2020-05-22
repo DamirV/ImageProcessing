@@ -2,7 +2,7 @@
 
 namespace ImageProcessing
 {
-    class ComponentR : Filters
+    class ComponentR : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
@@ -12,7 +12,7 @@ namespace ImageProcessing
         }
     }
 
-    class ComponentG : Filters
+    class ComponentG : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
@@ -22,7 +22,7 @@ namespace ImageProcessing
         }
     }
 
-    class ComponentB : Filters
+    class ComponentB : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {

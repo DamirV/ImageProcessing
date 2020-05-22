@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class Dilation : MatrixFilter
+    class Dilation : Filter
     {
         public Dilation(int diameter)
         {
@@ -56,7 +56,7 @@ namespace ImageProcessing
         }
     }
 
-    class Erosion : MatrixFilter
+    class Erosion : Filter
     {
         public Erosion(int diameter)
         {
@@ -108,7 +108,7 @@ namespace ImageProcessing
         }
     }
 
-    class Opening : MatrixFilter
+    class Opening : Filter
     {
         public Opening(int diameter)
         {
@@ -136,9 +136,36 @@ namespace ImageProcessing
 
             return di.ProcessImage(er.ProcessImage(sourceImage, worker), worker);
         }
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            float r = 0;
+            float g = 0;
+            float b = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                }
+            }
+
+            r = Clamp((int)r, 0, 255);
+            g = Clamp((int)g, 0, 255);
+            b = Clamp((int)b, 0, 255);
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
+        }
     }
 
-    class Closing : MatrixFilter
+    class Closing : Filter
     {
         public Closing()
         {
@@ -165,6 +192,32 @@ namespace ImageProcessing
             Dilation di = new Dilation(Diameter);
             Erosion er = new Erosion(Diameter);
             return er.ProcessImage(di.ProcessImage(sourceImage, worker), worker);
+        }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            float r = 0;
+            float g = 0;
+            float b = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                }
+            }
+
+            r = Clamp((int)r, 0, 255);
+            g = Clamp((int)g, 0, 255);
+            b = Clamp((int)b, 0, 255);
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
         }
     }
 }

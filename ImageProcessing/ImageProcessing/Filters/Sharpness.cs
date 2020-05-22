@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class SobelFilter : MatrixFilter
+    class SobelFilter : Filter
     {
         private readonly float[,] _kernelX;
         private readonly float[,] _kernelY;
@@ -72,7 +72,7 @@ namespace ImageProcessing
         }
     }
 
-    class SobelFilterColored : MatrixFilter
+    class SobelFilterColored : Filter
     {
         private readonly float[,] _kernelX;
         private readonly float[,] _kernelY;
@@ -150,7 +150,7 @@ namespace ImageProcessing
         }
     }
 
-    class Laplass : MatrixFilter
+    class Laplass : Filter
     {
         private readonly bool _restoredBackground;
         private readonly float _multiplier;
@@ -218,7 +218,7 @@ namespace ImageProcessing
         }
     }
 
-    class FrequencyIncrease : MatrixFilter
+    class FrequencyIncrease : Filter
     {
         private readonly float _multiplier;
         private readonly float _sigma;

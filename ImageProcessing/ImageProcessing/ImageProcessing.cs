@@ -68,7 +68,7 @@ namespace ImageProcessing
         private int width;
         private int height;
         int kernelSize = 3;
-        Filters filter;
+        Filter filter;
         Stack<Images> stack;
         private string filterName;
 
@@ -80,7 +80,7 @@ namespace ImageProcessing
             filterName = "Фильтр";
         }
 
-        private int RunProcessing(string _filterName, Filters _filter)
+        private int RunProcessing(string _filterName, Filter _filter)
         {
             if (image == null)
             {
@@ -172,7 +172,7 @@ namespace ImageProcessing
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            Bitmap newImage = ((Filters)e.Argument).ProcessImage(image, backgroundWorker1);
+            Bitmap newImage = ((Filter)e.Argument).ProcessImage(image, backgroundWorker1);
             resultImage = null;
 
             if (backgroundWorker1.CancellationPending != true)

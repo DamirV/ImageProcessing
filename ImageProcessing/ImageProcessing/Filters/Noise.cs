@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class SaltPepper : Filters
+    class SaltPepper : Filter
     {
         private readonly int[,] _matrixOfRandomNumbers;
         private readonly int _saltPercent;
@@ -40,7 +40,7 @@ namespace ImageProcessing
         }
     }
 
-    class Salt : Filters
+    class Salt : Filter
     {
         private readonly int[,] _matrixOfRandomNumbers;
         private readonly int _percent;
@@ -70,7 +70,7 @@ namespace ImageProcessing
         }
     }
 
-    class Pepper : Filters
+    class Pepper : Filter
     {
         private readonly int[,] _matrixOfRandomNumbers;
         private readonly int _percent;
@@ -100,7 +100,7 @@ namespace ImageProcessing
         }
     }
 
-    class BlackHoles : MatrixFilter
+    class BlackHoles : Filter
     {
         private readonly int _width;
         private readonly int _height;
@@ -222,9 +222,35 @@ namespace ImageProcessing
 
             return resultImage;
         }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            float r = 0;
+            float g = 0;
+            float b = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                }
+            }
+
+            r = Clamp((int)r, 0, 255);
+            g = Clamp((int)g, 0, 255);
+            b = Clamp((int)b, 0, 255);
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
+        }
     }
 
-    class WhiteHoles : MatrixFilter
+    class WhiteHoles : Filter
     {
         private readonly int _width;
         private readonly int _height;
@@ -289,6 +315,7 @@ namespace ImageProcessing
                     Radius = Diameter / 2;
                     break;
             }
+
         }
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
@@ -342,6 +369,32 @@ namespace ImageProcessing
             }
 
             return resultImage;
+        }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            float r = 0;
+            float g = 0;
+            float b = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                }
+            }
+
+            r = Clamp((int)r, 0, 255);
+            g = Clamp((int)g, 0, 255);
+            b = Clamp((int)b, 0, 255);
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
         }
     }
 }

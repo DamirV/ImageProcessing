@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class GaussianFilter : MatrixFilter
+    class GaussianFilter : Filter
     {
         private readonly float _sigma;
         public GaussianFilter(int diameter, float sigma)
@@ -42,9 +42,35 @@ namespace ImageProcessing
                 }
             }
         }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            float r = 0;
+            float g = 0;
+            float b = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                }
+            }
+
+            r = Clamp((int)r, 0, 255);
+            g = Clamp((int)g, 0, 255);
+            b = Clamp((int)b, 0, 255);
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
+        }
     }
 
-    class LinearSmoothing : MatrixFilter
+    class LinearSmoothing : Filter
     {
         public LinearSmoothing(int diameter, bool extendedMask)
         {
@@ -178,7 +204,7 @@ namespace ImageProcessing
 
     }
 
-    class Mediana : MatrixFilter
+    class Mediana : Filter
     {
         public Mediana(int diameter)
         {

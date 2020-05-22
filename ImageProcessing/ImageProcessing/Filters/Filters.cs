@@ -5,10 +5,14 @@ using System.Windows.Forms;
 
 namespace ImageProcessing
 {
-    abstract class Filters
+    abstract class Filter
     {
         protected int Width;
         protected int Height;
+        protected float[,] Kernel;
+        protected int Diameter;
+        protected int Radius;
+
         protected abstract Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y);
      
         public int Clamp(int value, int min, int max)
@@ -43,6 +47,7 @@ namespace ImageProcessing
             Bitmap resultImage = new Bitmap(sourceImage);
             Width = resultImage.Width;
             Height = resultImage.Height;
+
             int checkProgress = -1;
 
             using (ImageWrapper wrapImage = new ImageWrapper(resultImage))
@@ -73,7 +78,7 @@ namespace ImageProcessing
         }
     }
 
-    class MatrixFilter : Filters
+    /*class MatrixFilter : Filters
     {
         protected float[,] Kernel;
         protected int Diameter;
@@ -113,4 +118,5 @@ namespace ImageProcessing
             return Color.FromArgb((int)r, (int)g, (int)b);
         }
     }
+    */
 }
