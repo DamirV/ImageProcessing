@@ -128,6 +128,7 @@
             this.эрозияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.открытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.гауссовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -793,7 +794,7 @@
             this.математическаяToolStripMenuItem,
             this.вспомогательныеМетодыToolStripMenuItem});
             this.metroContextMenu1.Name = "metroContextMenu1";
-            this.metroContextMenu1.Size = new System.Drawing.Size(246, 114);
+            this.metroContextMenu1.Size = new System.Drawing.Size(246, 136);
             // 
             // сглаживающиеФильтрыToolStripMenuItem
             // 
@@ -928,7 +929,8 @@
             this.сольToolStripMenuItem,
             this.перецToolStripMenuItem,
             this.черныеДырыToolStripMenuItem,
-            this.белыеДырыToolStripMenuItem});
+            this.белыеДырыToolStripMenuItem,
+            this.гауссовToolStripMenuItem});
             this.шумToolStripMenuItem.Name = "шумToolStripMenuItem";
             this.шумToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.шумToolStripMenuItem.Text = "Шум";
@@ -1253,6 +1255,13 @@
             this.закрытиеToolStripMenuItem.Text = "Замыкание";
             this.закрытиеToolStripMenuItem.Click += new System.EventHandler(this.ЗакрытиеToolStripMenuItem_Click);
             // 
+            // гауссовToolStripMenuItem
+            // 
+            this.гауссовToolStripMenuItem.Name = "гауссовToolStripMenuItem";
+            this.гауссовToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.гауссовToolStripMenuItem.Text = "Гауссовский шум";
+            this.гауссовToolStripMenuItem.Click += new System.EventHandler(this.ГауссовToolStripMenuItem_Click);
+            // 
             // ImageProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1390,6 +1399,7 @@
         private System.Windows.Forms.ToolStripMenuItem зеленаяКомпонентаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem синяяКомпонентаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem операторСобеляДляЦветногоИзображенияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem гауссовToolStripMenuItem;
     }
 }
 

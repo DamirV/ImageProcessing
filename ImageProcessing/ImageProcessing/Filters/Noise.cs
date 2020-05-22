@@ -397,4 +397,40 @@ namespace ImageProcessing
             return Color.FromArgb((int)r, (int)g, (int)b);
         }
     }
+
+    class GaussianNoise : Filter
+    {
+        private readonly double _middle;
+        private readonly double _sigma;
+        public GaussianNoise(Bitmap sourceImage, double sigma)
+        {
+            Width = sourceImage.Width;
+            Height = sourceImage.Height;
+            Bitmap resultImage = new Bitmap(sourceImage);
+            _middle = 0;
+            _sigma = sigma;
+            using (ImageWrapper wrapImage = new ImageWrapper(resultImage))
+            {
+                for (int i = 0; i < Height; ++i)
+                {
+                    for (int j = 0; j < Width; ++j)
+                    {
+                        _middle += (wrapImage[i, j].R + wrapImage[i, j].G+ wrapImage[i, j].B)/3.0;
+                    }
+                }
+
+                _middle /= Width * Height;
+            }
+        }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            double constant = 1 / (Math.Sqrt(2 * Math.PI) * _sigma);
+
+            double r = constant * Math.Exp(-Math.Pow(wrapImage[x, y].R - _middle, 2) / (2 * _sigma * _sigma)) * wrapImage[x, y].R;
+            double g = constant * Math.Exp(-Math.Pow(wrapImage[x, y].G - _middle, 2) / (2 * _sigma * _sigma)) * wrapImage[x, y].G;
+            double b = constant * Math.Exp(-Math.Pow(wrapImage[x, y].B - _middle, 2) / (2 * _sigma * _sigma)) * wrapImage[x, y].B;
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
+        }
+    }
 }
