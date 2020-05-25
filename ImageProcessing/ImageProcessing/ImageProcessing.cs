@@ -636,5 +636,21 @@ namespace ImageProcessing
             float sigma = ParseFloat(metroTextBox1.Text);
             RunProcessing("Гауссовский шум", new GaussianNoise(sigma));
         }
+
+        private void среднееГеометрическоеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Среднее геометрическое", new GeometricMean(kernelSize));
+        }
+
+        private void среднееГармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Среднее гармоническое", new HarmonicMean(kernelSize));
+        }
+
+        private void среднееКонтргармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int order = Convert.ToInt32(metroTextBox8.Text);
+            RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(kernelSize, order));
+        }
     }
 }
