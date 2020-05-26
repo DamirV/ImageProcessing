@@ -270,13 +270,13 @@ namespace ImageProcessing
             double g = 0;
             double b = 0;
 
-            double numeratorR = 0;
-            double numeratorG = 0;
-            double numeratorB = 0;
+            long numeratorR = 0;
+            long numeratorG = 0;
+            long numeratorB = 0;
 
-            double denomiratorR = 0;
-            double denomiratorG = 0;
-            double denomiratorB = 0;
+            long denomiratorR = 0;
+            long denomiratorG = 0;
+            long denomiratorB = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -287,21 +287,147 @@ namespace ImageProcessing
 
                     Color neighborColor = wrapImage[idX, idY];
 
-                    numeratorR += Math.Pow(neighborColor.R, _order + 1);
-                    numeratorG += Math.Pow(neighborColor.G, _order + 1);
-                    numeratorB += Math.Pow(neighborColor.B, _order + 1);
+                    numeratorR += (long)Math.Pow(neighborColor.R, _order + 1);
+                    numeratorG += (long)Math.Pow(neighborColor.G, _order + 1);
+                    numeratorB += (long)Math.Pow(neighborColor.B, _order + 1);
 
-                    denomiratorR += Math.Pow(neighborColor.R, _order);
-                    denomiratorG += Math.Pow(neighborColor.G, _order);
-                    denomiratorB += Math.Pow(neighborColor.B, _order);
+                    denomiratorR += (long)Math.Pow(neighborColor.R, _order);
+                    denomiratorG += (long)Math.Pow(neighborColor.G, _order);
+                    denomiratorB += (long)Math.Pow(neighborColor.B, _order);
                 }
             }
 
-            r = numeratorR / denomiratorR;
-            g = numeratorG / denomiratorG;
-            b = numeratorB / denomiratorB;
+            r = (long)(numeratorR / denomiratorR);
+            g = (long)(numeratorG / denomiratorG);
+            b = (long)(numeratorB / denomiratorB);
 
             return Color.FromArgb((int)r, (int)g, (int)b);
         }
     }
+
+    class MaximumFilter : Filter
+    {
+        public MaximumFilter(int diameter)
+        {
+            Diameter = diameter;
+            Radius = Diameter / 2;
+        }
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            int[] r = new int[Diameter * Diameter];
+            int[] g = new int[Diameter * Diameter];
+            int[] b = new int[Diameter * Diameter];
+            int indexNum = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r[indexNum] = neighborColor.R;
+                    g[indexNum] = neighborColor.G;
+                    b[indexNum] = neighborColor.B;
+
+                    ++indexNum;
+                }
+            }
+
+            Array.Sort(r);
+            Array.Sort(g);
+            Array.Sort(b);
+
+            return Color.FromArgb(r[Diameter * Diameter-1], g[Diameter * Diameter-1], b[Diameter * Diameter-1]);
+        }
+    }
+
+    class MinimumFilter : Filter
+    {
+        public MinimumFilter(int diameter)
+        {
+            Diameter = diameter;
+            Radius = Diameter / 2;
+        }
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            int[] r = new int[Diameter * Diameter];
+            int[] g = new int[Diameter * Diameter];
+            int[] b = new int[Diameter * Diameter];
+            int indexNum = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r[indexNum] = neighborColor.R;
+                    g[indexNum] = neighborColor.G;
+                    b[indexNum] = neighborColor.B;
+
+                    ++indexNum;
+                }
+            }
+
+            Array.Sort(r);
+            Array.Sort(g);
+            Array.Sort(b);
+
+            return Color.FromArgb(r[0], g[0], b[0]);
+        }
+    }
+
+    class MidpointFilter : Filter
+    {
+        public MidpointFilter(int diameter)
+        {
+            Diameter = diameter;
+            Radius = Diameter / 2;
+        }
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            int[] r = new int[Diameter * Diameter];
+            int[] g = new int[Diameter * Diameter];
+            int[] b = new int[Diameter * Diameter];
+            int indexNum = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
+            {
+                for (int j = -Radius; j <= Radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r[indexNum] = neighborColor.R;
+                    g[indexNum] = neighborColor.G;
+                    b[indexNum] = neighborColor.B;
+
+                    ++indexNum;
+                }
+            }
+
+            Array.Sort(r);
+            Array.Sort(g);
+            Array.Sort(b);
+
+            int resultR = (r[0] + r[Diameter * Diameter - 1]) / 2;
+            int resultG = (g[0] + g[Diameter * Diameter - 1]) / 2;
+            int resultB = (b[0] + b[Diameter * Diameter - 1]) / 2;
+
+            return Color.FromArgb(resultR, resultG, resultB);
+        }
+    }
+
+
 }

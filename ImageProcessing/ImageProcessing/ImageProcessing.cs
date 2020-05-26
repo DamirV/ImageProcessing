@@ -67,7 +67,7 @@ namespace ImageProcessing
         Bitmap resultImage = null;
         private int width;
         private int height;
-        int kernelSize = 3;
+        int diameter = 3;
         Filter filter;
         Stack<Images> stack;
         private string filterName;
@@ -95,17 +95,17 @@ namespace ImageProcessing
             return 1;
         }
 
-        private int LoadTheory(string _filterName, string info, string path, int _kernelSize, bool loadMatrix = false)
+        private int LoadTheory(string _filterName, string info, string path, int _diameter, bool loadMatrix = false)
         {
             metroButton2.Text = _filterName;
             metroLabel6.Text = info;
-            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + _kernelSize + "\\source.jpg"));
-            pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + _kernelSize + "\\result.jpg"));
-            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + _kernelSize + "\\formula.gif"));
+            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + _diameter + "\\source.jpg"));
+            pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + _diameter + "\\result.jpg"));
+            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + _diameter + "\\formula.gif"));
 
             if (loadMatrix)
             {
-                pictureBox6.Image = new Bitmap((Bitmap)Image.FromFile(path + kernelSize + "\\matrix.gif"));
+                pictureBox6.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\matrix.gif"));
             }
             else
             {
@@ -209,18 +209,18 @@ namespace ImageProcessing
 
         private void МедианныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Медианный фильтр", new Mediana(kernelSize));
+            RunProcessing("Медианный фильтр", new Mediana(diameter));
         }
 
         
         private void ОбычнаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new LinearSmoothing(kernelSize, false));
+            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter, false));
         }
 
         private void РасширеннаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new LinearSmoothing(kernelSize, true));
+            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter, true));
         }
 
         private void ФильтрГауссаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -228,7 +228,7 @@ namespace ImageProcessing
             try
             {
                 float weight = ParseFloat(metroTextBox1.Text);
-                RunProcessing("Фильтр Гаусса", new GaussianFilter(kernelSize, weight));
+                RunProcessing("Фильтр Гаусса", new GaussianFilter(diameter, weight));
             }
             catch
             {
@@ -281,7 +281,7 @@ namespace ImageProcessing
             {
                 float k = ParseFloat(metroTextBox2.Text);
                 float sigma = ParseFloat(metroTextBox1.Text);
-                RunProcessing("Подъем высоких частот", new FrequencyIncrease(k, kernelSize, sigma));
+                RunProcessing("Подъем высоких частот", new FrequencyIncrease(k, diameter, sigma));
             }
             catch
             {
@@ -297,19 +297,19 @@ namespace ImageProcessing
 
         private void MetroButton5_Click(object sender, EventArgs e)
         {
-            if (kernelSize != 7)
+            if (diameter != 7)
             {
-                kernelSize += 2;
-                metroLabel2.Text = "Размер ядра: " + Convert.ToString(kernelSize);
+                diameter += 2;
+                metroLabel2.Text = "Размер ядра: " + Convert.ToString(diameter);
             }
         }
 
         private void MetroButton6_Click(object sender, EventArgs e)
         {
-            if (kernelSize != 3)
+            if (diameter != 3)
             {
-                kernelSize -= 2;
-                metroLabel2.Text = "Размер ядра: " + Convert.ToString(kernelSize);
+                diameter -= 2;
+                metroLabel2.Text = "Размер ядра: " + Convert.ToString(diameter);
             }
         }
 
@@ -359,22 +359,22 @@ namespace ImageProcessing
 
         private void ToolStripMenuItem2_Click_1(object sender, EventArgs e)
         {
-            LoadTheory("Медианный фильтр", "Размер ядра: " + kernelSize,@"Images\smoothing\median\", kernelSize);
+            LoadTheory("Медианный фильтр", "Размер ядра: " + diameter,@"Images\smoothing\median\", diameter);
         }
 
         private void ОбычнаяМаскаToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            LoadTheory("Линейный фильтр", "Размер ядра: " + kernelSize, @"Images\smoothing\linear\common\", kernelSize, true);
+            LoadTheory("Линейный фильтр", "Размер ядра: " + diameter, @"Images\smoothing\linear\common\", diameter, true);
         }
 
         private void РасширеннаяМаскаToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            LoadTheory("Линейный фильтр расширенный", "Размер ядра: " + kernelSize, @"Images\smoothing\linear\extended\", kernelSize, true);
+            LoadTheory("Линейный фильтр расширенный", "Размер ядра: " + diameter, @"Images\smoothing\linear\extended\", diameter, true);
         }
 
         private void ToolStripMenuItem7_Click(object sender, EventArgs e)
         {
-            LoadTheory("Фильтр Гаусса", "Размер ядра: " + kernelSize + "; Сигма: 3", @"Images\smoothing\gauss\", kernelSize);
+            LoadTheory("Фильтр Гаусса", "Размер ядра: " + diameter + "; Сигма: 3", @"Images\smoothing\gauss\", diameter);
         }
 
         private void ToolStripMenuItem10_Click(object sender, EventArgs e)
@@ -399,7 +399,7 @@ namespace ImageProcessing
 
         private void ToolStripMenuItem17_Click(object sender, EventArgs e)
         {
-            LoadTheory("Подъем высоких частот", "Размер ядра: " + kernelSize + "; k = 3", @"Images\sharpness\frequency\", kernelSize);
+            LoadTheory("Подъем высоких частот", "Размер ядра: " + diameter + "; k = 3", @"Images\sharpness\frequency\", diameter);
         }
 
         private void ToolStripMenuItem18_Click(object sender, EventArgs e)
@@ -408,24 +408,24 @@ namespace ImageProcessing
         }
         private void НаращиваниеToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            LoadTheory("Дилатация", "Размер ядра: " + kernelSize, @"Images\morphology\Dilation\", kernelSize, true);
+            LoadTheory("Дилатация", "Размер ядра: " + diameter, @"Images\morphology\Dilation\", diameter, true);
         }
 
         private void ЭрозияToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            LoadTheory("Эрозия", "Размер ядра: " + kernelSize, @"Images\morphology\Erosion\", kernelSize, true);
+            LoadTheory("Эрозия", "Размер ядра: " + diameter, @"Images\morphology\Erosion\", diameter, true);
         }
 
         private void ОткрытиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Размыкание", "Размер ядра: " + kernelSize, @"Images\morphology\Opening\", kernelSize, true);
+            LoadTheory("Размыкание", "Размер ядра: " + diameter, @"Images\morphology\Opening\", diameter, true);
         }
 
         private void ЗакрытиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Замыкание", "Размер ядра: " + kernelSize, @"Images\morphology\Closing\", kernelSize, true);
+            LoadTheory("Замыкание", "Размер ядра: " + diameter, @"Images\morphology\Closing\", diameter, true);
         }
-        private void ImageProcessing_RekernelSize(object sender, EventArgs e)
+        private void ImageProcessing_Rediameter(object sender, EventArgs e)
         {
             alignment();
         }
@@ -464,22 +464,22 @@ namespace ImageProcessing
 
         private void НаращиваниеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Дилатация", new Dilation(kernelSize));
+            RunProcessing("Дилатация", new Dilation(diameter));
         }
 
         private void ЭрозияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Эрозия", new Erosion(kernelSize));
+            RunProcessing("Эрозия", new Erosion(diameter));
         }
 
         private void РазмыканиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Размыкание", new Opening(kernelSize));
+            RunProcessing("Размыкание", new Opening(diameter));
         }
 
         private void ЗамыканиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Замыкание", new Closing(kernelSize));
+            RunProcessing("Замыкание", new Closing(diameter));
         }
 
         private void СольToolStripMenuItem_Click(object sender, EventArgs e)
@@ -541,7 +541,7 @@ namespace ImageProcessing
             try
             {
                 int percent = (int)ParseFloat(metroTextBox6.Text);
-                RunProcessing("Черные дыры", new BlackHoles(kernelSize, width, height, percent));
+                RunProcessing("Черные дыры", new BlackHoles(diameter, width, height, percent));
             }
             catch
             {
@@ -555,7 +555,7 @@ namespace ImageProcessing
             try
             {
                 int percent = (int)ParseFloat(metroTextBox7.Text);
-                RunProcessing("Белые дыры", new WhiteHoles(kernelSize, width, height, percent));
+                RunProcessing("Белые дыры", new WhiteHoles(diameter, width, height, percent));
             }
             catch
             {
@@ -639,18 +639,33 @@ namespace ImageProcessing
 
         private void среднееГеометрическоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Среднее геометрическое", new GeometricMean(kernelSize));
+            RunProcessing("Среднее геометрическое", new GeometricMean(diameter));
         }
 
         private void среднееГармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Среднее гармоническое", new HarmonicMean(kernelSize));
+            RunProcessing("Среднее гармоническое", new HarmonicMean(diameter));
         }
 
         private void среднееКонтргармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int order = Convert.ToInt32(metroTextBox8.Text);
-            RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(kernelSize, order));
+            RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
+        }
+
+        private void ФильтрМаксимумаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Фильтр максимума", new MaximumFilter(diameter));
+        }
+
+        private void ФильтрМинимумаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Фильтр минимума", new MinimumFilter(diameter));
+        }
+
+        private void ФильтрСреднейТочкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("Фильтр срединной точки", new MidpointFilter(diameter));
         }
     }
 }
