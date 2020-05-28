@@ -400,13 +400,13 @@ namespace ImageProcessing
 
     class GaussianNoise : Filter
     {
-        private readonly double _middle;
+        private readonly int _middle;
         private readonly double _sigma;
         private readonly Random _rand;
-        public GaussianNoise(double sigma)
+        public GaussianNoise(double sigma, int middle)
         {
             _rand = new Random();
-            _middle = 0;
+            _middle = middle;
             _sigma = sigma;
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)

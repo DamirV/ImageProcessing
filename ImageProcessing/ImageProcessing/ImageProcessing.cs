@@ -634,7 +634,8 @@ namespace ImageProcessing
         private void ГауссовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             float sigma = ParseFloat(metroTextBox1.Text);
-            RunProcessing("Гауссовский шум", new GaussianNoise(sigma));
+            int middle = Convert.ToInt32(metroTextBox11.Text);
+            RunProcessing("Гауссовский шум", new GaussianNoise(sigma, middle));
         }
 
         private void среднееГеометрическоеToolStripMenuItem_Click(object sender, EventArgs e)

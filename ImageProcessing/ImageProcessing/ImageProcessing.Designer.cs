@@ -142,6 +142,8 @@
             this.эрозияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.открытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox11 = new MetroFramework.Controls.MetroTextBox();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -338,6 +340,8 @@
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.metroTextBox11);
+            this.metroTabPage2.Controls.Add(this.metroLabel17);
             this.metroTabPage2.Controls.Add(this.metroTextBox10);
             this.metroTabPage2.Controls.Add(this.metroTextBox9);
             this.metroTabPage2.Controls.Add(this.metroLabel16);
@@ -986,7 +990,7 @@
             this.математическаяToolStripMenuItem,
             this.вспомогательныеМетодыToolStripMenuItem});
             this.metroContextMenu1.Name = "metroContextMenu1";
-            this.metroContextMenu1.Size = new System.Drawing.Size(286, 164);
+            this.metroContextMenu1.Size = new System.Drawing.Size(286, 136);
             // 
             // сглаживающиеФильтрыToolStripMenuItem
             // 
@@ -1521,6 +1525,52 @@
             this.закрытиеToolStripMenuItem.Text = "Замыкание";
             this.закрытиеToolStripMenuItem.Click += new System.EventHandler(this.ЗакрытиеToolStripMenuItem_Click);
             // 
+            // metroLabel17
+            // 
+            this.metroLabel17.AutoSize = true;
+            this.metroLabel17.Location = new System.Drawing.Point(43, 433);
+            this.metroLabel17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel17.Name = "metroLabel17";
+            this.metroLabel17.Size = new System.Drawing.Size(215, 20);
+            this.metroLabel17.TabIndex = 25;
+            this.metroLabel17.Text = "Среднее значение шума гаусса";
+            this.metroToolTip1.SetToolTip(this.metroLabel17, "Шум Белые дыры");
+            // 
+            // metroTextBox11
+            // 
+            // 
+            // 
+            // 
+            this.metroTextBox11.CustomButton.Image = null;
+            this.metroTextBox11.CustomButton.Location = new System.Drawing.Point(74, 2);
+            this.metroTextBox11.CustomButton.Margin = new System.Windows.Forms.Padding(5);
+            this.metroTextBox11.CustomButton.Name = "";
+            this.metroTextBox11.CustomButton.Size = new System.Drawing.Size(23, 23);
+            this.metroTextBox11.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox11.CustomButton.TabIndex = 1;
+            this.metroTextBox11.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox11.CustomButton.UseSelectable = true;
+            this.metroTextBox11.CustomButton.Visible = false;
+            this.metroTextBox11.Lines = new string[] {
+        "0"};
+            this.metroTextBox11.Location = new System.Drawing.Point(266, 433);
+            this.metroTextBox11.Margin = new System.Windows.Forms.Padding(4);
+            this.metroTextBox11.MaxLength = 32767;
+            this.metroTextBox11.Name = "metroTextBox11";
+            this.metroTextBox11.PasswordChar = '\0';
+            this.metroTextBox11.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox11.SelectedText = "";
+            this.metroTextBox11.SelectionLength = 0;
+            this.metroTextBox11.SelectionStart = 0;
+            this.metroTextBox11.ShortcutsEnabled = true;
+            this.metroTextBox11.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox11.TabIndex = 26;
+            this.metroTextBox11.Text = "0";
+            this.metroToolTip1.SetToolTip(this.metroTextBox11, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
+            this.metroTextBox11.UseSelectable = true;
+            this.metroTextBox11.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox11.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
             // ImageProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1674,6 +1724,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel16;
         private MetroFramework.Controls.MetroTextBox metroTextBox10;
         private System.Windows.Forms.ToolStripMenuItem равномерныйШумToolStripMenuItem;
+        private MetroFramework.Controls.MetroTextBox metroTextBox11;
+        private MetroFramework.Controls.MetroLabel metroLabel17;
     }
 }
 

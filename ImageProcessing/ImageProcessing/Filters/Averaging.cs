@@ -206,9 +206,9 @@ namespace ImageProcessing
                 }
             }
 
-            r = Math.Pow(r, (double)1 / (Diameter * Diameter));
-            g = Math.Pow(g, (double)1 / (Diameter * Diameter));
-            b = Math.Pow(b, (double)1 / (Diameter * Diameter));
+            r = Math.Pow(r, 1.0 / (Diameter * Diameter));
+            g = Math.Pow(g, 1.0 / (Diameter * Diameter));
+            b = Math.Pow(b, 1.0 / (Diameter * Diameter));
 
             return Color.FromArgb((int)r, (int)g, (int)b);
         }
@@ -267,13 +267,13 @@ namespace ImageProcessing
             double g = 0;
             double b = 0;
 
-            long numeratorR = 0;
-            long numeratorG = 0;
-            long numeratorB = 0;
+            double numeratorR = 0;
+            double numeratorG = 0;
+            double numeratorB = 0;
 
-            long denomiratorR = 0;
-            long denomiratorG = 0;
-            long denomiratorB = 0;
+            double denomiratorR = 0;
+            double denomiratorG = 0;
+            double denomiratorB = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -284,19 +284,24 @@ namespace ImageProcessing
 
                     Color neighborColor = wrapImage[idX, idY];
 
-                    numeratorR += (long)Math.Pow(neighborColor.R, _order + 1);
-                    numeratorG += (long)Math.Pow(neighborColor.G, _order + 1);
-                    numeratorB += (long)Math.Pow(neighborColor.B, _order + 1);
+                    numeratorR += Math.Pow(neighborColor.R, _order + 1);
+                    numeratorG += Math.Pow(neighborColor.G, _order + 1);
+                    numeratorB += Math.Pow(neighborColor.B, _order + 1);
 
-                    denomiratorR += (long)Math.Pow(neighborColor.R, _order);
-                    denomiratorG += (long)Math.Pow(neighborColor.G, _order);
-                    denomiratorB += (long)Math.Pow(neighborColor.B, _order);
+                    denomiratorR += Math.Pow(neighborColor.R, _order);
+                    denomiratorG += Math.Pow(neighborColor.G, _order);
+                    denomiratorB += Math.Pow(neighborColor.B, _order);
                 }
             }
 
-            r = (long)(numeratorR / denomiratorR);
-            g = (long)(numeratorG / denomiratorG);
-            b = (long)(numeratorB / denomiratorB);
+            if(_order == 0)
+            {
+                denomiratorR = denomiratorG = denomiratorB = 1;
+            }
+
+            r = numeratorR / denomiratorR;
+            g = numeratorG / denomiratorG;
+            b = numeratorB / denomiratorB;
 
             return Color.FromArgb((int)r, (int)g, (int)b);
         }
