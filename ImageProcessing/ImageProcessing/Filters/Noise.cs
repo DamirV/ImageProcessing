@@ -426,32 +426,20 @@ namespace ImageProcessing
 
     class UniformNoise : Filter
     {
-        private readonly int _middle;
-        private readonly double _sigma;
         private readonly Random _rand;
         private readonly int _a;
         private readonly int _b;
-        private readonly double _dispersion;
-        private readonly double _p;
+        private readonly double constant;
         public UniformNoise (int a, int b)
         {
             this._a = a;
             this._b = b;
             _rand = new Random();
-            _middle = (_a + _b) / 2;
-            _dispersion = Math.Pow(_a + _b, 2)/12.0;
-            _p = 1.0 / (_b - _a);
+            constant = (_b - _a);
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double u = 1.0 - _rand.NextDouble();
-
-            if (u >= _p)
-            {
-                return wrapImage[x, y];
-            }
-
-            int randNumber = _rand.Next(_a, _b);
+            int randNumber = (int)(_a + _rand.NextDouble() * constant);
 
             int r = Clamp(wrapImage[x, y].R + randNumber, 0, 255);
             int g = Clamp(wrapImage[x, y].G + randNumber, 0, 255);
