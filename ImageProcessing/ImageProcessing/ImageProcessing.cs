@@ -667,5 +667,12 @@ namespace ImageProcessing
         {
             RunProcessing("Фильтр срединной точки", new MidpointFilter(diameter));
         }
+
+        private void РавномерныйШумToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int a = Convert.ToInt32(metroTextBox9.Text);
+            int b = Convert.ToInt32(metroTextBox10.Text);
+            RunProcessing("Равномерный шум", new UniformNoise(a,b));
+        }
     }
 }

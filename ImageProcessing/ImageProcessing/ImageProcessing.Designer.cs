@@ -84,6 +84,8 @@
             this.среднееГармоническоеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.среднееКонтргармоническоеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.фильтрМаксимумаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.фильтрМинимумаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.фильтрСреднейТочкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.фильтрыПовышенияРезкостиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.операторЛаплассаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обычнаяМатрицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,8 +138,10 @@
             this.эрозияToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.открытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.фильтрМинимумаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.фильтрСреднейТочкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox9 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBox10 = new MetroFramework.Controls.MetroTextBox();
+            this.равномерныйШумToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -321,6 +325,9 @@
             // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.metroTextBox10);
+            this.metroTabPage2.Controls.Add(this.metroTextBox9);
+            this.metroTabPage2.Controls.Add(this.metroLabel16);
             this.metroTabPage2.Controls.Add(this.metroTextBox8);
             this.metroTabPage2.Controls.Add(this.metroLabel15);
             this.metroTabPage2.Controls.Add(this.metroTextBox7);
@@ -391,9 +398,9 @@
             this.metroLabel15.AutoSize = true;
             this.metroLabel15.Location = new System.Drawing.Point(29, 290);
             this.metroLabel15.Name = "metroLabel15";
-            this.metroLabel15.Size = new System.Drawing.Size(20, 19);
+            this.metroLabel15.Size = new System.Drawing.Size(62, 19);
             this.metroLabel15.TabIndex = 20;
-            this.metroLabel15.Text = "Q";
+            this.metroLabel15.Text = "Порядок";
             this.metroToolTip1.SetToolTip(this.metroLabel15, "Шум Белые дыры");
             // 
             // metroTextBox7
@@ -849,7 +856,7 @@
             this.математическаяToolStripMenuItem,
             this.вспомогательныеМетодыToolStripMenuItem});
             this.metroContextMenu1.Name = "metroContextMenu1";
-            this.metroContextMenu1.Size = new System.Drawing.Size(246, 136);
+            this.metroContextMenu1.Size = new System.Drawing.Size(246, 158);
             // 
             // сглаживающиеФильтрыToolStripMenuItem
             // 
@@ -939,6 +946,20 @@
             this.фильтрМаксимумаToolStripMenuItem.Text = "Фильтр максимума";
             this.фильтрМаксимумаToolStripMenuItem.Click += new System.EventHandler(this.ФильтрМаксимумаToolStripMenuItem_Click);
             // 
+            // фильтрМинимумаToolStripMenuItem
+            // 
+            this.фильтрМинимумаToolStripMenuItem.Name = "фильтрМинимумаToolStripMenuItem";
+            this.фильтрМинимумаToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.фильтрМинимумаToolStripMenuItem.Text = "Фильтр минимума";
+            this.фильтрМинимумаToolStripMenuItem.Click += new System.EventHandler(this.ФильтрМинимумаToolStripMenuItem_Click);
+            // 
+            // фильтрСреднейТочкиToolStripMenuItem
+            // 
+            this.фильтрСреднейТочкиToolStripMenuItem.Name = "фильтрСреднейТочкиToolStripMenuItem";
+            this.фильтрСреднейТочкиToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.фильтрСреднейТочкиToolStripMenuItem.Text = "Фильтр срединной точки";
+            this.фильтрСреднейТочкиToolStripMenuItem.Click += new System.EventHandler(this.ФильтрСреднейТочкиToolStripMenuItem_Click);
+            // 
             // фильтрыПовышенияРезкостиToolStripMenuItem
             // 
             this.фильтрыПовышенияРезкостиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1026,7 +1047,8 @@
             this.перецToolStripMenuItem,
             this.черныеДырыToolStripMenuItem,
             this.белыеДырыToolStripMenuItem,
-            this.гауссовToolStripMenuItem});
+            this.гауссовToolStripMenuItem,
+            this.равномерныйШумToolStripMenuItem});
             this.шумToolStripMenuItem.Name = "шумToolStripMenuItem";
             this.шумToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.шумToolStripMenuItem.Text = "Шум";
@@ -1359,19 +1381,88 @@
             this.закрытиеToolStripMenuItem.Text = "Замыкание";
             this.закрытиеToolStripMenuItem.Click += new System.EventHandler(this.ЗакрытиеToolStripMenuItem_Click);
             // 
-            // фильтрМинимумаToolStripMenuItem
+            // metroLabel16
             // 
-            this.фильтрМинимумаToolStripMenuItem.Name = "фильтрМинимумаToolStripMenuItem";
-            this.фильтрМинимумаToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.фильтрМинимумаToolStripMenuItem.Text = "Фильтр минимума";
-            this.фильтрМинимумаToolStripMenuItem.Click += new System.EventHandler(this.ФильтрМинимумаToolStripMenuItem_Click);
+            this.metroLabel16.AutoSize = true;
+            this.metroLabel16.Location = new System.Drawing.Point(32, 319);
+            this.metroLabel16.Name = "metroLabel16";
+            this.metroLabel16.Size = new System.Drawing.Size(126, 19);
+            this.metroLabel16.TabIndex = 22;
+            this.metroLabel16.Text = "Равномерный шум";
+            this.metroToolTip1.SetToolTip(this.metroLabel16, "Шум Белые дыры");
             // 
-            // фильтрСреднейТочкиToolStripMenuItem
+            // metroTextBox9
             // 
-            this.фильтрСреднейТочкиToolStripMenuItem.Name = "фильтрСреднейТочкиToolStripMenuItem";
-            this.фильтрСреднейТочкиToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
-            this.фильтрСреднейТочкиToolStripMenuItem.Text = "Фильтр срединной точки";
-            this.фильтрСреднейТочкиToolStripMenuItem.Click += new System.EventHandler(this.ФильтрСреднейТочкиToolStripMenuItem_Click);
+            // 
+            // 
+            // 
+            this.metroTextBox9.CustomButton.Image = null;
+            this.metroTextBox9.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.metroTextBox9.CustomButton.Name = "";
+            this.metroTextBox9.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.metroTextBox9.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox9.CustomButton.TabIndex = 1;
+            this.metroTextBox9.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox9.CustomButton.UseSelectable = true;
+            this.metroTextBox9.CustomButton.Visible = false;
+            this.metroTextBox9.Lines = new string[] {
+        "0"};
+            this.metroTextBox9.Location = new System.Drawing.Point(164, 319);
+            this.metroTextBox9.MaxLength = 32767;
+            this.metroTextBox9.Name = "metroTextBox9";
+            this.metroTextBox9.PasswordChar = '\0';
+            this.metroTextBox9.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox9.SelectedText = "";
+            this.metroTextBox9.SelectionLength = 0;
+            this.metroTextBox9.SelectionStart = 0;
+            this.metroTextBox9.ShortcutsEnabled = true;
+            this.metroTextBox9.Size = new System.Drawing.Size(75, 23);
+            this.metroTextBox9.TabIndex = 23;
+            this.metroTextBox9.Text = "0";
+            this.metroToolTip1.SetToolTip(this.metroTextBox9, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
+            this.metroTextBox9.UseSelectable = true;
+            this.metroTextBox9.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox9.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroTextBox10
+            // 
+            // 
+            // 
+            // 
+            this.metroTextBox10.CustomButton.Image = null;
+            this.metroTextBox10.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.metroTextBox10.CustomButton.Name = "";
+            this.metroTextBox10.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.metroTextBox10.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox10.CustomButton.TabIndex = 1;
+            this.metroTextBox10.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox10.CustomButton.UseSelectable = true;
+            this.metroTextBox10.CustomButton.Visible = false;
+            this.metroTextBox10.Lines = new string[] {
+        "255"};
+            this.metroTextBox10.Location = new System.Drawing.Point(247, 319);
+            this.metroTextBox10.MaxLength = 32767;
+            this.metroTextBox10.Name = "metroTextBox10";
+            this.metroTextBox10.PasswordChar = '\0';
+            this.metroTextBox10.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox10.SelectedText = "";
+            this.metroTextBox10.SelectionLength = 0;
+            this.metroTextBox10.SelectionStart = 0;
+            this.metroTextBox10.ShortcutsEnabled = true;
+            this.metroTextBox10.Size = new System.Drawing.Size(75, 23);
+            this.metroTextBox10.TabIndex = 24;
+            this.metroTextBox10.Text = "255";
+            this.metroToolTip1.SetToolTip(this.metroTextBox10, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
+            this.metroTextBox10.UseSelectable = true;
+            this.metroTextBox10.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox10.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // равномерныйШумToolStripMenuItem
+            // 
+            this.равномерныйШумToolStripMenuItem.Name = "равномерныйШумToolStripMenuItem";
+            this.равномерныйШумToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.равномерныйШумToolStripMenuItem.Text = "Равномерный шум";
+            this.равномерныйШумToolStripMenuItem.Click += new System.EventHandler(this.РавномерныйШумToolStripMenuItem_Click);
             // 
             // ImageProcessing
             // 
@@ -1520,6 +1611,10 @@
         private System.Windows.Forms.ToolStripMenuItem фильтрМаксимумаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фильтрМинимумаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фильтрСреднейТочкиToolStripMenuItem;
+        private MetroFramework.Controls.MetroTextBox metroTextBox9;
+        private MetroFramework.Controls.MetroLabel metroLabel16;
+        private MetroFramework.Controls.MetroTextBox metroTextBox10;
+        private System.Windows.Forms.ToolStripMenuItem равномерныйШумToolStripMenuItem;
     }
 }
 
