@@ -7,101 +7,98 @@ namespace ImageProcessing
 {
     class LinearSmoothing : Filter
     {
-        public LinearSmoothing(int diameter, bool extendedMask)
+        public LinearSmoothing(int diameter)
         {
             Diameter = diameter;
             Radius = Diameter / 2;
 
-            if (!extendedMask)
+
+            Kernel = new float[Diameter, Diameter];
+            for (int i = 0; i < Diameter; ++i)
             {
-                switch (Diameter)
+                for (int j = 0; j < Diameter; ++j)
                 {
-                    case 3:
-                        Kernel = new float[,] {
-                            { 1, 1, 1 },
-                            { 1, 1, 1 },
-                            { 1, 1, 1 }
-                        };
-                        break;
-
-                    case 5:
-                        Kernel = new float[,] {
-                            {1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1 },
-                            {1, 1, 1, 1, 1 },
-                            {1, 1, 1, 1, 1 },
-                            {1, 1, 1, 1, 1 }
-                        };
-                        break;
-
-                    case 7:
-                        Kernel = new float[,] {
-                            {1, 1, 1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1},
-                            {1, 1, 1, 1, 1, 1, 1},
-                        };
-                        break;
-
-                    default:
-                        Kernel = new float[,] {
-                            { 1, 1, 1 },
-                            { 1, 1, 1 },
-                            { 1, 1, 1 }
-                        };
-                        Diameter = 3;
-                        Radius = Diameter / 2;
-                        break;
+                    Kernel[i, j] = 1;
                 }
             }
-            else
+
+        }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            float r = 0;
+            float g = 0;
+            float b = 0;
+            float length = 0;
+
+            for (int i = -Radius; i <= Radius; ++i)
             {
-                switch (Diameter)
+                for (int j = -Radius; j <= Radius; ++j)
                 {
-                    case 3:
-                        Kernel = new float[,] {
+                    int idX = BorderProcessing(x + j, 0, Width - 1);
+                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    Color neighborColor = wrapImage[idX, idY];
+
+                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
+                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
+                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    length += Kernel[j + Radius, i + Radius];
+                }
+            }
+
+            r /= length;
+            g /= length;
+            b /= length;
+
+            r = Clamp((int)r, 0, 255);
+            g = Clamp((int)g, 0, 255);
+            b = Clamp((int)b, 0, 255);
+
+            return Color.FromArgb((int)r, (int)g, (int)b);
+        }
+
+
+    }
+
+    class ExtendedLinearSmoothing : Filter
+    {
+        public ExtendedLinearSmoothing(int diameter)
+        {
+            Diameter = diameter;
+            Radius = Diameter / 2;
+
+            switch (Diameter)
+            {
+                case 3:
+                    Kernel = new float[,] {
                             { 1, 2, 1 },
                             { 2, 4, 2 },
                             { 1, 2, 1 }
                         };
-                        break;
+                    break;
 
-                    case 5:
-                        Kernel = new float[,] {
+                case 5:
+                    Kernel = new float[,] {
                             { 1, 2, 4, 2, 1 },
-                            {2, 4, 8, 4, 2 },
-                            {4, 8, 16, 8, 4 },
-                            {2, 4, 8, 4, 2 },
+                            { 2, 4, 8, 4, 2 },
+                            { 4, 8, 16, 8, 4 },
+                            { 2, 4, 8, 4, 2 },
                             { 1, 2, 4, 2, 1 }
                         };
-                        break;
+                    break;
 
-                    case 7:
-                        Kernel = new float[,] {
-                            {1, 2, 4, 8, 4, 2, 1},
-                            {2, 4, 8, 16, 8, 4, 2},
-                            {4, 8, 16, 32, 16, 8, 4},
-                            {8, 16, 32, 64, 32, 16, 8},
-                            {4, 8, 16, 32, 16, 8, 4},
-                            {2, 4, 8, 16, 8, 4, 2},
-                            {1, 2, 4, 8, 4, 2, 1},
+                case 7:
+                    Kernel = new float[,] {
+                            { 1, 2, 4, 8, 4, 2, 1},
+                            { 2, 4, 8, 16, 8, 4, 2},
+                            { 4, 8, 16, 32, 16, 8, 4},
+                            { 8, 16, 32, 64, 32, 16, 8},
+                            { 4, 8, 16, 32, 16, 8, 4},
+                            { 2, 4, 8, 16, 8, 4, 2},
+                            { 1, 2, 4, 8, 4, 2, 1},
                         };
-                        break;
-
-                    default:
-                        Kernel = new float[,] {
-                            { 1, 2, 1 },
-                            { 2, 4, 2 },
-                            { 1, 2, 1 }
-                        };
-                        Diameter = 3;
-                        Radius = Diameter / 2;
-                        break;
-                }
+                    break;
             }
+            
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
@@ -240,9 +237,9 @@ namespace ImageProcessing
 
                     Color neighborColor = wrapImage[idX, idY];
 
-                    r += (double)1/neighborColor.R;
-                    g += (double)1/neighborColor.G;
-                    b += (double)1/neighborColor.B;
+                    r += (double)1 / neighborColor.R;
+                    g += (double)1 / neighborColor.G;
+                    b += (double)1 / neighborColor.B;
                 }
             }
 
@@ -341,7 +338,7 @@ namespace ImageProcessing
             Array.Sort(g);
             Array.Sort(b);
 
-            return Color.FromArgb(r[Diameter * Diameter-1], g[Diameter * Diameter-1], b[Diameter * Diameter-1]);
+            return Color.FromArgb(r[Diameter * Diameter - 1], g[Diameter * Diameter - 1], b[Diameter * Diameter - 1]);
         }
     }
 

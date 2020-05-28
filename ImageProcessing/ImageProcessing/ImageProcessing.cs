@@ -215,12 +215,12 @@ namespace ImageProcessing
         
         private void ОбычнаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter, false));
+            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter));
         }
 
         private void РасширеннаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter, true));
+            RunProcessing("Линейный фильтр", new ExtendedLinearSmoothing(diameter));
         }
 
         private void ФильтрГауссаToolStripMenuItem_Click(object sender, EventArgs e)
