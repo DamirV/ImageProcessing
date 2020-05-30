@@ -13,7 +13,7 @@ namespace ImageProcessing
             Radius = Diameter / 2;
 
 
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
             for (int i = 0; i < Diameter; ++i)
             {
                 for (int j = 0; j < Diameter; ++j)
@@ -25,10 +25,10 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
-            float length = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
+            double length = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -69,7 +69,7 @@ namespace ImageProcessing
             switch (Diameter)
             {
                 case 3:
-                    Kernel = new float[,] {
+                    Kernel = new double[,] {
                             { 1, 2, 1 },
                             { 2, 4, 2 },
                             { 1, 2, 1 }
@@ -77,7 +77,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    Kernel = new float[,] {
+                    Kernel = new double[,] {
                             { 1, 2, 4, 2, 1 },
                             { 2, 4, 8, 4, 2 },
                             { 4, 8, 16, 8, 4 },
@@ -87,7 +87,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    Kernel = new float[,] {
+                    Kernel = new double[,] {
                             { 1, 2, 4, 8, 4, 2, 1},
                             { 2, 4, 8, 16, 8, 4, 2},
                             { 4, 8, 16, 32, 16, 8, 4},
@@ -102,10 +102,10 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
-            float length = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
+            double length = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -294,14 +294,10 @@ namespace ImageProcessing
                 }
             }
 
-            if(_order == 0)
-            {
-                denomiratorR = denomiratorG = denomiratorB = 1;
-            }
+            r = Clamp((int)(numeratorR / denomiratorR), 0, 255);
+            g = Clamp((int)(numeratorG / denomiratorG), 0, 255);
+            b = Clamp((int)(numeratorB / denomiratorB), 0, 255);
 
-            r = numeratorR / denomiratorR;
-            g = numeratorG / denomiratorG;
-            b = numeratorB / denomiratorB;
 
             return Color.FromArgb((int)r, (int)g, (int)b);
         }

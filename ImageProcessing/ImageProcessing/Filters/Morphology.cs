@@ -10,7 +10,7 @@ namespace ImageProcessing
         {
             Diameter = diameter;
             Radius = Diameter / 2;
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
             for (int i = 0; i < Diameter; ++i)
             {
@@ -21,7 +21,7 @@ namespace ImageProcessing
             }
         }
 
-        public Dilation(int diameter, float[,] kernel)
+        public Dilation(int diameter, double[,] kernel)
         {
             Diameter = diameter;
             Radius = Diameter / 2;
@@ -62,7 +62,7 @@ namespace ImageProcessing
         {
             Diameter = diameter;
             Radius = Diameter / 2;
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
             for (int i = 0; i < Diameter; ++i)
             {
@@ -73,7 +73,7 @@ namespace ImageProcessing
             }
         }
 
-        public Erosion(int diameter, float[,] kernel)
+        public Erosion(int diameter, double[,] kernel)
         {
             Diameter = diameter;
             Radius = Diameter / 2;
@@ -113,7 +113,7 @@ namespace ImageProcessing
         public Opening(int diameter)
         {
             Diameter = diameter;
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
             for (int i = 0; i < Diameter; ++i)
             {
@@ -139,9 +139,9 @@ namespace ImageProcessing
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -176,7 +176,7 @@ namespace ImageProcessing
         {
             Diameter = diameter;
             Radius = Diameter / 2;
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
             for (int i = 0; i < Diameter; ++i)
             {
@@ -195,9 +195,9 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {

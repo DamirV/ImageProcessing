@@ -6,8 +6,8 @@ namespace ImageProcessing
 {
     class GaussianFilter : Filter
     {
-        private readonly float _sigma;
-        public GaussianFilter(int diameter, float sigma)
+        private readonly double _sigma;
+        public GaussianFilter(int diameter, double sigma)
         {
             _sigma = sigma;
             Diameter = diameter;
@@ -18,18 +18,18 @@ namespace ImageProcessing
 
         public void CreateGaussianKernel()
         {
-            float constant = (float)(1 / (2 * Math.PI * _sigma * _sigma));
+            double constant = (double)(1 / (2 * Math.PI * _sigma * _sigma));
 
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
-            float norm = 0;
+            double norm = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    float distance = (i * i + j * j) / (_sigma * _sigma);
-                    Kernel[i + Radius, j + Radius] = constant * (float)(Math.Exp(-distance));
+                    double distance = (i * i + j * j) / (_sigma * _sigma);
+                    Kernel[i + Radius, j + Radius] = constant * (double)(Math.Exp(-distance));
                     norm += Kernel[i + Radius, j + Radius];
                 }
             }
@@ -44,9 +44,9 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {

@@ -5,18 +5,18 @@ namespace ImageProcessing
 {
     class SobelFilter : Filter
     {
-        private readonly float[,] _kernelX;
-        private readonly float[,] _kernelY;
+        private readonly double[,] _kernelX;
+        private readonly double[,] _kernelY;
 
         public SobelFilter()
         {
             Diameter = 3;
             Radius = Diameter / 2;
-            _kernelX = new float[,] { 
+            _kernelX = new double[,] { 
                 { -1, 0, 1 },
                 { -2, 0, 2 }, 
                 { -1, 0, 1 } };
-            _kernelY = new float[,]
+            _kernelY = new double[,]
             {
                 { -1, -2, -1 }, 
                 { 0, 0, 0 }, 
@@ -24,12 +24,12 @@ namespace ImageProcessing
             };
         }
 
-        public SobelFilter(float[,] kernel, int diameter)
+        public SobelFilter(double[,] kernel, int diameter)
         {
             Diameter = diameter;
             Radius = Diameter / 2;
-            _kernelX = new float[Diameter, Diameter];
-            _kernelY = new float[Diameter, Diameter];
+            _kernelX = new double[Diameter, Diameter];
+            _kernelY = new double[Diameter, Diameter];
             for (int i = 0; i < Diameter; ++i)
             {
                 for (int j = 0; j < Diameter; ++j)
@@ -43,8 +43,8 @@ namespace ImageProcessing
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
-            float xR = 0, xG = 0, xB = 0;
-            float yR = 0, yG = 0, yB = 0;
+            double xR = 0, xG = 0, xB = 0;
+            double yR = 0, yG = 0, yB = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -74,18 +74,18 @@ namespace ImageProcessing
 
     class SobelFilterRGB : Filter
     {
-        private readonly float[,] _kernelX;
-        private readonly float[,] _kernelY;
+        private readonly double[,] _kernelX;
+        private readonly double[,] _kernelY;
 
         public SobelFilterRGB()
         {
             Diameter = 3;
             Radius = Diameter / 2;
-            _kernelX = new float[,] {
+            _kernelX = new double[,] {
                 { -1, 0, 1 },
                 { -2, 0, 2 },
                 { -1, 0, 1 } };
-            _kernelY = new float[,]
+            _kernelY = new double[,]
             {
                 { -1, -2, -1 },
                 { 0, 0, 0 },
@@ -93,12 +93,12 @@ namespace ImageProcessing
             };
         }
 
-        public SobelFilterRGB(float[,] kernel, int diameter)
+        public SobelFilterRGB(double[,] kernel, int diameter)
         {
             Diameter = diameter;
             Radius = Diameter / 2;
-            _kernelX = new float[Diameter, Diameter];
-            _kernelY = new float[Diameter, Diameter];
+            _kernelX = new double[Diameter, Diameter];
+            _kernelY = new double[Diameter, Diameter];
             for (int i = 0; i < Diameter; ++i)
             {
                 for (int j = 0; j < Diameter; ++j)
@@ -112,8 +112,8 @@ namespace ImageProcessing
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
-            float xR = 0, xG = 0, xB = 0;
-            float yR = 0, yG = 0, yB = 0;
+            double xR = 0, xG = 0, xB = 0;
+            double yR = 0, yG = 0, yB = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -139,19 +139,19 @@ namespace ImageProcessing
 
     class SobelFilterColored : Filter
     {
-        private readonly float[,] _kernelX;
-        private readonly float[,] _kernelY;
+        private readonly double[,] _kernelX;
+        private readonly double[,] _kernelY;
 
         public SobelFilterColored()
         {
             Diameter = 3;
             Radius = Diameter / 2;
-            _kernelX = new float[,] {
+            _kernelX = new double[,] {
                 { -1, 0, 1 },
                 { -2, 0, 2 },
                 { -1, 0, 1 }
             };
-            _kernelY = new float[,]
+            _kernelY = new double[,]
             {
                 { -1, -2, -1 },
                 { 0, 0, 0 },
@@ -159,12 +159,12 @@ namespace ImageProcessing
             };
         }
 
-        public SobelFilterColored(float[,] kernel, int diameter)
+        public SobelFilterColored(double[,] kernel, int diameter)
         {
             Diameter = diameter;
             Radius = Diameter / 2;
-            _kernelX = new float[Diameter, Diameter];
-            _kernelY = new float[Diameter, Diameter];
+            _kernelX = new double[Diameter, Diameter];
+            _kernelY = new double[Diameter, Diameter];
             for (int i = 0; i < Diameter; ++i)
             {
                 for (int j = 0; j < Diameter; ++j)
@@ -204,9 +204,7 @@ namespace ImageProcessing
             gxx = Math.Pow(xR, 2) + Math.Pow(xG, 2) + Math.Pow(xB, 2);
             gyy = Math.Pow(yR, 2) + Math.Pow(yG, 2) + Math.Pow(yB, 2);
             gxy = xR * yR +  xG * yG + xB * yB;
-            double angle;
-
-            angle = Math.Atan(2 * gxy / Math.Abs(gxx - gyy))/2;
+            double angle = Math.Atan(2 * gxy / Math.Abs(gxx - gyy))/2;
 
             int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + (gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
             
@@ -222,7 +220,7 @@ namespace ImageProcessing
         {
             _restoredBackground = restoredBackground;
             _multiplier = multiplier;
-            Kernel = new float[,]
+            Kernel = new double[,]
                 {
                     { 0, 1, 0 },
                     { 1, -4, 1 },
@@ -277,7 +275,7 @@ namespace ImageProcessing
             _restoredBackground = restoredBackground;
             _multiplier = multiplier;
 
-            Kernel = new float[,]
+            Kernel = new double[,]
                 {
                     { 1, 1, 1 },
                     { 1, -8, 1 },
@@ -326,10 +324,10 @@ namespace ImageProcessing
 
     class FrequencyIncrease : Filter
     {
-        private readonly float _multiplier;
-        private readonly float _sigma;
+        private readonly double _multiplier;
+        private readonly double _sigma;
 
-        public FrequencyIncrease(float multiplier, int diameter, float sigma)
+        public FrequencyIncrease(double multiplier, int diameter, double sigma)
         {
             _multiplier = multiplier;
             _sigma = sigma;
@@ -340,18 +338,18 @@ namespace ImageProcessing
         }
         public void CreateGaussianKernel()
         {
-            float constant = (float)(1 / (2 * Math.PI * _sigma * _sigma));
+            double constant = (double)(1 / (2 * Math.PI * _sigma * _sigma));
 
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
-            float norm = 0;
+            double norm = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
                 for (int j = -Radius; j <= Radius; ++j)
                 {
-                    float distance = (i * i + j * j) / (_sigma * _sigma);
-                    Kernel[i + Radius, j + Radius] = constant * (float)(Math.Exp(-distance));
+                    double distance = (i * i + j * j) / (_sigma * _sigma);
+                    Kernel[i + Radius, j + Radius] = constant * (double)(Math.Exp(-distance));
                     norm += Kernel[i + Radius, j + Radius];
                 }
             }
@@ -367,9 +365,9 @@ namespace ImageProcessing
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
             Color neighborColor;
 
             for (int i = -Radius; i <= Radius; ++i)

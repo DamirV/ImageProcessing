@@ -118,12 +118,12 @@ namespace ImageProcessing
             _height = height;
             _percent = percent;
 
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
             switch (Diameter)
             {
                 case 3:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -132,7 +132,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 1, 1, 1, 0},
                         {1, 1, 1, 1, 1},
@@ -143,7 +143,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 0, 1, 1, 1, 0, 0},
                         {0, 1, 1, 1, 1, 1, 0},
@@ -156,7 +156,7 @@ namespace ImageProcessing
                     break;
 
                 default:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -198,7 +198,7 @@ namespace ImageProcessing
                     {
                         if (i > checkProgress)
                         {
-                            worker.ReportProgress((int) ((float) i / resultImage.Height * 100));
+                            worker.ReportProgress((int) ((double) i / resultImage.Height * 100));
                             if (worker.CancellationPending)
                             {
                                 return null;
@@ -224,9 +224,9 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
@@ -267,12 +267,12 @@ namespace ImageProcessing
             _height = height;
             _percent = percent;
 
-            Kernel = new float[Diameter, Diameter];
+            Kernel = new double[Diameter, Diameter];
 
             switch (Diameter)
             {
                 case 3:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -281,7 +281,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 1, 1, 1, 0},
                         {1, 1, 1, 1, 1},
@@ -292,7 +292,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 0, 1, 1, 1, 0, 0},
                         {0, 1, 1, 1, 1, 1, 0},
@@ -305,7 +305,7 @@ namespace ImageProcessing
                     break;
 
                 default:
-                    Kernel = new float[,]
+                    Kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -347,7 +347,7 @@ namespace ImageProcessing
                     {
                         if (i > checkProgress)
                         {
-                            worker.ReportProgress((int)((float)i / resultImage.Height * 100));
+                            worker.ReportProgress((int)((double)i / resultImage.Height * 100));
                             if (worker.CancellationPending)
                             {
                                 return null;
@@ -372,9 +372,9 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            float r = 0;
-            float g = 0;
-            float b = 0;
+            double r = 0;
+            double g = 0;
+            double b = 0;
 
             for (int i = -Radius; i <= Radius; ++i)
             {
