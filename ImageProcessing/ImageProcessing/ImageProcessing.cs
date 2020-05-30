@@ -239,12 +239,14 @@ namespace ImageProcessing
 
         private void ОбычнаяМатрицаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Маска Лапласа", new Laplass(false, false));
+            float k = ParseFloat(metroTextBox3.Text);
+            RunProcessing("Маска Лапласа", new Laplass(k, false));
         }
 
         private void РасширеннаяМатрицаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Маска Лапласа", new Laplass(true, false));
+            float k = ParseFloat(metroTextBox3.Text);
+            RunProcessing("Маска Лапласа", new ExtendedLaplass(k, false));
         }
 
         private void ОбычнаяМатрицаToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -252,7 +254,7 @@ namespace ImageProcessing
             try
             {
                 float k = ParseFloat(metroTextBox3.Text);
-                RunProcessing("Оператор Лапласа с восстановленным фоном", new Laplass(false, true, k));
+                RunProcessing("Оператор Лапласа с восстановленным фоном", new Laplass(k, true));
             }
             catch
             {
@@ -266,7 +268,7 @@ namespace ImageProcessing
             try
             {
                 float k = ParseFloat(metroTextBox3.Text);
-                RunProcessing("Оператор Лапласа с восстановленным фоном", new Laplass(true, true, k));
+                RunProcessing("Оператор Лапласа с восстановленным фоном", new ExtendedLaplass(k, true));
             }
             catch
             {
@@ -674,6 +676,11 @@ namespace ImageProcessing
             int a = Convert.ToInt32(metroTextBox9.Text);
             int b = Convert.ToInt32(metroTextBox10.Text);
             RunProcessing("Равномерный шум", new UniformNoise(a,b));
+        }
+
+        private void SobelRGBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RunProcessing("SobelRGB", new SobelFilterRGB());
         }
     }
 }
