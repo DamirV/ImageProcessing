@@ -310,7 +310,7 @@ namespace ImageProcessing
         {
             int saltPercent = (int)Convert.ToDouble(metroTextBox4.Text);
             int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
-            RunProcessing("Соль и перец", new SaltPepper(width, height, saltPercent, pepperPercent));
+            RunProcessing("Соль и перец", new SaltPepper(saltPercent, pepperPercent));
         }
 
         private void MetroButton8_Click(object sender, EventArgs e)
@@ -474,8 +474,8 @@ namespace ImageProcessing
         {
             try
             {
-                int percent = (int)Convert.ToDouble(metroTextBox4.Text);
-                RunProcessing("Соль", new Salt(width, height, percent));
+                int saltPercent = (int)Convert.ToDouble(metroTextBox4.Text);
+                RunProcessing("Соль", new Salt(saltPercent));
             }
             catch
             {
@@ -489,8 +489,8 @@ namespace ImageProcessing
         {
             try
             {
-                int percent = (int)Convert.ToDouble(metroTextBox5.Text);
-                RunProcessing("Перец", new Pepper(width, height, percent));
+                int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
+                RunProcessing("Перец", new Pepper(pepperPercent));
              
             }
             catch
@@ -529,7 +529,7 @@ namespace ImageProcessing
             try
             {
                 int percent = (int)Convert.ToDouble(metroTextBox6.Text);
-                RunProcessing("Черные дыры", new BlackHoles(diameter, width, height, percent));
+                RunProcessing("Черные дыры", new BlackHoles(diameter, percent));
             }
             catch
             {
@@ -543,7 +543,7 @@ namespace ImageProcessing
             try
             {
                 int percent = (int)Convert.ToDouble(metroTextBox7.Text);
-                RunProcessing("Белые дыры", new WhiteHoles(diameter, width, height, percent));
+                RunProcessing("Белые дыры", new WhiteHoles(diameter, percent));
             }
             catch
             {

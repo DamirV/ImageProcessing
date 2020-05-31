@@ -6,32 +6,24 @@ namespace ImageProcessing
 {
     class SaltPepper : Filter
     {
-        private int[,] matrixOfRandomNumbers;
         private int saltPercent;
         private int pepperPercent;
-
-        public SaltPepper(int width, int height, int saltPercent, int pepperPercent)
+        private Random randomPercent;
+        public SaltPepper(int saltPercent, int pepperPercent)
         {
-            this.matrixOfRandomNumbers = new int[width, height];
             this.saltPercent = saltPercent;
             this.pepperPercent = pepperPercent;
-            Random rnd = new Random();
-
-            for (int i = 0; i < width; ++i)
-            {
-                for (int j = 0; j < height; ++j)
-                {
-                    matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
-                }
-            }
+            this.randomPercent = new Random();
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            if (matrixOfRandomNumbers[x, y] < saltPercent)
+            int currentPercent = (int)(randomPercent.NextDouble() * 100);
+
+            if (0 <= currentPercent && currentPercent < saltPercent)
             {
                 return Color.FromArgb(255, 255, 255);
             }
-            if (matrixOfRandomNumbers[x, y] >= 100 - pepperPercent)
+            if (saltPercent <= currentPercent && currentPercent < saltPercent + pepperPercent)
             {
                 return Color.FromArgb(0, 0, 0);
             }
@@ -42,26 +34,17 @@ namespace ImageProcessing
 
     class Salt : Filter
     {
-        private readonly int[,] _matrixOfRandomNumbers;
-        private readonly int _percent;
-        public Salt(int width, int height, int percent)
+        private int saltPercent;
+        private Random randomValue;
+        public Salt(int saltPercent)
         {
-            _matrixOfRandomNumbers = new int[width, height];
-            Random rnd = new Random();
-            _percent = percent;
-
-            for (int i = 0; i < width; ++i)
-            {
-                for (int j = 0; j < height; ++j)
-                {
-                    _matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
-                }
-            }
+            this.saltPercent = saltPercent;
+            this.randomValue = new Random();
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-
-            if (_matrixOfRandomNumbers[x, y] < _percent)
+            int currentPercent = (int)(randomValue.NextDouble() * 100);
+            if ( 0 <= currentPercent && currentPercent < saltPercent)
             {
                 return Color.FromArgb(255, 255, 255);
             }
@@ -72,26 +55,17 @@ namespace ImageProcessing
 
     class Pepper : Filter
     {
-        private readonly int[,] _matrixOfRandomNumbers;
-        private readonly int _percent;
-        public Pepper(int width, int height, int percent)
+        private int pepperPercent;
+        private Random randomValue;
+        public Pepper(int pepperPercent)
         {
-            _matrixOfRandomNumbers = new int[width, height];
-            Random rnd = new Random();
-            _percent = percent;
-
-            for (int i = 0; i < width; ++i)
-            {
-                for (int j = 0; j < height; ++j)
-                {
-                    _matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
-                }
-            }
+            this.pepperPercent = pepperPercent;
+            this.randomValue = new Random();
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-
-            if (_matrixOfRandomNumbers[x, y] < _percent)
+            int currentPercent = (int)(randomValue.NextDouble() * 100);
+            if (0 <= currentPercent && currentPercent < pepperPercent)
             {
                 return Color.FromArgb(0, 0, 0);
             }
@@ -102,28 +76,18 @@ namespace ImageProcessing
 
     class BlackHoles : Filter
     {
-        private readonly int _width;
-        private readonly int _height;
-        private readonly int _percent;
-        public BlackHoles()
-        {
+        private int percent;
 
-        }
-
-        public BlackHoles(int diameter, int width, int height, int percent)
+        public BlackHoles(int diameter, int percent)
         {
             this.diameter = diameter;
-            radius = diameter / 2;
-            _width = width;
-            _height = height;
-            _percent = percent;
-
-            kernel = new double[diameter, diameter];
+            this.radius = diameter / 2;
+            this.percent = percent;
 
             switch (diameter)
             {
                 case 3:
-                    kernel = new double[,]
+                    this.kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -132,7 +96,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    kernel = new double[,]
+                    this.kernel = new double[,]
                     {
                         {0, 1, 1, 1, 0},
                         {1, 1, 1, 1, 1},
@@ -143,7 +107,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    kernel = new double[,]
+                    this.kernel = new double[,]
                     {
                         {0, 0, 1, 1, 1, 0, 0},
                         {0, 1, 1, 1, 1, 1, 0},
@@ -153,28 +117,18 @@ namespace ImageProcessing
                         {0, 1, 1, 1, 1, 1, 0},
                         {0, 0, 1, 1, 1, 0, 0},
                     };
-                    break;
-
-                default:
-                    kernel = new double[,]
-                    {
-                        {0, 1, 0},
-                        {1, 1, 1},
-                        {0, 1, 0}
-                    };
-                    diameter = 3;
-                    radius = diameter / 2;
                     break;
             }
         }
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
-            Bitmap resultImage = new Bitmap(sourceImage);
-            Bitmap tempBitmap = new Bitmap(_width, _height);
+            this.width = sourceImage.Width;
+            this.height = sourceImage.Height;
 
-            width = resultImage.Width;
-            height = resultImage.Height;
+            Bitmap resultImage = new Bitmap(sourceImage);
+            Bitmap tempBitmap = new Bitmap(width, height);
+
             int checkProgress = -1;
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
@@ -185,9 +139,9 @@ namespace ImageProcessing
                 }
             }
 
-            Pepper pe = new Pepper(_width, _height, _percent);
-            Erosion er = new Erosion(diameter, kernel);
-            tempBitmap = er.ProcessImage(pe.ProcessImage(tempBitmap, worker), worker);
+            Pepper pepperNoise = new Pepper(percent);
+            Erosion erosionFilter = new Erosion(diameter, kernel);
+            tempBitmap = erosionFilter.ProcessImage(pepperNoise.ProcessImage(tempBitmap, worker), worker);
 
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
@@ -224,55 +178,24 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-
-            for (int i = -radius; i <= radius; ++i)
-            {
-                for (int j = -radius; j <= radius; ++j)
-                {
-                    int idX = BorderProcessing(x + j, 0, width - 1);
-                    int idY = BorderProcessing(y + i, 0, height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
-
-                    r += neighborColor.R * kernel[j + radius, i + radius];
-                    g += neighborColor.G * kernel[j + radius, i + radius];
-                    b += neighborColor.B * kernel[j + radius, i + radius];
-                }
-            }
-
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
-
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return wrapImage[x, y];
         }
     }
 
     class WhiteHoles : Filter
     {
-        private readonly int _width;
-        private readonly int _height;
-        private readonly int _percent;
-        public WhiteHoles()
-        {
+        private int percent;
+       
 
-        }
-
-        public WhiteHoles(int diameter, int width, int height, int percent)
+        public WhiteHoles(int diameter, int percent)
         {
             this.diameter = diameter;
-            _width = width;
-            _height = height;
-            _percent = percent;
-
-            kernel = new double[diameter, diameter];
+            this.percent = percent;
 
             switch (diameter)
             {
                 case 3:
-                    kernel = new double[,]
+                    this.kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -281,7 +204,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    kernel = new double[,]
+                    this.kernel = new double[,]
                     {
                         {0, 1, 1, 1, 0},
                         {1, 1, 1, 1, 1},
@@ -292,7 +215,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    kernel = new double[,]
+                    this.kernel = new double[,]
                     {
                         {0, 0, 1, 1, 1, 0, 0},
                         {0, 1, 1, 1, 1, 1, 0},
@@ -302,17 +225,6 @@ namespace ImageProcessing
                         {0, 1, 1, 1, 1, 1, 0},
                         {0, 0, 1, 1, 1, 0, 0},
                     };
-                    break;
-
-                default:
-                    kernel = new double[,]
-                    {
-                        {0, 1, 0},
-                        {1, 1, 1},
-                        {0, 1, 0}
-                    };
-                    diameter = 3;
-                    radius = diameter / 2;
                     break;
             }
 
@@ -320,11 +232,12 @@ namespace ImageProcessing
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
-            Bitmap resultImage = new Bitmap(sourceImage);
-            Bitmap tempBitmap = new Bitmap(_width, _height);
+            width = sourceImage.Width;
+            height = sourceImage.Height;
 
-            width = resultImage.Width;
-            height = resultImage.Height;
+            Bitmap resultImage = new Bitmap(sourceImage);
+            Bitmap tempBitmap = new Bitmap(width, height);
+
             int checkProgress = -1;
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
@@ -335,9 +248,9 @@ namespace ImageProcessing
                 }
             }
 
-            Salt sa = new Salt(_width, _height, _percent);
-            Dilation di = new Dilation(diameter, kernel);
-            tempBitmap = di.ProcessImage(sa.ProcessImage(tempBitmap, worker), worker);
+            Salt saltNoise = new Salt(percent);
+            Dilation dilationFilter = new Dilation(diameter, kernel);
+            tempBitmap = dilationFilter.ProcessImage(saltNoise.ProcessImage(tempBitmap, worker), worker);
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
@@ -372,80 +285,58 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-
-            for (int i = -radius; i <= radius; ++i)
-            {
-                for (int j = -radius; j <= radius; ++j)
-                {
-                    int idX = BorderProcessing(x + j, 0, width - 1);
-                    int idY = BorderProcessing(y + i, 0, height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
-
-                    r += neighborColor.R * kernel[j + radius, i + radius];
-                    g += neighborColor.G * kernel[j + radius, i + radius];
-                    b += neighborColor.B * kernel[j + radius, i + radius];
-                }
-            }
-
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
-
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return wrapImage[x, y];
         }
     }
 
     class GaussianNoise : Filter
     {
-        private readonly int _middle;
-        private readonly double _sigma;
-        private readonly Random _rand;
+        private int middle;
+        private double sigma;
+        private Random randomValue;
         public GaussianNoise(double sigma, int middle)
         {
-            _rand = new Random();
-            _middle = middle;
-            _sigma = sigma;
+            this.randomValue = new Random();
+            this.middle = middle;
+            this.sigma = sigma;
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double u1 = 1.0 - _rand.NextDouble();
-            double u2 = 1.0 - _rand.NextDouble();
+            double u1 = 1.0 - randomValue.NextDouble();
+            double u2 = 1.0 - randomValue.NextDouble();
             double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
-            double randNormal = _middle + _sigma * randStdNormal;
+            double randNormal = middle + sigma * randStdNormal;
 
-            int r = Clamp((int)(wrapImage[x, y].R + randNormal), 0, 255);
-            int g = Clamp((int)(wrapImage[x, y].G + randNormal), 0, 255);
-            int b = Clamp((int)(wrapImage[x, y].B + randNormal), 0, 255);
+            int red = Clamp((int)(wrapImage[x, y].R + randNormal), 0, 255);
+            int green = Clamp((int)(wrapImage[x, y].G + randNormal), 0, 255);
+            int blue = Clamp((int)(wrapImage[x, y].B + randNormal), 0, 255);
 
-            return Color.FromArgb(r, g, b);
+            return Color.FromArgb(red, green, blue);
         }
     }
 
     class UniformNoise : Filter
     {
-        private readonly Random _rand;
-        private readonly int _a;
-        private readonly int _b;
-        private readonly double constant;
-        public UniformNoise (int a, int b)
+        private  Random randomValue;
+        private int leftValue;
+        private  int rightValue;
+        private  double constant;
+        public UniformNoise (int leftValue, int rightValue)
         {
-            this._a = a;
-            this._b = b;
-            _rand = new Random();
-            constant = (_b - _a);
+            this.leftValue = leftValue;
+            this.rightValue = rightValue;
+            randomValue = new Random();
+            constant = (rightValue-leftValue);
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int randNumber = (int)(_a + _rand.NextDouble() * constant);
+            int randNumber = (int)(leftValue + randomValue.NextDouble() * constant);
 
-            int r = Clamp(wrapImage[x, y].R + randNumber, 0, 255);
-            int g = Clamp(wrapImage[x, y].G + randNumber, 0, 255);
-            int b = Clamp(wrapImage[x, y].B + randNumber, 0, 255);
+            int red = Clamp(wrapImage[x, y].R + randNumber, 0, 255);
+            int green = Clamp(wrapImage[x, y].G + randNumber, 0, 255);
+            int blue = Clamp(wrapImage[x, y].B + randNumber, 0, 255);
 
-            return Color.FromArgb(r, g, b);
+            return Color.FromArgb(red, green, blue);
         }
     }
 

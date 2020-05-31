@@ -6,31 +6,28 @@ namespace ImageProcessing
 {
     class GaussianFilter : Filter
     {
-        private readonly double _sigma;
+        private double sigma;
         public GaussianFilter(int diameter, double sigma)
         {
-            _sigma = sigma;
-            diameter = diameter;
-            radius = diameter / 2;
-
+            this.sigma = sigma;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
             CreateGaussiankernel();
         }
 
         public void CreateGaussiankernel()
         {
-            double constant = (double)(1 / (2 * Math.PI * _sigma * _sigma));
-
-            kernel = new double[diameter, diameter];
-
+            double constant = 1.0 / (2 * Math.PI * sigma * sigma);
             double norm = 0;
 
             for (int i = -radius; i <= radius; ++i)
             {
                 for (int j = -radius; j <= radius; ++j)
                 {
-                    double distance = (i * i + j * j) / (_sigma * _sigma);
-                    kernel[i + radius, j + radius] = constant * (double)(Math.Exp(-distance));
-                    norm += kernel[i + radius, j + radius];
+                    double distance = (i * i + j * j) / (sigma * sigma);
+                    kernel[j + radius, i + radius] = constant * Math.Exp(-distance);
+                    norm += kernel[j + radius, i + radius];
                 }
             }
 
@@ -38,15 +35,15 @@ namespace ImageProcessing
             {
                 for (int j = 0; j < diameter; ++j)
                 {
-                    kernel[i, j] /= norm;
+                    kernel[j, i] /= norm;
                 }
             }
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -54,19 +51,18 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
 
-                    r += neighborColor.R * kernel[j + radius, i + radius];
-                    g += neighborColor.G * kernel[j + radius, i + radius];
-                    b += neighborColor.B * kernel[j + radius, i + radius];
+                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
+                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
+                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
                 }
             }
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 }

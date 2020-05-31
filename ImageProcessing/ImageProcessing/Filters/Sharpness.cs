@@ -5,18 +5,19 @@ namespace ImageProcessing
 {
     class SobelFilter : Filter
     {
-        private readonly double[,] _kernelX;
-        private readonly double[,] _kernelY;
+        private  double[,] kernelX;
+        private  double[,] kernelY;
 
         public SobelFilter()
         {
-            diameter = 3;
-            radius = diameter / 2;
-            _kernelX = new double[,] { 
+            this.diameter = 3;
+            this.radius = diameter / 2;
+            this.kernelX = new double[,] { 
                 { -1, 0, 1 },
                 { -2, 0, 2 }, 
                 { -1, 0, 1 } };
-            _kernelY = new double[,]
+
+            this.kernelY = new double[,]
             {
                 { -1, -2, -1 }, 
                 { 0, 0, 0 }, 
@@ -24,27 +25,11 @@ namespace ImageProcessing
             };
         }
 
-        public SobelFilter(double[,] kernel, int diameter)
-        {
-            diameter = diameter;
-            radius = diameter / 2;
-            _kernelX = new double[diameter, diameter];
-            _kernelY = new double[diameter, diameter];
-            for (int i = 0; i < diameter; ++i)
-            {
-                for (int j = 0; j < diameter; ++j)
-                {
-                    _kernelX[i, j] = kernel[i, j];
-                    _kernelY[i, j] = kernel[j, i];
-                }
-            }
-        }
-
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
-            double xR = 0, xG = 0, xB = 0;
-            double yR = 0, yG = 0, yB = 0;
+            double redX = 0, greenX = 0, blueX = 0;
+            double redY = 0, greenY = 0, blueY = 0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -52,40 +37,39 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
 
-                    xR += neighborColor.R * _kernelX[j + radius, i + radius];
-                    xG += neighborColor.G * _kernelX[j + radius, i + radius];
-                    xB += neighborColor.B * _kernelX[j + radius, i + radius];
+                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius];
+                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius];
+                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius];
 
-                    yR += neighborColor.R * _kernelY[j + radius, i + radius];
-                    yG += neighborColor.G * _kernelY[j + radius, i + radius];
-                    yB += neighborColor.B * _kernelY[j + radius, i + radius];
+                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius];
+                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius];
+                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius];
                 }
             }
 
-            int r = Clamp((int)Math.Sqrt(xR * xR + yR * yR), 0, 255);
-            int g = Clamp((int)Math.Sqrt(xG * xG + yG * yG), 0, 255);
-            int b = Clamp((int)Math.Sqrt(xB * xB + yB * yB), 0, 255);
+            int red = Clamp((int)Math.Sqrt(redX * redX + redY * redY), 0, 255);
+            int green = Clamp((int)Math.Sqrt(greenX * greenX + greenY * greenY), 0, 255);
+            int blue = Clamp((int)Math.Sqrt(blueX * blueX + blueY * blueY), 0, 255);
 
-            return Color.FromArgb(r, g, b);
+            return Color.FromArgb(red, green, blue);
         }
     }
 
     class SobelFilterRGB : Filter
     {
-        private readonly double[,] _kernelX;
-        private readonly double[,] _kernelY;
+        private double[,] kernelX;
+        private double[,] kernelY;
 
         public SobelFilterRGB()
         {
-            diameter = 3;
-            radius = diameter / 2;
-            _kernelX = new double[,] {
+            this.diameter = 3;
+            this.radius = diameter / 2;
+            this.kernelX = new double[,] {
                 { -1, 0, 1 },
                 { -2, 0, 2 },
                 { -1, 0, 1 } };
-            _kernelY = new double[,]
+            this.kernelY = new double[,]
             {
                 { -1, -2, -1 },
                 { 0, 0, 0 },
@@ -93,27 +77,11 @@ namespace ImageProcessing
             };
         }
 
-        public SobelFilterRGB(double[,] kernel, int diameter)
-        {
-            diameter = diameter;
-            radius = diameter / 2;
-            _kernelX = new double[diameter, diameter];
-            _kernelY = new double[diameter, diameter];
-            for (int i = 0; i < diameter; ++i)
-            {
-                for (int j = 0; j < diameter; ++j)
-                {
-                    _kernelX[i, j] = kernel[i, j];
-                    _kernelY[i, j] = kernel[j, i];
-                }
-            }
-        }
-
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
-            double xR = 0, xG = 0, xB = 0;
-            double yR = 0, yG = 0, yB = 0;
+            double redX = 0, greenX = 0, blueX = 0;
+            double redY = 0, greenY = 0, blueY = 0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -121,65 +89,50 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
+                   
+                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius];
+                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius];
+                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius];
 
-                    xR += neighborColor.R * _kernelX[j + radius, i + radius];
-                    xG += neighborColor.G * _kernelX[j + radius, i + radius];
-                    xB += neighborColor.B * _kernelX[j + radius, i + radius];
-
-                    yR += neighborColor.R * _kernelY[j + radius, i + radius];
-                    yG += neighborColor.G * _kernelY[j + radius, i + radius];
-                    yB += neighborColor.B * _kernelY[j + radius, i + radius];
+                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius];
+                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius];
+                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius];
                 }
             }
-            int result  = Clamp((int)((Math.Sqrt(xR * xR + yR * yR) + Math.Sqrt(xG * xG + yG * yG) + Math.Sqrt(xB * xB + yB * yB))/3), 0, 255);
+            int result  = Clamp((int)(
+                (Math.Sqrt(redX * redX + redY * redY) + 
+                Math.Sqrt(greenX * greenX + greenY * greenY) +
+                Math.Sqrt(blueX * blueX + blueY * blueY))/3), 0, 255);
             return Color.FromArgb(result, result, result);
         }
     }
 
     class SobelFilterColored : Filter
     {
-        private readonly double[,] _kernelX;
-        private readonly double[,] _kernelY;
+        private  double[,] kernelX;
+        private double[,] kernelY;
 
         public SobelFilterColored()
         {
-            diameter = 3;
-            radius = diameter / 2;
-            _kernelX = new double[,] {
+            this.diameter = 3;
+            this.radius = diameter / 2;
+            this.kernelX = new double[,] {
                 { -1, 0, 1 },
                 { -2, 0, 2 },
                 { -1, 0, 1 }
             };
-            _kernelY = new double[,]
+            this.kernelY = new double[,]
             {
                 { -1, -2, -1 },
                 { 0, 0, 0 },
                 { 1, 2, 1 }
             };
         }
-
-        public SobelFilterColored(double[,] kernel, int diameter)
-        {
-            diameter = diameter;
-            radius = diameter / 2;
-            _kernelX = new double[diameter, diameter];
-            _kernelY = new double[diameter, diameter];
-            for (int i = 0; i < diameter; ++i)
-            {
-                for (int j = 0; j < diameter; ++j)
-                {
-                    _kernelX[i, j] = kernel[i, j];
-                    _kernelY[i, j] = kernel[j, i];
-                }
-            }
-        }
-
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
-            double xR = 0, xG = 0, xB = 0;
-            double yR = 0, yG = 0, yB = 0;
+            double redX = 0, greenX = 0, blueX = 0;
+            double redY = 0, greenY = 0, blueY = 0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -187,23 +140,22 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
 
-                    xR += neighborColor.R * _kernelX[j + radius, i + radius];
-                    xG += neighborColor.G * _kernelX[j + radius, i + radius];
-                    xB += neighborColor.B * _kernelX[j + radius, i + radius];
+                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius];
+                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius];
+                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius];
 
-                    yR += neighborColor.R * _kernelY[j + radius, i + radius];
-                    yG += neighborColor.G * _kernelY[j + radius, i + radius];
-                    yB += neighborColor.B * _kernelY[j + radius, i + radius];
+                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius];
+                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius];
+                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius];
                 }
             }
 
             double gxx, gyy, gxy;
 
-            gxx = Math.Pow(xR, 2) + Math.Pow(xG, 2) + Math.Pow(xB, 2);
-            gyy = Math.Pow(yR, 2) + Math.Pow(yG, 2) + Math.Pow(yB, 2);
-            gxy = xR * yR +  xG * yG + xB * yB;
+            gxx = Math.Pow(redX, 2) + Math.Pow(greenX, 2) + Math.Pow(blueX, 2);
+            gyy = Math.Pow(redY, 2) + Math.Pow(greenY, 2) + Math.Pow(blueY, 2);
+            gxy = redX * redY +  greenX * greenY + blueX * blueY;
             double angle = Math.Atan(2 * gxy / Math.Abs(gxx - gyy))/2;
 
             int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + (gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
@@ -214,27 +166,26 @@ namespace ImageProcessing
 
     class Laplass : Filter
     {
-        private readonly bool _restoredBackground;
-        private readonly double _multiplier;
-        public Laplass(double multiplier, bool restoredBackground)
+        private  bool isRestoredBackground;
+        private  double multiplier;
+        public Laplass(double multiplier, bool isRestoredBackground)
         {
-            _restoredBackground = restoredBackground;
-            _multiplier = multiplier;
-            kernel = new double[,]
+            this.isRestoredBackground = isRestoredBackground;
+            this.multiplier = multiplier;
+            this.kernel = new double[,]
                 {
                     { 0, 1, 0 },
                     { 1, -4, 1 },
                     { 0, 1, 0 }
                 };
-            diameter = 3;
-            radius = diameter / 2;
+            this.diameter = 3;
+            this.radius = diameter / 2;
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-            Color neighborColor;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -242,55 +193,52 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    neighborColor = wrapImage[idX, idY];
 
-                    r += kernel[j + radius, i + radius] * neighborColor.R * _multiplier;
-                    g += kernel[j + radius, i + radius] * neighborColor.G * _multiplier;
-                    b += kernel[j + radius, i + radius] * neighborColor.B * _multiplier;
+                    red += kernel[j + radius, i + radius] * wrapImage[idX, idY].R * multiplier;
+                    green += kernel[j + radius, i + radius] * wrapImage[idX, idY].G * multiplier;
+                    blue += kernel[j + radius, i + radius] * wrapImage[idX, idY].B * multiplier;
                 }
             }
 
-            if (_restoredBackground)
+            if (isRestoredBackground)
             {
-                neighborColor = wrapImage[x, y];
-                r = neighborColor.R + (int)(-r);
-                g = neighborColor.G + (int)(-g);
-                b = neighborColor.B + (int)(-b);
+                red = wrapImage[x, y].R + (int)(-red);
+                green = wrapImage[x, y].G + (int)(-green);
+                blue = wrapImage[x, y].B + (int)(-blue);
             }
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 
     class ExtendedLaplass : Filter
     {
-        private readonly bool _restoredBackground;
-        private readonly double _multiplier;
-        public ExtendedLaplass(double multiplier, bool restoredBackground)
+        private bool isRestoredBackground;
+        private double multiplier;
+        public ExtendedLaplass(double multiplier, bool isRestoredBackground)
         {
-            _restoredBackground = restoredBackground;
-            _multiplier = multiplier;
+            this.isRestoredBackground = isRestoredBackground;
+            this.multiplier = multiplier;
 
-            kernel = new double[,]
+            this.kernel = new double[,]
                 {
                     { 1, 1, 1 },
                     { 1, -8, 1 },
                     { 1, 1, 1 }
                 };
 
-                diameter = 3;
-            radius = diameter / 2;
+            this.diameter = 3;
+            this.radius = diameter / 2;
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-            Color neighborColor;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -298,59 +246,54 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    neighborColor = wrapImage[idX, idY];
 
-                    r += kernel[j + radius, i + radius] * neighborColor.R * _multiplier;
-                    g += kernel[j + radius, i + radius] * neighborColor.G * _multiplier;
-                    b += kernel[j + radius, i + radius] * neighborColor.B * _multiplier;
+                    red += kernel[j + radius, i + radius] * wrapImage[idX, idY].R * multiplier;
+                    green += kernel[j + radius, i + radius] * wrapImage[idX, idY].G * multiplier;
+                    blue += kernel[j + radius, i + radius] * wrapImage[idX, idY].B * multiplier;
                 }
             }
 
-            if (_restoredBackground)
-            {
-                neighborColor = wrapImage[x, y];
-                r = neighborColor.R + -r;
-                g = neighborColor.G + -g;
-                b = neighborColor.B + -b;
+            if (isRestoredBackground)
+            { 
+                red = wrapImage[x, y].R + -red;
+                green = wrapImage[x, y].G + -green;
+                blue = wrapImage[x, y].B + -blue;
             }
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 
     class FrequencyIncrease : Filter
     {
-        private readonly double _multiplier;
-        private readonly double _sigma;
+        private double multiplier;
+        private double sigma;
 
         public FrequencyIncrease(double multiplier, int diameter, double sigma)
         {
-            _multiplier = multiplier;
-            _sigma = sigma;
-            diameter = diameter;
-            radius = diameter / 2;
-
+            this.multiplier = multiplier;
+            this.sigma = sigma;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
             CreateGaussiankernel();
         }
         public void CreateGaussiankernel()
         {
-            double constant = (double)(1 / (2 * Math.PI * _sigma * _sigma));
-
-            kernel = new double[diameter, diameter];
-
+            double constant = 1.0 / (2 * Math.PI * sigma * sigma);
             double norm = 0;
 
             for (int i = -radius; i <= radius; ++i)
             {
                 for (int j = -radius; j <= radius; ++j)
                 {
-                    double distance = (i * i + j * j) / (_sigma * _sigma);
-                    kernel[i + radius, j + radius] = constant * (double)(Math.Exp(-distance));
-                    norm += kernel[i + radius, j + radius];
+                    double distance = (i * i + j * j) / (sigma * sigma);
+                    kernel[j + radius, i + radius] = constant * Math.Exp(-distance);
+                    norm += kernel[j + radius, i + radius];
                 }
             }
 
@@ -358,17 +301,16 @@ namespace ImageProcessing
             {
                 for (int j = 0; j < diameter; ++j)
                 {
-                    kernel[i, j] /= norm;
+                    kernel[j, i] /= norm;
                 }
             }
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-            Color neighborColor;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -376,21 +318,19 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    neighborColor = wrapImage[idX, idY];
 
-                    r += neighborColor.R * kernel[j + radius, i + radius];
-                    g += neighborColor.G * kernel[j + radius, i + radius];
-                    b += neighborColor.B * kernel[j + radius, i + radius];
+                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
+                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
+                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
                 }
 
             }
 
-            neighborColor = wrapImage[x, y];
-            r = Clamp(neighborColor.R + (int)(_multiplier * (neighborColor.R - r)), 0, 255);
-            g = Clamp(neighborColor.G + (int)(_multiplier * (neighborColor.G - g)), 0, 255);
-            b = Clamp(neighborColor.B + (int)(_multiplier * (neighborColor.B - b)), 0, 255);
+            red = Clamp(wrapImage[x, y].R + (int)(multiplier * (wrapImage[x, y].R - red)), 0, 255);
+            green = Clamp(wrapImage[x, y].G + (int)(multiplier * (wrapImage[x, y].G - green)), 0, 255);
+            blue = Clamp(wrapImage[x, y].B + (int)(multiplier * (wrapImage[x, y].B - blue)), 0, 255);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 }

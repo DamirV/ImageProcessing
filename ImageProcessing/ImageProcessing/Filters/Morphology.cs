@@ -20,7 +20,6 @@ namespace ImageProcessing
                 }
             }
         }
-
         public Dilation(int diameter, double[,] kernel)
         {
             this.diameter = diameter;
@@ -41,21 +40,17 @@ namespace ImageProcessing
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
-                    int intensity = neighborColor.R;
-
+                    int intensity = (wrapImage[idX, idY].R + wrapImage[idX, idY].G+ wrapImage[idX, idY].B)/3;
                     if ((kernel[j + radius, i + radius] > 0) && (intensity > max))
                     {
                         max = intensity;
-                        resultColor = neighborColor;
+                        resultColor = wrapImage[idX, idY];
                     }
                 }
             }
-
             return resultColor;
         }
     }
-
     class Erosion : Filter
     {
         public Erosion(int diameter)
@@ -72,18 +67,15 @@ namespace ImageProcessing
                 }
             }
         }
-
         public Erosion(int diameter, double[,] kernel)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
             this.kernel = kernel;
         }
-
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             int min = 255;
-
             Color resultColor = Color.White;
 
             for (int i = -radius; i <= radius; ++i)
@@ -92,18 +84,15 @@ namespace ImageProcessing
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-
-                    Color neighborColor = wrapImage[idX, idY];
-                    int intensity = neighborColor.R;
+                    int intensity = (wrapImage[idX, idY].R+ wrapImage[idX, idY].G+ wrapImage[idX, idY].B)/3;
 
                     if ((kernel[j + radius, i + radius] > 0) && (intensity < min))
                     {
                         min = intensity;
-                        resultColor = neighborColor;
+                        resultColor = wrapImage[idX, idY];
                     }
                 }
             }
-
             return resultColor;
         }
     }
@@ -124,40 +113,16 @@ namespace ImageProcessing
                 }
             }
         }
-
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
-
             Erosion er = new Erosion(diameter);
             Dilation di = new Dilation(diameter);
-
             return di.ProcessImage(er.ProcessImage(sourceImage, worker), worker);
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double red = 0.0;
-            double green = 0.0;
-            double blue = 0.0;
-
-            for (int i = -radius; i <= radius; ++i)
-            {
-                for (int j = -radius; j <= radius; ++j)
-                {
-                    int idX = BorderProcessing(x + j, 0, width - 1);
-                    int idY = BorderProcessing(y + i, 0, height - 1);
-                   
-                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
-                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
-                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
-                }
-            }
-
-            red = Clamp((int)red, 0, 255);
-            green = Clamp((int)green, 0, 255);
-            blue = Clamp((int)blue, 0, 255);
-
-            return Color.FromArgb((int)red, (int)green, (int)blue);
+            return wrapImage[x, y];
         }
     }
 
@@ -186,28 +151,7 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double red = 0.0;
-            double green = 0.0;
-            double blue = 0.0;
-
-            for (int i = -radius; i <= radius; ++i)
-            {
-                for (int j = -radius; j <= radius; ++j)
-                {
-                    int idX = BorderProcessing(x + j, 0, width - 1);
-                    int idY = BorderProcessing(y + i, 0, height - 1);
-
-                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
-                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
-                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
-                }
-            }
-
-            red = Clamp((int)red, 0, 255);
-            green = Clamp((int)green, 0, 255);
-            blue = Clamp((int)blue, 0, 255);
-
-            return Color.FromArgb((int)red, (int)green, (int)blue);
+            return wrapImage[x,y];
         }
     }
 }
