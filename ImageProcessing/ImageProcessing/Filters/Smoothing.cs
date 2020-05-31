@@ -10,35 +10,35 @@ namespace ImageProcessing
         public GaussianFilter(int diameter, double sigma)
         {
             _sigma = sigma;
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            diameter = diameter;
+            radius = diameter / 2;
 
-            CreateGaussianKernel();
+            CreateGaussiankernel();
         }
 
-        public void CreateGaussianKernel()
+        public void CreateGaussiankernel()
         {
             double constant = (double)(1 / (2 * Math.PI * _sigma * _sigma));
 
-            Kernel = new double[Diameter, Diameter];
+            kernel = new double[diameter, diameter];
 
             double norm = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
                     double distance = (i * i + j * j) / (_sigma * _sigma);
-                    Kernel[i + Radius, j + Radius] = constant * (double)(Math.Exp(-distance));
-                    norm += Kernel[i + Radius, j + Radius];
+                    kernel[i + radius, j + radius] = constant * (double)(Math.Exp(-distance));
+                    norm += kernel[i + radius, j + radius];
                 }
             }
 
-            for (int i = 0; i < Diameter; ++i)
+            for (int i = 0; i < diameter; ++i)
             {
-                for (int j = 0; j < Diameter; ++j)
+                for (int j = 0; j < diameter; ++j)
                 {
-                    Kernel[i, j] /= norm;
+                    kernel[i, j] /= norm;
                 }
             }
         }
@@ -48,17 +48,17 @@ namespace ImageProcessing
             double g = 0;
             double b = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
                     Color neighborColor = wrapImage[idX, idY];
 
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    r += neighborColor.R * kernel[j + radius, i + radius];
+                    g += neighborColor.G * kernel[j + radius, i + radius];
+                    b += neighborColor.B * kernel[j + radius, i + radius];
                 }
             }
 

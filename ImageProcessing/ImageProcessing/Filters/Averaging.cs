@@ -5,71 +5,64 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class LinearSmoothing : Filter
+    class LinearSmoothingFilter : Filter
     {
-        public LinearSmoothing(int diameter)
+        public LinearSmoothingFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
 
-
-            Kernel = new double[Diameter, Diameter];
-            for (int i = 0; i < Diameter; ++i)
+            for (int i = 0; i < diameter; ++i)
             {
-                for (int j = 0; j < Diameter; ++j)
+                for (int j = 0; j < diameter; ++j)
                 {
-                    Kernel[i, j] = 1;
+                    this.kernel[i, j] = 1;
                 }
             }
 
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-            double length = 0;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+            double length = 0.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
-                    length += Kernel[j + Radius, i + Radius];
+                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
+                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
+                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
+
+                    length += kernel[j + radius, i + radius];
                 }
             }
 
-            r /= length;
-            g /= length;
-            b /= length;
+            red /= length;
+            green /= length;
+            blue /= length;
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
-
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
-
-
     }
 
-    class ExtendedLinearSmoothing : Filter
+    class ExtendedLinearSmoothingFilter : Filter
     {
-        public ExtendedLinearSmoothing(int diameter)
+        public ExtendedLinearSmoothingFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
 
-            switch (Diameter)
+            switch (diameter)
             {
                 case 3:
-                    Kernel = new double[,] {
+                    this.kernel = new double[,] {
                             { 1, 2, 1 },
                             { 2, 4, 2 },
                             { 1, 2, 1 }
@@ -77,7 +70,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    Kernel = new double[,] {
+                    this.kernel = new double[,] {
                             { 1, 2, 4, 2, 1 },
                             { 2, 4, 8, 4, 2 },
                             { 4, 8, 16, 8, 4 },
@@ -87,7 +80,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    Kernel = new double[,] {
+                    this.kernel = new double[,] {
                             { 1, 2, 4, 8, 4, 2, 1},
                             { 2, 4, 8, 16, 8, 4, 2},
                             { 4, 8, 16, 32, 16, 8, 4},
@@ -102,115 +95,105 @@ namespace ImageProcessing
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
-            double length = 0;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+            double length = 0.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
-                    length += Kernel[j + Radius, i + Radius];
+                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
+                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
+                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
+
+                    length += kernel[j + radius, i + radius];
                 }
             }
 
-            r /= length;
-            g /= length;
-            b /= length;
+            red /= length;
+            green /= length;
+            blue /= length;
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
-
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
-
-
     }
 
-    class Mediana : Filter
+    class MedianaFilter : Filter
     {
-        public Mediana(int diameter)
+        public MedianaFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int[] r = new int[Diameter * Diameter];
-            int[] g = new int[Diameter * Diameter];
-            int[] b = new int[Diameter * Diameter];
-            int middle = (Diameter * Diameter + 1) / 2;
-            int indexNum = 0;
+            int[] red = new int[diameter * diameter];
+            int[] green = new int[diameter * diameter];
+            int[] blue = new int[diameter * diameter];
+            int middle = (diameter * diameter + 1) / 2;
+            int currentIndex = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
+                    red[currentIndex] = wrapImage[idX, idY].R;
+                    green[currentIndex] = wrapImage[idX, idY].G;
+                    blue[currentIndex] = wrapImage[idX, idY].B;
 
-                    r[indexNum] = neighborColor.R;
-                    g[indexNum] = neighborColor.G;
-                    b[indexNum] = neighborColor.B;
-
-                    ++indexNum;
+                    ++currentIndex;
                 }
             }
 
-            Array.Sort(r);
-            Array.Sort(g);
-            Array.Sort(b);
+            Array.Sort(red);
+            Array.Sort(green);
+            Array.Sort(blue);
 
-            return Color.FromArgb(r[middle], g[middle], b[middle]);
+            return Color.FromArgb(red[middle], green[middle], blue[middle]);
         }
     }
 
-    class GeometricMean : Filter
+    class GeometricMeanFilter : Filter
     {
-        public GeometricMean(int diameter)
+        public GeometricMeanFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 1;
-            double g = 1;
-            double b = 1;
+            double red = 1.0;
+            double green = 1.0;
+            double blue = 1.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
-
-                    r *= neighborColor.R;
-                    g *= neighborColor.G;
-                    b *= neighborColor.B;
+                    red *= wrapImage[idX, idY].R;
+                    green *= wrapImage[idX, idY].G;
+                    blue *= wrapImage[idX, idY].B;
                 }
             }
 
-            r = Math.Pow(r, 1.0 / (Diameter * Diameter));
-            g = Math.Pow(g, 1.0 / (Diameter * Diameter));
-            b = Math.Pow(b, 1.0 / (Diameter * Diameter));
+            red = Math.Pow(red, 1.0 / (diameter * diameter));
+            green = Math.Pow(green, 1.0 / (diameter * diameter));
+            blue = Math.Pow(blue, 1.0 / (diameter * diameter));
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 
@@ -218,88 +201,84 @@ namespace ImageProcessing
     {
         public HarmonicMean(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
+            double red = 0.0;
+            double green = 0.0;
+            double  blue = 0.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
-
-                    r += (double)1 / neighborColor.R;
-                    g += (double)1 / neighborColor.G;
-                    b += (double)1 / neighborColor.B;
+                    red += 1.0 / wrapImage[idX, idY].R;
+                    green += 1.0 / wrapImage[idX, idY].G;
+                    blue += 1.0 / wrapImage[idX, idY].B;
                 }
             }
 
-            r = (double)(Diameter * Diameter) / r;
-            g = (double)(Diameter * Diameter) / g;
-            b = (double)(Diameter * Diameter) / b;
+            red = (diameter * diameter) / red;
+            green = (diameter * diameter) / green;
+            blue = (diameter * diameter) / blue;
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 
-    class CounterHarmonicMean : Filter
+    class CounterHarmonicMeanFilter : Filter
     {
-        private readonly int _order;
-        public CounterHarmonicMean(int diameter, int order)
+        private int order;
+        public CounterHarmonicMeanFilter(int diameter, int order)
         {
-            this._order = order;
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.order = order;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
+            double red= 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
-            double numeratorR = 0;
-            double numeratorG = 0;
-            double numeratorB = 0;
+            double numeratorR = 0.0;
+            double numeratorG = 0.0;
+            double numeratorB = 0.0;
 
-            double denomiratorR = 0;
-            double denomiratorG = 0;
-            double denomiratorB = 0;
+            double denomiratorR = 0.0;
+            double denomiratorG = 0.0;
+            double denomiratorB = 0.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
+                    numeratorR += Math.Pow(wrapImage[idX, idY].R, order + 1);
+                    numeratorG += Math.Pow(wrapImage[idX, idY].G, order + 1);
+                    numeratorB += Math.Pow(wrapImage[idX, idY].B, order + 1);
 
-                    numeratorR += Math.Pow(neighborColor.R, _order + 1);
-                    numeratorG += Math.Pow(neighborColor.G, _order + 1);
-                    numeratorB += Math.Pow(neighborColor.B, _order + 1);
-
-                    denomiratorR += Math.Pow(neighborColor.R, _order);
-                    denomiratorG += Math.Pow(neighborColor.G, _order);
-                    denomiratorB += Math.Pow(neighborColor.B, _order);
+                    denomiratorR += Math.Pow(wrapImage[idX, idY].R, order);
+                    denomiratorG += Math.Pow(wrapImage[idX, idY].G, order);
+                    denomiratorB += Math.Pow(wrapImage[idX, idY].B, order);
                 }
             }
 
-            r = Clamp((int)(numeratorR / denomiratorR), 0, 255);
-            g = Clamp((int)(numeratorG / denomiratorG), 0, 255);
-            b = Clamp((int)(numeratorB / denomiratorB), 0, 255);
+            red = Clamp((int)(numeratorR / denomiratorR), 0, 255);
+            green = Clamp((int)(numeratorG / denomiratorG), 0, 255);
+            blue = Clamp((int)(numeratorB / denomiratorB), 0, 255);
 
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 
@@ -307,39 +286,38 @@ namespace ImageProcessing
     {
         public MaximumFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int[] r = new int[Diameter * Diameter];
-            int[] g = new int[Diameter * Diameter];
-            int[] b = new int[Diameter * Diameter];
-            int indexNum = 0;
+            int[] red = new int[diameter * diameter];
+            int[] green = new int[diameter * diameter];
+            int[] blue = new int[diameter * diameter];
+            int lastIndex = diameter * diameter - 1;
+            int currentIndex = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
+                    red[currentIndex] = wrapImage[idX, idY].R;
+                    green[currentIndex] = wrapImage[idX, idY].G;
+                    blue[currentIndex] = wrapImage[idX, idY].B;
 
-                    r[indexNum] = neighborColor.R;
-                    g[indexNum] = neighborColor.G;
-                    b[indexNum] = neighborColor.B;
-
-                    ++indexNum;
+                    ++currentIndex;
                 }
             }
 
-            Array.Sort(r);
-            Array.Sort(g);
-            Array.Sort(b);
+            Array.Sort(red);
+            Array.Sort(green);
+            Array.Sort(blue);
 
-            return Color.FromArgb(r[Diameter * Diameter - 1], g[Diameter * Diameter - 1], b[Diameter * Diameter - 1]);
+            return Color.FromArgb(red[lastIndex], green[lastIndex], blue[lastIndex]);
         }
     }
 
@@ -347,81 +325,82 @@ namespace ImageProcessing
     {
         public MinimumFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int[] r = new int[Diameter * Diameter];
-            int[] g = new int[Diameter * Diameter];
-            int[] b = new int[Diameter * Diameter];
-            int indexNum = 0;
+            int[] red= new int[diameter * diameter];
+            int[] green = new int[diameter * diameter];
+            int[]  blue = new int[diameter * diameter];
+            int currentIndex = 0;
+            int firstIndex = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    Color neighborColor = wrapImage[idX, idY];
+                    red[currentIndex] = wrapImage[idX, idY].R;
+                    green[currentIndex] = wrapImage[idX, idY].G;
+                    blue[currentIndex] = wrapImage[idX, idY].B;
 
-                    r[indexNum] = neighborColor.R;
-                    g[indexNum] = neighborColor.G;
-                    b[indexNum] = neighborColor.B;
-
-                    ++indexNum;
+                    ++currentIndex;
                 }
             }
 
-            Array.Sort(r);
-            Array.Sort(g);
-            Array.Sort(b);
+            Array.Sort(red);
+            Array.Sort(green);
+            Array.Sort(blue);
 
-            return Color.FromArgb(r[0], g[0], b[0]);
+            return Color.FromArgb(red[firstIndex], green[firstIndex], blue[firstIndex]);
         }
     }
 
-    class MidpointFilter : Filter
+    class MidPointFilter : Filter
     {
-        public MidpointFilter(int diameter)
+        public MidPointFilter(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int[] r = new int[Diameter * Diameter];
-            int[] g = new int[Diameter * Diameter];
-            int[] b = new int[Diameter * Diameter];
-            int indexNum = 0;
+            int[] red= new int[diameter * diameter];
+            int[] green = new int[diameter * diameter];
+            int[]  blue = new int[diameter * diameter];
+            int firstIndex = 0;
+            int lastIndex = diameter * diameter - 1;
+            int currentIndex = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
                     Color neighborColor = wrapImage[idX, idY];
 
-                    r[indexNum] = neighborColor.R;
-                    g[indexNum] = neighborColor.G;
-                    b[indexNum] = neighborColor.B;
+                    red[currentIndex] = neighborColor.R;
+                    green[currentIndex] = neighborColor.G;
+                    blue[currentIndex] = neighborColor.B;
 
-                    ++indexNum;
+                    ++currentIndex;
                 }
             }
 
-            Array.Sort(r);
-            Array.Sort(g);
-            Array.Sort(b);
+            Array.Sort(red);
+            Array.Sort(green);
+            Array.Sort(blue);
 
-            int resultR = (r[0] + r[Diameter * Diameter - 1]) / 2;
-            int resultG = (g[0] + g[Diameter * Diameter - 1]) / 2;
-            int resultB = (b[0] + b[Diameter * Diameter - 1]) / 2;
+            int resultR = (red[firstIndex] + red[lastIndex]) / 2;
+            int resultG = (green[firstIndex] + green[lastIndex]) / 2;
+            int resultB = (blue[firstIndex] + blue[lastIndex]) / 2;
 
             return Color.FromArgb(resultR, resultG, resultB);
         }

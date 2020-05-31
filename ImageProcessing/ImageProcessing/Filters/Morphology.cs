@@ -8,24 +8,24 @@ namespace ImageProcessing
     {
         public Dilation(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
-            Kernel = new double[Diameter, Diameter];
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
 
-            for (int i = 0; i < Diameter; ++i)
+            for (int i = 0; i < diameter; ++i)
             {
-                for (int j = 0; j < Diameter; ++j)
+                for (int j = 0; j < diameter; ++j)
                 {
-                    Kernel[i, j] = 1;
+                    this.kernel[i, j] = 1;
                 }
             }
         }
 
         public Dilation(int diameter, double[,] kernel)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
-            Kernel = kernel;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = kernel;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
@@ -34,17 +34,17 @@ namespace ImageProcessing
 
             Color resultColor = Color.Black;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
                     Color neighborColor = wrapImage[idX, idY];
                     int intensity = neighborColor.R;
 
-                    if ((Kernel[j + Radius, i + Radius] > 0) && (intensity > max))
+                    if ((kernel[j + radius, i + radius] > 0) && (intensity > max))
                     {
                         max = intensity;
                         resultColor = neighborColor;
@@ -60,24 +60,24 @@ namespace ImageProcessing
     {
         public Erosion(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
-            Kernel = new double[Diameter, Diameter];
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
 
-            for (int i = 0; i < Diameter; ++i)
+            for (int i = 0; i < diameter; ++i)
             {
-                for (int j = 0; j < Diameter; ++j)
+                for (int j = 0; j < diameter; ++j)
                 {
-                    Kernel[i, j] = 1;
+                    this.kernel[i, j] = 1;
                 }
             }
         }
 
         public Erosion(int diameter, double[,] kernel)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
-            Kernel = kernel;
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = kernel;
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
@@ -86,17 +86,17 @@ namespace ImageProcessing
 
             Color resultColor = Color.White;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
                     Color neighborColor = wrapImage[idX, idY];
                     int intensity = neighborColor.R;
 
-                    if ((Kernel[j + Radius, i + Radius] > 0) && (intensity < min))
+                    if ((kernel[j + radius, i + radius] > 0) && (intensity < min))
                     {
                         min = intensity;
                         resultColor = neighborColor;
@@ -112,112 +112,102 @@ namespace ImageProcessing
     {
         public Opening(int diameter)
         {
-            Diameter = diameter;
-            Kernel = new double[Diameter, Diameter];
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
 
-            for (int i = 0; i < Diameter; ++i)
+            for (int i = 0; i < diameter; ++i)
             {
-                for (int j = 0; j < Diameter; ++j)
+                for (int j = 0; j < diameter; ++j)
                 {
-                    Kernel[i, j] = 1;
+                    this.kernel[i, j] = 1;
                 }
             }
-        }
-        public Opening()
-        {
-
         }
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
 
-            Erosion er = new Erosion(Diameter);
-            Dilation di = new Dilation(Diameter);
+            Erosion er = new Erosion(diameter);
+            Dilation di = new Dilation(diameter);
 
             return di.ProcessImage(er.ProcessImage(sourceImage, worker), worker);
         }
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
-
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
+                   
+                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
+                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
+                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
                 }
             }
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 
     class Closing : Filter
     {
-        public Closing()
-        {
-
-        }
-
         public Closing(int diameter)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
-            Kernel = new double[Diameter, Diameter];
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+            this.kernel = new double[diameter, diameter];
 
-            for (int i = 0; i < Diameter; ++i)
+            for (int i = 0; i < diameter; ++i)
             {
-                for (int j = 0; j < Diameter; ++j)
+                for (int j = 0; j < diameter; ++j)
                 {
-                    Kernel[i, j] = 1;
+                    this.kernel[i, j] = 1;
                 }
             }
         }
 
         public override Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
-            Dilation di = new Dilation(Diameter);
-            Erosion er = new Erosion(Diameter);
+            Dilation di = new Dilation(diameter);
+            Erosion er = new Erosion(diameter);
             return er.ProcessImage(di.ProcessImage(sourceImage, worker), worker);
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double r = 0;
-            double g = 0;
-            double b = 0;
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
-                    Color neighborColor = wrapImage[idX, idY];
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    red += wrapImage[idX, idY].R * kernel[j + radius, i + radius];
+                    green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
+                    blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
                 }
             }
 
-            r = Clamp((int)r, 0, 255);
-            g = Clamp((int)g, 0, 255);
-            b = Clamp((int)b, 0, 255);
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((int)red, (int)green, (int)blue);
         }
     }
 }

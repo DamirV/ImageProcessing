@@ -6,32 +6,32 @@ namespace ImageProcessing
 {
     class SaltPepper : Filter
     {
-        private readonly int[,] _matrixOfRandomNumbers;
-        private readonly int _saltPercent;
-        private readonly int _pepperPercent;
+        private int[,] matrixOfRandomNumbers;
+        private int saltPercent;
+        private int pepperPercent;
 
         public SaltPepper(int width, int height, int saltPercent, int pepperPercent)
         {
-            _matrixOfRandomNumbers = new int[width, height];
-            _saltPercent = saltPercent;
-            _pepperPercent = pepperPercent;
+            this.matrixOfRandomNumbers = new int[width, height];
+            this.saltPercent = saltPercent;
+            this.pepperPercent = pepperPercent;
             Random rnd = new Random();
 
             for (int i = 0; i < width; ++i)
             {
                 for (int j = 0; j < height; ++j)
                 {
-                    _matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
+                    matrixOfRandomNumbers[i, j] = rnd.Next(0, 100);
                 }
             }
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            if (_matrixOfRandomNumbers[x, y] < _saltPercent)
+            if (matrixOfRandomNumbers[x, y] < saltPercent)
             {
                 return Color.FromArgb(255, 255, 255);
             }
-            if (_matrixOfRandomNumbers[x, y] >= 100 - _pepperPercent)
+            if (matrixOfRandomNumbers[x, y] >= 100 - pepperPercent)
             {
                 return Color.FromArgb(0, 0, 0);
             }
@@ -112,18 +112,18 @@ namespace ImageProcessing
 
         public BlackHoles(int diameter, int width, int height, int percent)
         {
-            Diameter = diameter;
-            Radius = Diameter / 2;
+            this.diameter = diameter;
+            radius = diameter / 2;
             _width = width;
             _height = height;
             _percent = percent;
 
-            Kernel = new double[Diameter, Diameter];
+            kernel = new double[diameter, diameter];
 
-            switch (Diameter)
+            switch (diameter)
             {
                 case 3:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -132,7 +132,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 1, 1, 1, 0},
                         {1, 1, 1, 1, 1},
@@ -143,7 +143,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 0, 1, 1, 1, 0, 0},
                         {0, 1, 1, 1, 1, 1, 0},
@@ -156,14 +156,14 @@ namespace ImageProcessing
                     break;
 
                 default:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
                         {0, 1, 0}
                     };
-                    Diameter = 3;
-                    Radius = Diameter / 2;
+                    diameter = 3;
+                    radius = diameter / 2;
                     break;
             }
         }
@@ -173,8 +173,8 @@ namespace ImageProcessing
             Bitmap resultImage = new Bitmap(sourceImage);
             Bitmap tempBitmap = new Bitmap(_width, _height);
 
-            Width = resultImage.Width;
-            Height = resultImage.Height;
+            width = resultImage.Width;
+            height = resultImage.Height;
             int checkProgress = -1;
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
@@ -186,7 +186,7 @@ namespace ImageProcessing
             }
 
             Pepper pe = new Pepper(_width, _height, _percent);
-            Erosion er = new Erosion(Diameter, Kernel);
+            Erosion er = new Erosion(diameter, kernel);
             tempBitmap = er.ProcessImage(pe.ProcessImage(tempBitmap, worker), worker);
 
 
@@ -194,7 +194,7 @@ namespace ImageProcessing
             {
                 using (ImageWrapper wrapImage = new ImageWrapper(resultImage,true))
                 {
-                    for (int i = 0; i < Height; ++i)
+                    for (int i = 0; i < height; ++i)
                     {
                         if (i > checkProgress)
                         {
@@ -207,7 +207,7 @@ namespace ImageProcessing
                             checkProgress += 100;
                         }
 
-                        for (int j = 0; j < Width; ++j)
+                        for (int j = 0; j < width; ++j)
                         {
                             Color neighborColor = wrapTempImage[j, i];
                             if (neighborColor.R == 0 && neighborColor.G == 0 && neighborColor.B == 0)
@@ -228,17 +228,17 @@ namespace ImageProcessing
             double g = 0;
             double b = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
                     Color neighborColor = wrapImage[idX, idY];
 
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    r += neighborColor.R * kernel[j + radius, i + radius];
+                    g += neighborColor.G * kernel[j + radius, i + radius];
+                    b += neighborColor.B * kernel[j + radius, i + radius];
                 }
             }
 
@@ -262,17 +262,17 @@ namespace ImageProcessing
 
         public WhiteHoles(int diameter, int width, int height, int percent)
         {
-            Diameter = diameter;
+            this.diameter = diameter;
             _width = width;
             _height = height;
             _percent = percent;
 
-            Kernel = new double[Diameter, Diameter];
+            kernel = new double[diameter, diameter];
 
-            switch (Diameter)
+            switch (diameter)
             {
                 case 3:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
@@ -281,7 +281,7 @@ namespace ImageProcessing
                     break;
 
                 case 5:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 1, 1, 1, 0},
                         {1, 1, 1, 1, 1},
@@ -292,7 +292,7 @@ namespace ImageProcessing
                     break;
 
                 case 7:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 0, 1, 1, 1, 0, 0},
                         {0, 1, 1, 1, 1, 1, 0},
@@ -305,14 +305,14 @@ namespace ImageProcessing
                     break;
 
                 default:
-                    Kernel = new double[,]
+                    kernel = new double[,]
                     {
                         {0, 1, 0},
                         {1, 1, 1},
                         {0, 1, 0}
                     };
-                    Diameter = 3;
-                    Radius = Diameter / 2;
+                    diameter = 3;
+                    radius = diameter / 2;
                     break;
             }
 
@@ -323,8 +323,8 @@ namespace ImageProcessing
             Bitmap resultImage = new Bitmap(sourceImage);
             Bitmap tempBitmap = new Bitmap(_width, _height);
 
-            Width = resultImage.Width;
-            Height = resultImage.Height;
+            width = resultImage.Width;
+            height = resultImage.Height;
             int checkProgress = -1;
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
@@ -336,14 +336,14 @@ namespace ImageProcessing
             }
 
             Salt sa = new Salt(_width, _height, _percent);
-            Dilation di = new Dilation(Diameter, Kernel);
+            Dilation di = new Dilation(diameter, kernel);
             tempBitmap = di.ProcessImage(sa.ProcessImage(tempBitmap, worker), worker);
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
                 using (ImageWrapper wrapImage = new ImageWrapper(resultImage, true))
                 {
-                    for (int i = 0; i < Height; ++i)
+                    for (int i = 0; i < height; ++i)
                     {
                         if (i > checkProgress)
                         {
@@ -356,7 +356,7 @@ namespace ImageProcessing
                             checkProgress += 100;
                         }
 
-                        for (int j = 0; j < Width; ++j)
+                        for (int j = 0; j < width; ++j)
                         {
                             Color neighborColor = wrapTempImage[j, i];
                             if (neighborColor.R == 255 && neighborColor.G == 255 && neighborColor.B == 255)
@@ -376,17 +376,17 @@ namespace ImageProcessing
             double g = 0;
             double b = 0;
 
-            for (int i = -Radius; i <= Radius; ++i)
+            for (int i = -radius; i <= radius; ++i)
             {
-                for (int j = -Radius; j <= Radius; ++j)
+                for (int j = -radius; j <= radius; ++j)
                 {
-                    int idX = BorderProcessing(x + j, 0, Width - 1);
-                    int idY = BorderProcessing(y + i, 0, Height - 1);
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
                     Color neighborColor = wrapImage[idX, idY];
 
-                    r += neighborColor.R * Kernel[j + Radius, i + Radius];
-                    g += neighborColor.G * Kernel[j + Radius, i + Radius];
-                    b += neighborColor.B * Kernel[j + Radius, i + Radius];
+                    r += neighborColor.R * kernel[j + radius, i + radius];
+                    g += neighborColor.G * kernel[j + radius, i + radius];
+                    b += neighborColor.B * kernel[j + radius, i + radius];
                 }
             }
 

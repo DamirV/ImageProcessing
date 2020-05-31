@@ -7,11 +7,11 @@ namespace ImageProcessing
 {
     abstract class Filter
     {
-        protected int Width;
-        protected int Height;
-        protected double[,] Kernel;
-        protected int Diameter;
-        protected int Radius;
+        protected int width;
+        protected int height;
+        protected double[,] kernel;
+        protected int diameter;
+        protected int radius;
 
         protected abstract Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y);
      
@@ -43,18 +43,18 @@ namespace ImageProcessing
         public virtual Bitmap ProcessImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             Bitmap resultImage = new Bitmap(sourceImage);
-            Width = resultImage.Width;
-            Height = resultImage.Height;
+            width = resultImage.Width;
+            height = resultImage.Height;
 
             int checkProgress = -1;
 
             using (ImageWrapper wrapImage = new ImageWrapper(resultImage))
             {
-                for (int i = 0; i < Height; ++i)
+                for (int i = 0; i < height; ++i)
                 {
                     if (i > checkProgress)
                     {
-                        worker.ReportProgress((int)((double)i / resultImage.Height * 100));
+                        worker.ReportProgress((int)((double)i / height * 100));
                         if (worker.CancellationPending)
                         {
                             return null;
@@ -63,7 +63,7 @@ namespace ImageProcessing
                         checkProgress += 100;
                     }
 
-                    for (int j = 0; j < Width; ++j)
+                    for (int j = 0; j < width; ++j)
                     {
                         wrapImage[j, i] = CalculateNewPixelColor(wrapImage, j, i);
                     }

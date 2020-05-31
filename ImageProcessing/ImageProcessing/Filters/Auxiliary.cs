@@ -2,16 +2,16 @@
 
 namespace ImageProcessing
 {
-    class BlackAndWhite : Filter
+    class BlackAndWhiteFilter : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            Color color = wrapImage[x, y];
-            int r = color.R;
-            int g = color.G;
-            int b = color.B;
+             
+            int red = wrapImage[x, y].R;
+            int green = wrapImage[x, y].G;
+            int blue = wrapImage[x, y].B;
 
-            int result = (r + g + b) / 3;
+            int result = (red + green + blue) / 3;
 
             return Color.FromArgb(result, result, result);
         }

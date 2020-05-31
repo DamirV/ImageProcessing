@@ -9,43 +9,43 @@ using System.Windows.Forms;
 
 struct Images
 {
-    private Bitmap first;
-    private Bitmap second;
-    private string str;
+    private Bitmap sourceImage;
+    private Bitmap resultImage;
+    private string filterName;
     private int width;
-
     private int height;
-    public Images(Bitmap first, Bitmap second, string str)
+
+    public Images(Bitmap sourceImage, Bitmap resultImage, string filterName)
     {
-        this.first = first;
-        this.second = second;
-        this.str = str;
-        this.width = this.first.Width;
-        this.height = this.first.Height;
+        this.sourceImage = sourceImage;
+        this.resultImage = resultImage;
+        this.filterName = filterName;
+        this.width = this.sourceImage.Width;
+        this.height = this.sourceImage.Height;
     }
 
     public Images(Images images)
     {
-        this.first = images.getFirstBitmap();
-        this.second = images.getSecondBitmap();
-        this.str = images.getString();
+        this.sourceImage = images.getsourceImageBitmap();
+        this.resultImage = images.getresultImageBitmap();
+        this.filterName = images.getFilterName();
         this.width = images.getWidth();
         this.height = images.getHeight();
     }
 
-    public Bitmap getFirstBitmap()
+    public Bitmap getsourceImageBitmap()
     {
-        return first;
+        return sourceImage;
     }
 
-    public Bitmap getSecondBitmap()
+    public Bitmap getresultImageBitmap()
     {
-        return second;
+        return resultImage;
     }
 
-    public string getString()
+    public string getFilterName()
     {
-        return str;
+        return filterName;
     }
 
     public int getWidth()
@@ -63,45 +63,46 @@ namespace ImageProcessing
 {
     public partial class ImageProcessing : MetroFramework.Forms.MetroForm
     {
-        Bitmap image = null;
-        Bitmap resultImage = null;
+        private Bitmap sourceImage;
+        private Bitmap resultImage;
         private int width;
         private int height;
         int diameter = 3;
-        Filter filter;
-        Stack<Images> stack;
+        Stack<Images> stateStack;
         private string filterName;
 
         public ImageProcessing()
         {
             InitializeComponent();
-            stack = new Stack<Images>();
             this.StyleManager = metroStyleManager1;
-            filterName = "Фильтр";
+
+            this.stateStack = new Stack<Images>();
+            this.filterName = "Фильтр";
+            this.sourceImage = null;
+            this.resultImage = null;
         }
 
-        private int RunProcessing(string _filterName, Filter _filter)
+        private int RunProcessing(string filterName, Filter currentFilter)
         {
-            if (image == null)
+            if (sourceImage == null)
             {
                 return 0;
             }
 
-            stack.Push(new Images(image, resultImage, filterName));
-            filterName = metroButton4.Text = _filterName;
-            filter = _filter;
-            backgroundWorker1.RunWorkerAsync(filter);
+            stateStack.Push(new Images(sourceImage, resultImage, this.filterName));
+            this.filterName = showFiltersButton.Text = filterName;
+            backgroundWorker1.RunWorkerAsync(currentFilter);
 
             return 1;
         }
 
-        private int LoadTheory(string _filterName, string info, string path, int _diameter, bool loadMatrix = false)
+        private int LoadTheory(string filterName, string info, string path, int diameter, bool loadMatrix = false)
         {
-            metroButton2.Text = _filterName;
+            metroButton2.Text = filterName;
             metroLabel6.Text = info;
-            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + _diameter + "\\source.jpg"));
-            pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + _diameter + "\\result.jpg"));
-            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + _diameter + "\\formula.gif"));
+            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\sourceImage.jpg"));
+            pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\result.jpg"));
+            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\formula.gif"));
 
             if (loadMatrix)
             {
@@ -119,23 +120,8 @@ namespace ImageProcessing
 
             return 1;
         }
-        private float ParseFloat(string str)
-        {
-            if (str.Contains("/"))
-            {
-                string[] numbers = str.Split(new char[] { '/' });
-                float up = float.Parse(numbers[0]);
-                float down = float.Parse(numbers[1]);
 
-                return up / down;
-            }
-            else
-            {
-                return float.Parse(str);
-            }
-        }
-
-        private void MetroButton3_Click(object sender, EventArgs e)
+        private void LoadImage(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = " Image files|*.png; *.jpg; *.bmp| All Files (*.*)|*.*";
@@ -144,23 +130,23 @@ namespace ImageProcessing
             {
                 try
                 {
-                    stack.Clear();
+                    stateStack.Clear();
 
-                    image = new Bitmap(dialog.FileName);
+                    sourceImage = new Bitmap(dialog.FileName);
                     resultImage = null;
 
-                    pictureBox1.Image = image;
+                    pictureBox1.Image = sourceImage;
                     pictureBox1.Refresh();
 
                     pictureBox2.Image = null;
                     pictureBox2.Refresh();
 
-                    width = image.Width;
-                    height = image.Height;
+                    width = sourceImage.Width;
+                    height = sourceImage.Height;
 
                     metroLabel14.Text = "Ширина: " + width + "; Высота: " + height + ";";
 
-                    stack.Push(new Images(image, resultImage, filterName));
+                    stateStack.Push(new Images(sourceImage, resultImage, filterName));
                 }
                 catch
                 {
@@ -172,7 +158,7 @@ namespace ImageProcessing
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            Bitmap newImage = ((Filter)e.Argument).ProcessImage(image, backgroundWorker1);
+            Bitmap newImage = ((Filter)e.Argument).ProcessImage(sourceImage, backgroundWorker1);
             resultImage = null;
 
             if (backgroundWorker1.CancellationPending != true)
@@ -181,7 +167,7 @@ namespace ImageProcessing
             }
         }
 
-        private void MetroButton1_Click(object sender, EventArgs e)
+        private void CancelProcessing(object sender, EventArgs e)
         {
             backgroundWorker1.CancelAsync();
         }
@@ -202,32 +188,32 @@ namespace ImageProcessing
             metroProgressBar1.Value = 0;
         }
 
-        private void MetroButton4_Click(object sender, EventArgs e)
+        private void ShowFilters(object sender, EventArgs e)
         {
-            metroContextMenu1.Show(metroButton4, 0, metroButton4.Height);
+            metroContextMenu1.Show(showFiltersButton, 0, showFiltersButton.Height);
         }
 
         private void МедианныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Медианный фильтр", new Mediana(diameter));
+            RunProcessing("Медианный фильтр", new MedianaFilter(diameter));
         }
 
         
         private void ОбычнаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter));
+            RunProcessing("Линейный фильтр", new LinearSmoothingFilter(diameter));
         }
 
         private void РасширеннаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new ExtendedLinearSmoothing(diameter));
+            RunProcessing("Линейный фильтр", new ExtendedLinearSmoothingFilter(diameter));
         }
 
         private void ФильтрГауссаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                float weight = ParseFloat(metroTextBox1.Text);
+                double weight = Convert.ToDouble(metroTextBox1.Text);
                 RunProcessing("Фильтр Гаусса", new GaussianFilter(diameter, weight));
             }
             catch
@@ -239,13 +225,13 @@ namespace ImageProcessing
 
         private void ОбычнаяМатрицаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            float k = ParseFloat(metroTextBox3.Text);
+            double k = Convert.ToDouble(metroTextBox3.Text);
             RunProcessing("Маска Лапласа", new Laplass(k, false));
         }
 
         private void РасширеннаяМатрицаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            float k = ParseFloat(metroTextBox3.Text);
+            double k = Convert.ToDouble(metroTextBox3.Text);
             RunProcessing("Маска Лапласа", new ExtendedLaplass(k, false));
         }
 
@@ -253,7 +239,7 @@ namespace ImageProcessing
         {
             try
             {
-                float k = ParseFloat(metroTextBox3.Text);
+                double k = Convert.ToDouble(metroTextBox3.Text);
                 RunProcessing("Оператор Лапласа с восстановленным фоном", new Laplass(k, true));
             }
             catch
@@ -267,7 +253,7 @@ namespace ImageProcessing
         {
             try
             {
-                float k = ParseFloat(metroTextBox3.Text);
+                double k = Convert.ToDouble(metroTextBox3.Text);
                 RunProcessing("Оператор Лапласа с восстановленным фоном", new ExtendedLaplass(k, true));
             }
             catch
@@ -281,8 +267,8 @@ namespace ImageProcessing
         {
             try
             {
-                float k = ParseFloat(metroTextBox2.Text);
-                float sigma = ParseFloat(metroTextBox1.Text);
+                double k = Convert.ToDouble(metroTextBox2.Text);
+                double sigma = Convert.ToDouble(metroTextBox1.Text);
                 RunProcessing("Подъем высоких частот", new FrequencyIncrease(k, diameter, sigma));
             }
             catch
@@ -322,14 +308,14 @@ namespace ImageProcessing
 
         private void СольИПерецToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int saltPercent = (int)ParseFloat(metroTextBox4.Text);
-            int pepperPercent = (int)ParseFloat(metroTextBox5.Text);
+            int saltPercent = (int)Convert.ToDouble(metroTextBox4.Text);
+            int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
             RunProcessing("Соль и перец", new SaltPepper(width, height, saltPercent, pepperPercent));
         }
 
         private void MetroButton8_Click(object sender, EventArgs e)
         {
-            if (image == null|| resultImage == null)
+            if (sourceImage == null|| resultImage == null)
             {
                 return;
             }
@@ -337,10 +323,10 @@ namespace ImageProcessing
             try
             {
                 Bitmap temp = resultImage;
-                resultImage = image;
-                image = temp;
+                resultImage = sourceImage;
+                sourceImage = temp;
 
-                pictureBox1.Image = image;
+                pictureBox1.Image = sourceImage;
                 pictureBox2.Image = resultImage;
 
                 pictureBox1.Refresh();
@@ -429,15 +415,15 @@ namespace ImageProcessing
         }
         private void ImageProcessing_Rediameter(object sender, EventArgs e)
         {
-            alignment();
+            Alignment();
         }
 
         private void ImageProcessing_Activated(object sender, EventArgs e)
         {
-            alignment();
+            Alignment();
         }
 
-        private void alignment()
+        private void Alignment()
         {
             pictureBox1.Width = (int)(metroTabPage1.Width / 2.07);
             pictureBox1.Height = (int)(metroTabPage1.Height / 1.4);
@@ -456,7 +442,7 @@ namespace ImageProcessing
 
         private void MetroTabControl1_Click(object sender, EventArgs e)
         {
-            alignment();
+            Alignment();
         }
 
         private void ВЧерноБелоеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -488,7 +474,7 @@ namespace ImageProcessing
         {
             try
             {
-                int percent = (int)ParseFloat(metroTextBox4.Text);
+                int percent = (int)Convert.ToDouble(metroTextBox4.Text);
                 RunProcessing("Соль", new Salt(width, height, percent));
             }
             catch
@@ -503,7 +489,7 @@ namespace ImageProcessing
         {
             try
             {
-                int percent = (int)ParseFloat(metroTextBox5.Text);
+                int percent = (int)Convert.ToDouble(metroTextBox5.Text);
                 RunProcessing("Перец", new Pepper(width, height, percent));
              
             }
@@ -517,18 +503,18 @@ namespace ImageProcessing
 
         private void MetroButton7_Click(object sender, EventArgs e)
         {
-            if (stack.Count != 0)
+            if (stateStack.Count != 0)
             {
-                Images images = stack.Pop();
+                Images images = stateStack.Pop();
 
-                image = images.getFirstBitmap();
-                resultImage = images.getSecondBitmap();
-                metroButton4.Text = images.getString();
+                sourceImage = images.getsourceImageBitmap();
+                resultImage = images.getresultImageBitmap();
+                showFiltersButton.Text = images.getFilterName();
 
                 width = images.getWidth();
                 height = images.getHeight();
 
-                pictureBox1.Image = image;
+                pictureBox1.Image = sourceImage;
                 pictureBox2.Image = resultImage;
 
                 metroLabel14.Text = "Ширина: " + width + "; Высота: " + height + ";";
@@ -542,7 +528,7 @@ namespace ImageProcessing
         {
             try
             {
-                int percent = (int)ParseFloat(metroTextBox6.Text);
+                int percent = (int)Convert.ToDouble(metroTextBox6.Text);
                 RunProcessing("Черные дыры", new BlackHoles(diameter, width, height, percent));
             }
             catch
@@ -556,7 +542,7 @@ namespace ImageProcessing
         {
             try
             {
-                int percent = (int)ParseFloat(metroTextBox7.Text);
+                int percent = (int)Convert.ToDouble(metroTextBox7.Text);
                 RunProcessing("Белые дыры", new WhiteHoles(diameter, width, height, percent));
             }
             catch
@@ -605,27 +591,27 @@ namespace ImageProcessing
 
         private void ImageProcessing_Resize(object sender, EventArgs e)
         {
-            alignment();
+            Alignment();
         }
 
         private void ВЧерноБелоеToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            RunProcessing("Черно-белое", new BlackAndWhite());
+            RunProcessing("Черно-белое", new BlackAndWhiteFilter());
         }
 
         private void КраснаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Красная компонента", new ComponentR());
+            RunProcessing("Красная компонента", new RedComponent());
         }
 
         private void ЗеленаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Зеленая компонента", new ComponentG());
+            RunProcessing("Зеленая компонента", new GreenComponent());
         }
 
         private void СиняяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Синяя компонента", new ComponentB());
+            RunProcessing("Синяя компонента", new BlueComponent());
         }
 
         private void ОператорСобеляДляЦветногоИзображенияToolStripMenuItem_Click(object sender, EventArgs e)
@@ -635,14 +621,14 @@ namespace ImageProcessing
 
         private void ГауссовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            float sigma = ParseFloat(metroTextBox1.Text);
+            double sigma = Convert.ToDouble(metroTextBox1.Text);
             int middle = Convert.ToInt32(metroTextBox11.Text);
             RunProcessing("Гауссовский шум", new GaussianNoise(sigma, middle));
         }
 
         private void среднееГеометрическоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Среднее геометрическое", new GeometricMean(diameter));
+            RunProcessing("Среднее геометрическое", new GeometricMeanFilter(diameter));
         }
 
         private void среднееГармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -653,7 +639,7 @@ namespace ImageProcessing
         private void среднееКонтргармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int order = Convert.ToInt32(metroTextBox8.Text);
-            RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
+            RunProcessing("Среднее контргармоническое", new CounterHarmonicMeanFilter(diameter, order));
         }
 
         private void ФильтрМаксимумаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -668,7 +654,7 @@ namespace ImageProcessing
 
         private void ФильтрСреднейТочкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Фильтр срединной точки", new MidpointFilter(diameter));
+            RunProcessing("Фильтр срединной точки", new MidPointFilter(diameter));
         }
 
         private void РавномерныйШумToolStripMenuItem_Click(object sender, EventArgs e)
@@ -682,5 +668,6 @@ namespace ImageProcessing
         {
             RunProcessing("SobelRGB", new SobelFilterRGB());
         }
+
     }
 }

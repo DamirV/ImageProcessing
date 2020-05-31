@@ -2,33 +2,33 @@
 
 namespace ImageProcessing
 {
-    class ComponentR : Filter
+    class RedComponent : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            Color color = wrapImage[x, y];
+            int red = wrapImage[x, y].R;
 
-            return Color.FromArgb(color.R, color.R, color.R);
+            return Color.FromArgb(red, red, red);
         }
     }
 
-    class ComponentG : Filter
+    class GreenComponent : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            Color color = wrapImage[x, y];
+            int green = wrapImage[x, y].G;
 
-            return Color.FromArgb(color.G, color.G, color.G);
+            return Color.FromArgb(green, green, green);
         }
     }
 
-    class ComponentB : Filter
+    class BlueComponent : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            Color color = wrapImage[x, y];
+            int blue = wrapImage[x, y].B;
 
-            return Color.FromArgb(color.B, color.B, color.B);
+            return Color.FromArgb(blue, blue, blue);
         }
     }
 }
