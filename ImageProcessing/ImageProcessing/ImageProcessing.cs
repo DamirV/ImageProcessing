@@ -121,7 +121,7 @@ namespace ImageProcessing
             return 1;
         }
 
-        private void LoadImage(object sender, EventArgs e)
+        private void LoadImageButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = " Image files|*.png; *.jpg; *.bmp| All Files (*.*)|*.*";
@@ -193,22 +193,22 @@ namespace ImageProcessing
             metroContextMenu1.Show(showFiltersButton, 0, showFiltersButton.Height);
         }
 
-        private void MedianaFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MedianaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Медианный фильтр", new Mediana(diameter));
         }
 
-        private void ОбычнаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Линейный фильтр", new LinearSmoothing(diameter));
         }
 
-        private void РасширеннаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExtendedLinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Линейный фильтр", new ExtendedLinearSmoothing(diameter));
         }
 
-        private void ФильтрГауссаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GaussianToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -222,24 +222,24 @@ namespace ImageProcessing
             }
         }
 
-        private void ОбычнаяМатрицаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             double k = Convert.ToDouble(metroTextBox3.Text);
-            RunProcessing("Маска Лапласа", new Laplass(k, false));
+            RunProcessing("Маска Лапласа", new Laplace(k));
         }
 
-        private void РасширеннаяМатрицаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             double k = Convert.ToDouble(metroTextBox3.Text);
-            RunProcessing("Маска Лапласа", new ExtendedLaplass(k, false));
+            RunProcessing("Маска Лапласа", new ExtendedLaplace(k));
         }
 
-        private void ОбычнаяМатрицаToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void RestoredLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 double k = Convert.ToDouble(metroTextBox3.Text);
-                RunProcessing("Оператор Лапласа с восстановленным фоном", new Laplass(k, true));
+                RunProcessing("Оператор Лапласа с восстановленным фоном", new RestoredLaplace(k));
             }
             catch
             {
@@ -248,12 +248,12 @@ namespace ImageProcessing
             }
         }
 
-        private void РасширеннаяМатрицаToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void RestoredExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 double k = Convert.ToDouble(metroTextBox3.Text);
-                RunProcessing("Оператор Лапласа с восстановленным фоном", new ExtendedLaplass(k, true));
+                RunProcessing("Оператор Лапласа с восстановленным фоном", new RestoredExtendedLaplace(k));
             }
             catch
             {
@@ -262,7 +262,7 @@ namespace ImageProcessing
             }
         }
 
-        private void ФильтрацияСПодъемомВысокихЧастотToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FrequencyIncreaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -277,7 +277,7 @@ namespace ImageProcessing
             }
         }
 
-        private void ОператорCобеляToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SobelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Оператор Собеля", new Sobel());
         }
@@ -305,7 +305,7 @@ namespace ImageProcessing
             metroContextMenu2.Show(metroButton2, 0, metroButton2.Height);
         }
 
-        private void СольИПерецToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaltPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int saltPercent = (int)Convert.ToDouble(metroTextBox4.Text);
             int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
@@ -444,11 +444,6 @@ namespace ImageProcessing
             Alignment();
         }
 
-        private void ВЧерноБелоеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void НаращиваниеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Дилатация", new Dilation(diameter));
@@ -469,7 +464,7 @@ namespace ImageProcessing
             RunProcessing("Замыкание", new Closing(diameter));
         }
 
-        private void СольToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaltToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -484,7 +479,7 @@ namespace ImageProcessing
 
         }
 
-        private void ПерецToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -500,7 +495,7 @@ namespace ImageProcessing
 
         }
 
-        private void MetroButton7_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
             if (stateStack.Count != 0)
             {
@@ -523,7 +518,7 @@ namespace ImageProcessing
             }
         }
 
-        private void ЧерныеДырыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BlackHolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -537,7 +532,7 @@ namespace ImageProcessing
             }
         }
 
-        private void БелыеДырыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void WhiteHolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -551,7 +546,7 @@ namespace ImageProcessing
             }
         }
 
-        private void MetroButton9_Click_1(object sender, EventArgs e)
+        private void SaveImageButton_Click(object sender, EventArgs e)
         {
             if (resultImage == null)
             {
@@ -593,79 +588,79 @@ namespace ImageProcessing
             Alignment();
         }
 
-        private void ВЧерноБелоеToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void BlackAndWhiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Черно-белое", new BlackAndWhite());
         }
 
-        private void КраснаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RedComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Красная компонента", new RedComponent());
         }
 
-        private void ЗеленаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GreenComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Зеленая компонента", new GreenComponent());
         }
 
-        private void СиняяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BlueComponentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Синяя компонента", new BlueComponent());
         }
 
-        private void ОператорСобеляДляЦветногоИзображенияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DiZenzoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Оператор Собеля для цветного изображения", new SobelColored());
+            RunProcessing("Метод Ди Зензо", new DiZenzo());
         }
 
-        private void ГауссовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GaussianNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             double sigma = Convert.ToDouble(metroTextBox1.Text);
             int middle = Convert.ToInt32(metroTextBox11.Text);
             RunProcessing("Гауссовский шум", new GaussianNoise(sigma, middle));
         }
 
-        private void среднееГеометрическоеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GeometricMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Среднее геометрическое", new GeometricMean(diameter));
         }
 
-        private void среднееГармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void HarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Среднее гармоническое", new HarmonicMean(diameter));
         }
 
-        private void среднееКонтргармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CounterHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int order = Convert.ToInt32(metroTextBox8.Text);
             RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
         }
 
-        private void ФильтрМаксимумаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MaximumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Фильтр максимума", new Maximum(diameter));
         }
 
-        private void ФильтрМинимумаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MinimumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Фильтр минимума", new Minimum(diameter));
         }
 
-        private void ФильтрСреднейТочкиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MidPointToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Фильтр срединной точки", new MidPoint(diameter));
         }
 
-        private void РавномерныйШумToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UniformNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int a = Convert.ToInt32(metroTextBox9.Text);
             int b = Convert.ToInt32(metroTextBox10.Text);
             RunProcessing("Равномерный шум", new UniformNoise(a,b));
         }
 
-        private void SobelRGBToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SobelMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("SobelRGB", new SobelRGB());
+            RunProcessing("Оператор Собеля для цветного изображения", new SobelMean());
         }
 
     }

@@ -56,12 +56,12 @@ namespace ImageProcessing
         }
     }
 
-    class SobelRGB : Filter
+    class SobelMean : Filter
     {
         private double[,] kernelX;
         private double[,] kernelY;
 
-        public SobelRGB()
+        public SobelMean()
         {
             this.diameter = 3;
             this.radius = diameter / 2;
@@ -107,12 +107,12 @@ namespace ImageProcessing
         }
     }
 
-    class SobelColored : Filter
+    class DiZenzo : Filter
     {
         private  double[,] kernelX;
         private double[,] kernelY;
 
-        public SobelColored()
+        public DiZenzo()
         {
             this.diameter = 3;
             this.radius = diameter / 2;
@@ -164,13 +164,11 @@ namespace ImageProcessing
         }
     }
 
-    class Laplass : Filter
+    class Laplace : Filter
     {
-        private  bool isRestoredBackground;
         private  double multiplier;
-        public Laplass(double multiplier, bool isRestoredBackground)
+        public Laplace(double multiplier)
         {
-            this.isRestoredBackground = isRestoredBackground;
             this.multiplier = multiplier;
             this.kernel = new double[,]
                 {
@@ -200,12 +198,51 @@ namespace ImageProcessing
                 }
             }
 
-            if (isRestoredBackground)
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
+
+            return Color.FromArgb((int)red, (int)green, (int)blue);
+        }
+    }
+
+    class RestoredLaplace : Filter
+    {
+        private double multiplier;
+        public RestoredLaplace(double multiplier)
+        {
+            this.multiplier = multiplier;
+            this.kernel = new double[,]
             {
-                red = wrapImage[x, y].R + (int)(-red);
-                green = wrapImage[x, y].G + (int)(-green);
-                blue = wrapImage[x, y].B + (int)(-blue);
+                { 0, 1, 0 },
+                { 1, -4, 1 },
+                { 0, 1, 0 }
+            };
+            this.diameter = 3;
+            this.radius = diameter / 2;
+        }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+
+            for (int i = -radius; i <= radius; ++i)
+            {
+                for (int j = -radius; j <= radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
+
+                    red += kernel[j + radius, i + radius] * wrapImage[idX, idY].R * multiplier;
+                    green += kernel[j + radius, i + radius] * wrapImage[idX, idY].G * multiplier;
+                    blue += kernel[j + radius, i + radius] * wrapImage[idX, idY].B * multiplier;
+                }
             }
+            red = wrapImage[x, y].R + (int)(-red);
+            green = wrapImage[x, y].G + (int)(-green);
+            blue = wrapImage[x, y].B + (int)(-blue);
+
 
             red = Clamp((int)red, 0, 255);
             green = Clamp((int)green, 0, 255);
@@ -215,13 +252,11 @@ namespace ImageProcessing
         }
     }
 
-    class ExtendedLaplass : Filter
+    class ExtendedLaplace : Filter
     {
-        private bool isRestoredBackground;
         private double multiplier;
-        public ExtendedLaplass(double multiplier, bool isRestoredBackground)
+        public ExtendedLaplace(double multiplier)
         {
-            this.isRestoredBackground = isRestoredBackground;
             this.multiplier = multiplier;
 
             this.kernel = new double[,]
@@ -253,12 +288,54 @@ namespace ImageProcessing
                 }
             }
 
-            if (isRestoredBackground)
-            { 
-                red = wrapImage[x, y].R + -red;
-                green = wrapImage[x, y].G + -green;
-                blue = wrapImage[x, y].B + -blue;
+            red = Clamp((int)red, 0, 255);
+            green = Clamp((int)green, 0, 255);
+            blue = Clamp((int)blue, 0, 255);
+
+            return Color.FromArgb((int)red, (int)green, (int)blue);
+        }
+    }
+
+    class RestoredExtendedLaplace : Filter
+    {
+        private double multiplier;
+        public RestoredExtendedLaplace(double multiplier)
+        {
+            this.multiplier = multiplier;
+
+            this.kernel = new double[,]
+            {
+                { 1, 1, 1 },
+                { 1, -8, 1 },
+                { 1, 1, 1 }
+            };
+
+            this.diameter = 3;
+            this.radius = diameter / 2;
+        }
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            double red = 0.0;
+            double green = 0.0;
+            double blue = 0.0;
+
+            for (int i = -radius; i <= radius; ++i)
+            {
+                for (int j = -radius; j <= radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
+
+                    red += kernel[j + radius, i + radius] * wrapImage[idX, idY].R * multiplier;
+                    green += kernel[j + radius, i + radius] * wrapImage[idX, idY].G * multiplier;
+                    blue += kernel[j + radius, i + radius] * wrapImage[idX, idY].B * multiplier;
+                }
             }
+
+            red = wrapImage[x, y].R + -red;
+            green = wrapImage[x, y].G + -green;
+            blue = wrapImage[x, y].B + -blue;
+            
 
             red = Clamp((int)red, 0, 255);
             green = Clamp((int)green, 0, 255);
