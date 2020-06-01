@@ -5,9 +5,9 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class LinearSmoothingFilter : Filter
+    class LinearSmoothing : Filter
     {
-        public LinearSmoothingFilter(int diameter)
+        public LinearSmoothing(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
@@ -52,9 +52,9 @@ namespace ImageProcessing
         }
     }
 
-    class ExtendedLinearSmoothingFilter : Filter
+    class ExtendedLinearSmoothing : Filter
     {
-        public ExtendedLinearSmoothingFilter(int diameter)
+        public ExtendedLinearSmoothing(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
@@ -123,9 +123,9 @@ namespace ImageProcessing
         }
     }
 
-    class MedianaFilter : Filter
+    class Mediana : Filter
     {
-        public MedianaFilter(int diameter)
+        public Mediana(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
@@ -162,9 +162,9 @@ namespace ImageProcessing
         }
     }
 
-    class GeometricMeanFilter : Filter
+    class GeometricMean : Filter
     {
-        public GeometricMeanFilter(int diameter)
+        public GeometricMean(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
@@ -232,10 +232,10 @@ namespace ImageProcessing
         }
     }
 
-    class CounterHarmonicMeanFilter : Filter
+    class CounterHarmonicMean : Filter
     {
         private int order;
-        public CounterHarmonicMeanFilter(int diameter, int order)
+        public CounterHarmonicMean(int diameter, int order)
         {
             this.order = order;
             this.diameter = diameter;
@@ -282,9 +282,9 @@ namespace ImageProcessing
         }
     }
 
-    class MaximumFilter : Filter
+    class Maximum : Filter
     {
-        public MaximumFilter(int diameter)
+        public Maximum(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
@@ -321,9 +321,9 @@ namespace ImageProcessing
         }
     }
 
-    class MinimumFilter : Filter
+    class Minimum : Filter
     {
-        public MinimumFilter(int diameter)
+        public Minimum(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;
@@ -360,9 +360,9 @@ namespace ImageProcessing
         }
     }
 
-    class MidPointFilter : Filter
+    class MidPoint : Filter
     {
-        public MidPointFilter(int diameter)
+        public MidPoint(int diameter)
         {
             this.diameter = diameter;
             this.radius = diameter / 2;

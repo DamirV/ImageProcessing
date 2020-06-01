@@ -80,7 +80,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.сглаживающиеФильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.медианныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medianaFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.линейныйToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обычнаяМаскаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.расширеннаяМаскаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -296,7 +296,7 @@
             this.showFiltersButton.Text = "Фильтр";
             this.metroToolTip1.SetToolTip(this.showFiltersButton, "Выбор фильтров");
             this.showFiltersButton.UseSelectable = true;
-            this.showFiltersButton.Click += new System.EventHandler(this.ShowFilters);
+            this.showFiltersButton.Click += new System.EventHandler(this.ShowFiltersButton_Click);
             // 
             // pictureBox2
             // 
@@ -1022,19 +1022,19 @@
             // сглаживающиеФильтрыToolStripMenuItem
             // 
             this.сглаживающиеФильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.медианныйToolStripMenuItem,
+            this.medianaFilterToolStripMenuItem,
             this.линейныйToolStripMenuItem,
             this.фильтрГауссаToolStripMenuItem});
             this.сглаживающиеФильтрыToolStripMenuItem.Name = "сглаживающиеФильтрыToolStripMenuItem";
             this.сглаживающиеФильтрыToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.сглаживающиеФильтрыToolStripMenuItem.Text = "Сглаживающие фильтры";
             // 
-            // медианныйToolStripMenuItem
+            // medianaFilterToolStripMenuItem
             // 
-            this.медианныйToolStripMenuItem.Name = "медианныйToolStripMenuItem";
-            this.медианныйToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.медианныйToolStripMenuItem.Text = "Медианный";
-            this.медианныйToolStripMenuItem.Click += new System.EventHandler(this.МедианныйToolStripMenuItem_Click);
+            this.medianaFilterToolStripMenuItem.Name = "medianaFilterToolStripMenuItem";
+            this.medianaFilterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.medianaFilterToolStripMenuItem.Text = "Медианный";
+            this.medianaFilterToolStripMenuItem.Click += new System.EventHandler(this.MedianaFilterToolStripMenuItem_Click);
             // 
             // линейныйToolStripMenuItem
             // 
@@ -1626,7 +1626,7 @@
         private MetroFramework.Controls.MetroButton showFiltersButton;
         private MetroFramework.Controls.MetroContextMenu metroContextMenu1;
         private System.Windows.Forms.ToolStripMenuItem сглаживающиеФильтрыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem медианныйToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem medianaFilterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem линейныйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фильтрГауссаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фильтрыПовышенияРезкостиToolStripMenuItem;

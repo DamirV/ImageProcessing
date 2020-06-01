@@ -4,10 +4,10 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class GaussianFilter : Filter
+    class Gaussian : Filter
     {
         private double sigma;
-        public GaussianFilter(int diameter, double sigma)
+        public Gaussian(int diameter, double sigma)
         {
             this.sigma = sigma;
             this.diameter = diameter;

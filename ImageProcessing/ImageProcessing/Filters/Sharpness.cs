@@ -3,12 +3,12 @@ using System.Drawing;
 
 namespace ImageProcessing
 {
-    class SobelFilter : Filter
+    class Sobel : Filter
     {
         private  double[,] kernelX;
         private  double[,] kernelY;
 
-        public SobelFilter()
+        public Sobel()
         {
             this.diameter = 3;
             this.radius = diameter / 2;
@@ -56,12 +56,12 @@ namespace ImageProcessing
         }
     }
 
-    class SobelFilterRGB : Filter
+    class SobelRGB : Filter
     {
         private double[,] kernelX;
         private double[,] kernelY;
 
-        public SobelFilterRGB()
+        public SobelRGB()
         {
             this.diameter = 3;
             this.radius = diameter / 2;
@@ -107,12 +107,12 @@ namespace ImageProcessing
         }
     }
 
-    class SobelFilterColored : Filter
+    class SobelColored : Filter
     {
         private  double[,] kernelX;
         private double[,] kernelY;
 
-        public SobelFilterColored()
+        public SobelColored()
         {
             this.diameter = 3;
             this.radius = diameter / 2;

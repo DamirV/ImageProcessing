@@ -188,25 +188,24 @@ namespace ImageProcessing
             metroProgressBar1.Value = 0;
         }
 
-        private void ShowFilters(object sender, EventArgs e)
+        private void ShowFiltersButton_Click(object sender, EventArgs e)
         {
             metroContextMenu1.Show(showFiltersButton, 0, showFiltersButton.Height);
         }
 
-        private void МедианныйToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MedianaFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Медианный фильтр", new MedianaFilter(diameter));
+            RunProcessing("Медианный фильтр", new Mediana(diameter));
         }
 
-        
         private void ОбычнаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new LinearSmoothingFilter(diameter));
+            RunProcessing("Линейный фильтр", new LinearSmoothing(diameter));
         }
 
         private void РасширеннаяМаскаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Линейный фильтр", new ExtendedLinearSmoothingFilter(diameter));
+            RunProcessing("Линейный фильтр", new ExtendedLinearSmoothing(diameter));
         }
 
         private void ФильтрГауссаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,7 +213,7 @@ namespace ImageProcessing
             try
             {
                 double weight = Convert.ToDouble(metroTextBox1.Text);
-                RunProcessing("Фильтр Гаусса", new GaussianFilter(diameter, weight));
+                RunProcessing("Фильтр Гаусса", new Gaussian(diameter, weight));
             }
             catch
             {
@@ -280,7 +279,7 @@ namespace ImageProcessing
 
         private void ОператорCобеляToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Оператор Собеля", new SobelFilter());
+            RunProcessing("Оператор Собеля", new Sobel());
         }
 
         private void MetroButton5_Click(object sender, EventArgs e)
@@ -596,7 +595,7 @@ namespace ImageProcessing
 
         private void ВЧерноБелоеToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            RunProcessing("Черно-белое", new BlackAndWhiteFilter());
+            RunProcessing("Черно-белое", new BlackAndWhite());
         }
 
         private void КраснаяКомпонентаToolStripMenuItem_Click(object sender, EventArgs e)
@@ -616,7 +615,7 @@ namespace ImageProcessing
 
         private void ОператорСобеляДляЦветногоИзображенияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Оператор Собеля для цветного изображения", new SobelFilterColored());
+            RunProcessing("Оператор Собеля для цветного изображения", new SobelColored());
         }
 
         private void ГауссовToolStripMenuItem_Click(object sender, EventArgs e)
@@ -628,7 +627,7 @@ namespace ImageProcessing
 
         private void среднееГеометрическоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Среднее геометрическое", new GeometricMeanFilter(diameter));
+            RunProcessing("Среднее геометрическое", new GeometricMean(diameter));
         }
 
         private void среднееГармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
@@ -639,22 +638,22 @@ namespace ImageProcessing
         private void среднееКонтргармоническоеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int order = Convert.ToInt32(metroTextBox8.Text);
-            RunProcessing("Среднее контргармоническое", new CounterHarmonicMeanFilter(diameter, order));
+            RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
         }
 
         private void ФильтрМаксимумаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Фильтр максимума", new MaximumFilter(diameter));
+            RunProcessing("Фильтр максимума", new Maximum(diameter));
         }
 
         private void ФильтрМинимумаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Фильтр минимума", new MinimumFilter(diameter));
+            RunProcessing("Фильтр минимума", new Minimum(diameter));
         }
 
         private void ФильтрСреднейТочкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("Фильтр срединной точки", new MidPointFilter(diameter));
+            RunProcessing("Фильтр срединной точки", new MidPoint(diameter));
         }
 
         private void РавномерныйШумToolStripMenuItem_Click(object sender, EventArgs e)
@@ -666,7 +665,7 @@ namespace ImageProcessing
 
         private void SobelRGBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RunProcessing("SobelRGB", new SobelFilterRGB());
+            RunProcessing("SobelRGB", new SobelRGB());
         }
 
     }

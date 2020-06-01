@@ -2,7 +2,7 @@
 
 namespace ImageProcessing
 {
-    class BlackAndWhiteFilter : Filter
+    class BlackAndWhite : Filter
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {

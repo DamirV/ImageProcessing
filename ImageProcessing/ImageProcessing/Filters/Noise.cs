@@ -139,9 +139,9 @@ namespace ImageProcessing
                 }
             }
 
-            Pepper pepperNoise = new Pepper(percent);
-            Erosion erosionFilter = new Erosion(diameter, kernel);
-            tempBitmap = erosionFilter.ProcessImage(pepperNoise.ProcessImage(tempBitmap, worker), worker);
+            Pepper pepper = new Pepper(percent);
+            Erosion erosion = new Erosion(diameter, kernel);
+            tempBitmap = erosion.ProcessImage(pepper.ProcessImage(tempBitmap, worker), worker);
 
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
@@ -248,9 +248,9 @@ namespace ImageProcessing
                 }
             }
 
-            Salt saltNoise = new Salt(percent);
-            Dilation dilationFilter = new Dilation(diameter, kernel);
-            tempBitmap = dilationFilter.ProcessImage(saltNoise.ProcessImage(tempBitmap, worker), worker);
+            Salt salt = new Salt(percent);
+            Dilation dilation = new Dilation(diameter, kernel);
+            tempBitmap = dilation.ProcessImage(salt.ProcessImage(tempBitmap, worker), worker);
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
