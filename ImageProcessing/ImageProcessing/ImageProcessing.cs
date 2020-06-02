@@ -98,7 +98,7 @@ namespace ImageProcessing
 
         private int LoadTheory(string filterName, string info, string path, int diameter, bool loadMatrix = false)
         {
-            metroButton2.Text = filterName;
+            showTheoryButton.Text = filterName;
             metroLabel6.Text = info;
             pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\sourceImage.jpg"));
             pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\result.jpg"));
@@ -267,7 +267,7 @@ namespace ImageProcessing
             try
             {
                 double k = Convert.ToDouble(metroTextBox2.Text);
-                double sigma = Convert.ToDouble(metroTextBox1.Text);
+                double sigma = Convert.ToDouble(metroTextBox13.Text);
                 RunProcessing("Подъем высоких частот", new FrequencyIncrease(k, diameter, sigma));
             }
             catch
@@ -282,7 +282,7 @@ namespace ImageProcessing
             RunProcessing("Оператор Собеля", new Sobel());
         }
 
-        private void MetroButton5_Click(object sender, EventArgs e)
+        private void UpDiameterButton_Click(object sender, EventArgs e)
         {
             if (diameter != 7)
             {
@@ -291,18 +291,13 @@ namespace ImageProcessing
             }
         }
 
-        private void MetroButton6_Click(object sender, EventArgs e)
+        private void DownDiameterButton_Click(object sender, EventArgs e)
         {
             if (diameter != 3)
             {
                 diameter -= 2;
                 metroLabel2.Text = "Размер ядра: " + Convert.ToString(diameter);
             }
-        }
-
-        private void MetroButton2_Click(object sender, EventArgs e)
-        {
-            metroContextMenu2.Show(metroButton2, 0, metroButton2.Height);
         }
 
         private void SaltPepperToolStripMenuItem_Click(object sender, EventArgs e)
@@ -339,22 +334,22 @@ namespace ImageProcessing
             }
         }
 
-        private void MetroButton2_Click_1(object sender, EventArgs e)
+        private void ShowTheoryButton_Click(object sender, EventArgs e)
         {
-            metroContextMenu2.Show(metroButton2, 0, metroButton2.Height);
+            metroContextMenu2.Show(showTheoryButton, 0, showTheoryButton.Height);
         }
 
-        private void ToolStripMenuItem2_Click_1(object sender, EventArgs e)
+        private void LoadTheoryMedianaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadTheory("Медианный фильтр", "Размер ядра: " + diameter,@"Images\smoothing\median\", diameter);
         }
 
-        private void ОбычнаяМаскаToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void LoadTheoryLinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadTheory("Линейный фильтр", "Размер ядра: " + diameter, @"Images\smoothing\linear\common\", diameter, true);
         }
 
-        private void РасширеннаяМаскаToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void LoadTheoryExtendedLinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadTheory("Линейный фильтр расширенный", "Размер ядра: " + diameter, @"Images\smoothing\linear\extended\", diameter, true);
         }
@@ -615,7 +610,7 @@ namespace ImageProcessing
 
         private void GaussianNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            double sigma = Convert.ToDouble(metroTextBox1.Text);
+            double sigma = Convert.ToDouble(metroTextBox12.Text);
             int middle = Convert.ToInt32(metroTextBox11.Text);
             RunProcessing("Гауссовский шум", new GaussianNoise(sigma, middle));
         }
