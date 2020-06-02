@@ -1,4 +1,4 @@
-﻿namespace ImageProcessing
+﻿namespace ResearchWork
 {
     partial class ImageProcessing
     {
@@ -360,8 +360,8 @@
             this.metroTabControl2.Controls.Add(this.metroTabPage4);
             this.metroTabControl2.Controls.Add(this.metroTabPage5);
             this.metroTabControl2.Controls.Add(this.metroTabPage6);
-            this.metroTabControl2.Controls.Add(this.metroTabPage7);
             this.metroTabControl2.Controls.Add(this.metroTabPage8);
+            this.metroTabControl2.Controls.Add(this.metroTabPage7);
             this.metroTabControl2.Location = new System.Drawing.Point(3, 3);
             this.metroTabControl2.Name = "metroTabControl2";
             this.metroTabControl2.SelectedIndex = 0;
@@ -381,7 +381,7 @@
             this.metroTabPage4.Name = "metroTabPage4";
             this.metroTabPage4.Size = new System.Drawing.Size(724, 411);
             this.metroTabPage4.TabIndex = 0;
-            this.metroTabPage4.Text = "Фильтр Гауса";
+            this.metroTabPage4.Text = "Фильтр Гаусса";
             this.metroTabPage4.VerticalScrollbarBarColor = true;
             this.metroTabPage4.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage4.VerticalScrollbarSize = 10;
@@ -1326,7 +1326,7 @@
             // 
             // upDiameterButton
             // 
-            this.upDiameterButton.BackgroundImage = global::ImageProcessing.Properties.Resources.arrow_up_23783;
+            this.upDiameterButton.BackgroundImage = global::ResearchWork.Properties.Resources.arrow_up_23783;
             this.upDiameterButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.upDiameterButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.upDiameterButton.Location = new System.Drawing.Point(233, 19);
@@ -1339,7 +1339,7 @@
             // 
             // dpwnDiameterButton
             // 
-            this.dpwnDiameterButton.BackgroundImage = global::ImageProcessing.Properties.Resources.arrow_down_23783;
+            this.dpwnDiameterButton.BackgroundImage = global::ResearchWork.Properties.Resources.arrow_down_23783;
             this.dpwnDiameterButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.dpwnDiameterButton.Location = new System.Drawing.Point(233, 48);
             this.dpwnDiameterButton.Name = "dpwnDiameterButton";

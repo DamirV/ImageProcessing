@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 
-namespace ImageProcessing
+namespace ResearchWork
 {
     
     public class ImageWrapper : IDisposable, IEnumerable<Point>

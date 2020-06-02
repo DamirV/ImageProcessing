@@ -59,7 +59,7 @@ struct Images
     }
 }
 
-namespace ImageProcessing
+namespace ResearchWork
 {
     public partial class ImageProcessing : MetroFramework.Forms.MetroForm
     {

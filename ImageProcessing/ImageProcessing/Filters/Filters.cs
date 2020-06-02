@@ -3,7 +3,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace ImageProcessing
+namespace ResearchWork
 {
     abstract class Filter
     {

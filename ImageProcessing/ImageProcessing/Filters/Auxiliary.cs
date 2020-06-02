@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace ImageProcessing
+namespace ResearchWork
 {
     class BlackAndWhite : Filter
     {

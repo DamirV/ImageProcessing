@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AD2C0DFD-F84B-40BD-9437-1C3CCFA62146}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ImageProcessing</RootNamespace>
+    <RootNamespace>ResearchWork</RootNamespace>
     <AssemblyName>ImageProcessing</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

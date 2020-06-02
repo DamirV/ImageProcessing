@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ImageProcessing
+namespace ResearchWork
 {
     class Sobel : Filter
     {

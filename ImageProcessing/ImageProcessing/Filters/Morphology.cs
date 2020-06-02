@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 
-namespace ImageProcessing
+namespace ResearchWork
 {
     class Dilation : Filter
     {
