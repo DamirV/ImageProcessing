@@ -79,8 +79,8 @@ namespace ResearchWork
 
     class CounterHarmonicMean : Filter
     {
-        private int order;
-        public CounterHarmonicMean(int diameter, int order)
+        private double order;
+        public CounterHarmonicMean(int diameter, double order)
         {
             this.order = order;
             this.diameter = diameter;

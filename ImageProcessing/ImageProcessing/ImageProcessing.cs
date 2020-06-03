@@ -627,7 +627,7 @@ namespace ResearchWork
 
         private void CounterHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int order = Convert.ToInt32(metroTextBox8.Text);
+            double order = Convert.ToDouble(metroTextBox8.Text);
             RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
         }
 
