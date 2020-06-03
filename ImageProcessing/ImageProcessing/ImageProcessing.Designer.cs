@@ -35,7 +35,7 @@
             this.saveImageButton = new MetroFramework.Controls.MetroButton();
             this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             this.backButton = new MetroFramework.Controls.MetroButton();
-            this.metroButton8 = new MetroFramework.Controls.MetroButton();
+            this.swapButton = new MetroFramework.Controls.MetroButton();
             this.loadImageButton = new MetroFramework.Controls.MetroButton();
             this.cancelProcessingButton = new MetroFramework.Controls.MetroButton();
             this.showFiltersButton = new MetroFramework.Controls.MetroButton();
@@ -75,11 +75,11 @@
             this.metroTextBox7 = new MetroFramework.Controls.MetroTextBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.showTheoryButton = new MetroFramework.Controls.MetroButton();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
@@ -116,10 +116,10 @@
             this.gaussianNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uniformNoiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.наращиваниеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.эрозияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.размыканиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.замыканиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dilationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.erosionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helperMethodsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blackAndWhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redComponentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,6 +136,13 @@
             this.loadTheoryLinearSmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryExtendedLinearSmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryGaussianStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryAveragingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryGeometricMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryCounterHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryMaximumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryMinimumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryMidPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheorySharpnessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryIntermediateLaplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryLaplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,20 +152,13 @@
             this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryFrequencyIncreaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheorySobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryDiZenzoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheorySobelMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryMorphologyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryDilationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryErosionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryOpeningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryClosingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryAveragingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryGeometricMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryCounterHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryMaximumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryMinimumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryMidPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryDiZenzoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheorySobelMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -210,7 +210,7 @@
             this.metroTabPage1.Controls.Add(this.saveImageButton);
             this.metroTabPage1.Controls.Add(this.metroLabel14);
             this.metroTabPage1.Controls.Add(this.backButton);
-            this.metroTabPage1.Controls.Add(this.metroButton8);
+            this.metroTabPage1.Controls.Add(this.swapButton);
             this.metroTabPage1.Controls.Add(this.loadImageButton);
             this.metroTabPage1.Controls.Add(this.cancelProcessingButton);
             this.metroTabPage1.Controls.Add(this.showFiltersButton);
@@ -266,17 +266,17 @@
             this.backButton.UseSelectable = true;
             this.backButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // metroButton8
+            // swapButton
             // 
-            this.metroButton8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.metroButton8.Location = new System.Drawing.Point(343, 342);
-            this.metroButton8.Name = "metroButton8";
-            this.metroButton8.Size = new System.Drawing.Size(87, 33);
-            this.metroButton8.TabIndex = 11;
-            this.metroButton8.Text = "Переставить";
-            this.metroToolTip1.SetToolTip(this.metroButton8, "Поменять местами исходное изображение с результатом");
-            this.metroButton8.UseSelectable = true;
-            this.metroButton8.Click += new System.EventHandler(this.MetroButton8_Click);
+            this.swapButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.swapButton.Location = new System.Drawing.Point(343, 342);
+            this.swapButton.Name = "swapButton";
+            this.swapButton.Size = new System.Drawing.Size(87, 33);
+            this.swapButton.TabIndex = 11;
+            this.swapButton.Text = "Переставить";
+            this.metroToolTip1.SetToolTip(this.swapButton, "Поменять местами исходное изображение с результатом");
+            this.swapButton.UseSelectable = true;
+            this.swapButton.Click += new System.EventHandler(this.SwapButton_Click);
             // 
             // loadImageButton
             // 
@@ -1015,7 +1015,6 @@
             // metroTabPage3
             // 
             this.metroTabPage3.Controls.Add(this.pictureBox6);
-            this.metroTabPage3.Controls.Add(this.metroLabel6);
             this.metroTabPage3.Controls.Add(this.pictureBox5);
             this.metroTabPage3.Controls.Add(this.showTheoryButton);
             this.metroTabPage3.Controls.Add(this.pictureBox4);
@@ -1045,24 +1044,14 @@
             this.pictureBox6.TabStop = false;
             this.metroToolTip1.SetToolTip(this.pictureBox6, "Матрица");
             // 
-            // metroLabel6
-            // 
-            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(9, 335);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(0, 0);
-            this.metroLabel6.TabIndex = 15;
-            this.metroToolTip1.SetToolTip(this.metroLabel6, "Информация о фильтре");
-            // 
             // pictureBox5
             // 
             this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox5.Location = new System.Drawing.Point(342, 313);
+            this.pictureBox5.Location = new System.Drawing.Point(342, 332);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(472, 136);
+            this.pictureBox5.Size = new System.Drawing.Size(379, 117);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 14;
             this.pictureBox5.TabStop = false;
@@ -1085,9 +1074,9 @@
             this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Location = new System.Drawing.Point(417, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(381, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(397, 304);
+            this.pictureBox4.Size = new System.Drawing.Size(340, 304);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 12;
             this.pictureBox4.TabStop = false;
@@ -1100,11 +1089,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Location = new System.Drawing.Point(8, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(397, 304);
+            this.pictureBox3.Size = new System.Drawing.Size(328, 304);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 11;
             this.pictureBox3.TabStop = false;
             this.metroToolTip1.SetToolTip(this.pictureBox3, "Исходное изображение");
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(263, 23);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(25, 19);
+            this.metroLabel6.TabIndex = 15;
+            this.metroLabel6.Text = "    ";
+            this.metroToolTip1.SetToolTip(this.metroLabel6, "Информация о фильтре");
             // 
             // metroStyleManager1
             // 
@@ -1129,7 +1129,7 @@
             this.morphologyToolStripMenuItem,
             this.helperMethodsToolStripMenuItem});
             this.metroContextMenu1.Name = "metroContextMenu1";
-            this.metroContextMenu1.Size = new System.Drawing.Size(246, 158);
+            this.metroContextMenu1.Size = new System.Drawing.Size(246, 136);
             // 
             // smoothingToolStripMenuItem
             // 
@@ -1386,41 +1386,41 @@
             // morphologyToolStripMenuItem
             // 
             this.morphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.наращиваниеToolStripMenuItem,
-            this.эрозияToolStripMenuItem,
-            this.размыканиеToolStripMenuItem,
-            this.замыканиеToolStripMenuItem});
+            this.dilationToolStripMenuItem,
+            this.erosionToolStripMenuItem,
+            this.openingToolStripMenuItem,
+            this.closingToolStripMenuItem});
             this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
             this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.morphologyToolStripMenuItem.Text = "Математическая морфология";
             // 
-            // наращиваниеToolStripMenuItem
+            // dilationToolStripMenuItem
             // 
-            this.наращиваниеToolStripMenuItem.Name = "наращиваниеToolStripMenuItem";
-            this.наращиваниеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.наращиваниеToolStripMenuItem.Text = "Дилатация";
-            this.наращиваниеToolStripMenuItem.Click += new System.EventHandler(this.НаращиваниеToolStripMenuItem_Click);
+            this.dilationToolStripMenuItem.Name = "dilationToolStripMenuItem";
+            this.dilationToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.dilationToolStripMenuItem.Text = "Дилатация";
+            this.dilationToolStripMenuItem.Click += new System.EventHandler(this.DilationToolStripMenuItem_Click);
             // 
-            // эрозияToolStripMenuItem
+            // erosionToolStripMenuItem
             // 
-            this.эрозияToolStripMenuItem.Name = "эрозияToolStripMenuItem";
-            this.эрозияToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.эрозияToolStripMenuItem.Text = "Эрозия";
-            this.эрозияToolStripMenuItem.Click += new System.EventHandler(this.ЭрозияToolStripMenuItem_Click);
+            this.erosionToolStripMenuItem.Name = "erosionToolStripMenuItem";
+            this.erosionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.erosionToolStripMenuItem.Text = "Эрозия";
+            this.erosionToolStripMenuItem.Click += new System.EventHandler(this.ErosionToolStripMenuItem_Click);
             // 
-            // размыканиеToolStripMenuItem
+            // openingToolStripMenuItem
             // 
-            this.размыканиеToolStripMenuItem.Name = "размыканиеToolStripMenuItem";
-            this.размыканиеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.размыканиеToolStripMenuItem.Text = "Размыкание";
-            this.размыканиеToolStripMenuItem.Click += new System.EventHandler(this.РазмыканиеToolStripMenuItem_Click);
+            this.openingToolStripMenuItem.Name = "openingToolStripMenuItem";
+            this.openingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.openingToolStripMenuItem.Text = "Размыкание";
+            this.openingToolStripMenuItem.Click += new System.EventHandler(this.OpeningToolStripMenuItem_Click);
             // 
-            // замыканиеToolStripMenuItem
+            // closingToolStripMenuItem
             // 
-            this.замыканиеToolStripMenuItem.Name = "замыканиеToolStripMenuItem";
-            this.замыканиеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.замыканиеToolStripMenuItem.Text = "Замыкание";
-            this.замыканиеToolStripMenuItem.Click += new System.EventHandler(this.ЗамыканиеToolStripMenuItem_Click);
+            this.closingToolStripMenuItem.Name = "closingToolStripMenuItem";
+            this.closingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.closingToolStripMenuItem.Text = "Замыкание";
+            this.closingToolStripMenuItem.Click += new System.EventHandler(this.ClosingToolStripMenuItem_Click);
             // 
             // helperMethodsToolStripMenuItem
             // 
@@ -1559,119 +1559,7 @@
             this.loadTheoryGaussianStripMenuItem.Name = "loadTheoryGaussianStripMenuItem";
             this.loadTheoryGaussianStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.loadTheoryGaussianStripMenuItem.Text = "Фильтр Гаусса";
-            this.loadTheoryGaussianStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem7_Click);
-            // 
-            // loadTheorySharpnessToolStripMenuItem
-            // 
-            this.loadTheorySharpnessToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryIntermediateLaplaceToolStripMenuItem,
-            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem,
-            this.loadTheoryFrequencyIncreaseToolStripMenuItem,
-            this.loadTheorySobelToolStripMenuItem,
-            this.loadTheoryDiZenzoToolStripMenuItem,
-            this.loadTheorySobelMeanToolStripMenuItem});
-            this.loadTheorySharpnessToolStripMenuItem.Name = "loadTheorySharpnessToolStripMenuItem";
-            this.loadTheorySharpnessToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
-            this.loadTheorySharpnessToolStripMenuItem.Text = "Фильтры повышения резкости";
-            // 
-            // loadTheoryIntermediateLaplaceToolStripMenuItem
-            // 
-            this.loadTheoryIntermediateLaplaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryLaplaceToolStripMenuItem,
-            this.loadTheoryExtendedLaplaceToolStripMenuItem});
-            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Name = "loadTheoryIntermediateLaplaceToolStripMenuItem";
-            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
-            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Text = "Оператор Лапласа";
-            // 
-            // loadTheoryLaplaceToolStripMenuItem
-            // 
-            this.loadTheoryLaplaceToolStripMenuItem.Name = "loadTheoryLaplaceToolStripMenuItem";
-            this.loadTheoryLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.loadTheoryLaplaceToolStripMenuItem.Text = "Обычная матрица";
-            this.loadTheoryLaplaceToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem10_Click);
-            // 
-            // loadTheoryExtendedLaplaceToolStripMenuItem
-            // 
-            this.loadTheoryExtendedLaplaceToolStripMenuItem.Name = "loadTheoryExtendedLaplaceToolStripMenuItem";
-            this.loadTheoryExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.loadTheoryExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
-            this.loadTheoryExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem11_Click);
-            // 
-            // loadTheoryIntermediateRestoredLaplaceToolStripMenuItem
-            // 
-            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryRestoredLaplaceToolStripMenuItem,
-            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem});
-            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Name = "loadTheoryIntermediateRestoredLaplaceToolStripMenuItem";
-            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
-            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Text = "Оператор Лапласа с восстановленным фоном";
-            // 
-            // loadTheoryRestoredLaplaceToolStripMenuItem
-            // 
-            this.loadTheoryRestoredLaplaceToolStripMenuItem.Name = "loadTheoryRestoredLaplaceToolStripMenuItem";
-            this.loadTheoryRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.loadTheoryRestoredLaplaceToolStripMenuItem.Text = "Обычная матрица";
-            this.loadTheoryRestoredLaplaceToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem14_Click);
-            // 
-            // loadTheoryRestoredExtendedLaplaceToolStripMenuItem
-            // 
-            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Name = "loadTheoryRestoredExtendedLaplaceToolStripMenuItem";
-            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
-            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem15_Click);
-            // 
-            // loadTheoryFrequencyIncreaseToolStripMenuItem
-            // 
-            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Name = "loadTheoryFrequencyIncreaseToolStripMenuItem";
-            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
-            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Text = "Фильтрация с подъемом высоких частот";
-            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem17_Click);
-            // 
-            // loadTheorySobelToolStripMenuItem
-            // 
-            this.loadTheorySobelToolStripMenuItem.Name = "loadTheorySobelToolStripMenuItem";
-            this.loadTheorySobelToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
-            this.loadTheorySobelToolStripMenuItem.Text = "Оператор Cобеля";
-            this.loadTheorySobelToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem18_Click);
-            // 
-            // loadTheoryMorphologyToolStripMenuItem
-            // 
-            this.loadTheoryMorphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryDilationToolStripMenuItem,
-            this.loadTheoryErosionToolStripMenuItem,
-            this.loadTheoryOpeningToolStripMenuItem,
-            this.loadTheoryClosingToolStripMenuItem});
-            this.loadTheoryMorphologyToolStripMenuItem.Name = "loadTheoryMorphologyToolStripMenuItem";
-            this.loadTheoryMorphologyToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
-            this.loadTheoryMorphologyToolStripMenuItem.Text = "Математическая морфология";
-            // 
-            // loadTheoryDilationToolStripMenuItem
-            // 
-            this.loadTheoryDilationToolStripMenuItem.Name = "loadTheoryDilationToolStripMenuItem";
-            this.loadTheoryDilationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.loadTheoryDilationToolStripMenuItem.Text = "Дилатация";
-            this.loadTheoryDilationToolStripMenuItem.Click += new System.EventHandler(this.НаращиваниеToolStripMenuItem1_Click);
-            // 
-            // loadTheoryErosionToolStripMenuItem
-            // 
-            this.loadTheoryErosionToolStripMenuItem.Name = "loadTheoryErosionToolStripMenuItem";
-            this.loadTheoryErosionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.loadTheoryErosionToolStripMenuItem.Text = "Эрозия";
-            this.loadTheoryErosionToolStripMenuItem.Click += new System.EventHandler(this.ЭрозияToolStripMenuItem1_Click);
-            // 
-            // loadTheoryOpeningToolStripMenuItem
-            // 
-            this.loadTheoryOpeningToolStripMenuItem.Name = "loadTheoryOpeningToolStripMenuItem";
-            this.loadTheoryOpeningToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.loadTheoryOpeningToolStripMenuItem.Text = "Размыкание";
-            this.loadTheoryOpeningToolStripMenuItem.Click += new System.EventHandler(this.ОткрытиеToolStripMenuItem_Click);
-            // 
-            // loadTheoryClosingToolStripMenuItem
-            // 
-            this.loadTheoryClosingToolStripMenuItem.Name = "loadTheoryClosingToolStripMenuItem";
-            this.loadTheoryClosingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.loadTheoryClosingToolStripMenuItem.Text = "Замыкание";
-            this.loadTheoryClosingToolStripMenuItem.Click += new System.EventHandler(this.ЗакрытиеToolStripMenuItem_Click);
+            this.loadTheoryGaussianStripMenuItem.Click += new System.EventHandler(this.LoadTheoryGaussianStripMenuItem_Click);
             // 
             // loadTheoryAveragingToolStripMenuItem
             // 
@@ -1722,6 +1610,79 @@
             this.loadTheoryMidPointToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMidPointToolStripMenuItem.Text = "Фмльтр срединной точки";
             // 
+            // loadTheorySharpnessToolStripMenuItem
+            // 
+            this.loadTheorySharpnessToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadTheoryIntermediateLaplaceToolStripMenuItem,
+            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem,
+            this.loadTheoryFrequencyIncreaseToolStripMenuItem,
+            this.loadTheorySobelToolStripMenuItem,
+            this.loadTheoryDiZenzoToolStripMenuItem,
+            this.loadTheorySobelMeanToolStripMenuItem});
+            this.loadTheorySharpnessToolStripMenuItem.Name = "loadTheorySharpnessToolStripMenuItem";
+            this.loadTheorySharpnessToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.loadTheorySharpnessToolStripMenuItem.Text = "Фильтры повышения резкости";
+            // 
+            // loadTheoryIntermediateLaplaceToolStripMenuItem
+            // 
+            this.loadTheoryIntermediateLaplaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadTheoryLaplaceToolStripMenuItem,
+            this.loadTheoryExtendedLaplaceToolStripMenuItem});
+            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Name = "loadTheoryIntermediateLaplaceToolStripMenuItem";
+            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
+            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Text = "Оператор Лапласа";
+            // 
+            // loadTheoryLaplaceToolStripMenuItem
+            // 
+            this.loadTheoryLaplaceToolStripMenuItem.Name = "loadTheoryLaplaceToolStripMenuItem";
+            this.loadTheoryLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.loadTheoryLaplaceToolStripMenuItem.Text = "Обычная матрица";
+            this.loadTheoryLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryLaplaceToolStripMenuItem_Click);
+            // 
+            // loadTheoryExtendedLaplaceToolStripMenuItem
+            // 
+            this.loadTheoryExtendedLaplaceToolStripMenuItem.Name = "loadTheoryExtendedLaplaceToolStripMenuItem";
+            this.loadTheoryExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.loadTheoryExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
+            this.loadTheoryExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryExtendedLaplaceToolStripMenuItem_Click);
+            // 
+            // loadTheoryIntermediateRestoredLaplaceToolStripMenuItem
+            // 
+            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadTheoryRestoredLaplaceToolStripMenuItem,
+            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem});
+            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Name = "loadTheoryIntermediateRestoredLaplaceToolStripMenuItem";
+            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
+            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Text = "Оператор Лапласа с восстановленным фоном";
+            // 
+            // loadTheoryRestoredLaplaceToolStripMenuItem
+            // 
+            this.loadTheoryRestoredLaplaceToolStripMenuItem.Name = "loadTheoryRestoredLaplaceToolStripMenuItem";
+            this.loadTheoryRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.loadTheoryRestoredLaplaceToolStripMenuItem.Text = "Обычная матрица";
+            this.loadTheoryRestoredLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryRestoredLaplaceToolStripMenuItem_Click);
+            // 
+            // loadTheoryRestoredExtendedLaplaceToolStripMenuItem
+            // 
+            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Name = "loadTheoryRestoredExtendedLaplaceToolStripMenuItem";
+            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
+            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryRestoredExtendedLaplaceToolStripMenuItem_Click);
+            // 
+            // loadTheoryFrequencyIncreaseToolStripMenuItem
+            // 
+            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Name = "loadTheoryFrequencyIncreaseToolStripMenuItem";
+            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
+            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Text = "Фильтрация с подъемом высоких частот";
+            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryFrequencyIncreaseToolStripMenuItem_Click);
+            // 
+            // loadTheorySobelToolStripMenuItem
+            // 
+            this.loadTheorySobelToolStripMenuItem.Name = "loadTheorySobelToolStripMenuItem";
+            this.loadTheorySobelToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
+            this.loadTheorySobelToolStripMenuItem.Text = "Оператор Cобеля";
+            this.loadTheorySobelToolStripMenuItem.Click += new System.EventHandler(this.LoadTheorySobelToolStripMenuItem_Click);
+            // 
             // loadTheoryDiZenzoToolStripMenuItem
             // 
             this.loadTheoryDiZenzoToolStripMenuItem.Name = "loadTheoryDiZenzoToolStripMenuItem";
@@ -1734,12 +1695,52 @@
             this.loadTheorySobelMeanToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheorySobelMeanToolStripMenuItem.Text = "Оператор Собеля для цветного изображения";
             // 
+            // loadTheoryMorphologyToolStripMenuItem
+            // 
+            this.loadTheoryMorphologyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadTheoryDilationToolStripMenuItem,
+            this.loadTheoryErosionToolStripMenuItem,
+            this.loadTheoryOpeningToolStripMenuItem,
+            this.loadTheoryClosingToolStripMenuItem});
+            this.loadTheoryMorphologyToolStripMenuItem.Name = "loadTheoryMorphologyToolStripMenuItem";
+            this.loadTheoryMorphologyToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.loadTheoryMorphologyToolStripMenuItem.Text = "Математическая морфология";
+            // 
+            // loadTheoryDilationToolStripMenuItem
+            // 
+            this.loadTheoryDilationToolStripMenuItem.Name = "loadTheoryDilationToolStripMenuItem";
+            this.loadTheoryDilationToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.loadTheoryDilationToolStripMenuItem.Text = "Дилатация";
+            this.loadTheoryDilationToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryDilationToolStripMenuItem_Click);
+            // 
+            // loadTheoryErosionToolStripMenuItem
+            // 
+            this.loadTheoryErosionToolStripMenuItem.Name = "loadTheoryErosionToolStripMenuItem";
+            this.loadTheoryErosionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.loadTheoryErosionToolStripMenuItem.Text = "Эрозия";
+            this.loadTheoryErosionToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryErosionToolStripMenuItem_Click);
+            // 
+            // loadTheoryOpeningToolStripMenuItem
+            // 
+            this.loadTheoryOpeningToolStripMenuItem.Name = "loadTheoryOpeningToolStripMenuItem";
+            this.loadTheoryOpeningToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.loadTheoryOpeningToolStripMenuItem.Text = "Размыкание";
+            this.loadTheoryOpeningToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryOpeningToolStripMenuItem_Click);
+            // 
+            // loadTheoryClosingToolStripMenuItem
+            // 
+            this.loadTheoryClosingToolStripMenuItem.Name = "loadTheoryClosingToolStripMenuItem";
+            this.loadTheoryClosingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.loadTheoryClosingToolStripMenuItem.Text = "Замыкание";
+            this.loadTheoryClosingToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryClosingToolStripMenuItem_Click);
+            // 
             // ImageProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 580);
             this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.dpwnDiameterButton);
             this.Controls.Add(this.upDiameterButton);
             this.Controls.Add(this.metroTabControl1);
@@ -1767,7 +1768,6 @@
             this.metroTabPage7.ResumeLayout(false);
             this.metroTabPage7.PerformLayout();
             this.metroTabPage3.ResumeLayout(false);
-            this.metroTabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -1831,7 +1831,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadTheoryRestoredExtendedLaplaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadTheoryFrequencyIncreaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadTheorySobelToolStripMenuItem;
-        private MetroFramework.Controls.MetroButton metroButton8;
+        private MetroFramework.Controls.MetroButton swapButton;
         private System.Windows.Forms.ToolStripMenuItem loadTheoryLinearSmoothingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadTheoryExtendedLinearSmoothingToolStripMenuItem;
         private MetroFramework.Controls.MetroButton showTheoryButton;
@@ -1845,10 +1845,10 @@
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.ToolStripMenuItem morphologyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem наращиваниеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem эрозияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem размыканиеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem замыканиеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dilationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem erosionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saltToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pepperToolStripMenuItem;
         private MetroFramework.Controls.MetroButton backButton;

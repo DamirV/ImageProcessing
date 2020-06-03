@@ -98,11 +98,11 @@ namespace ResearchWork
 
         private int LoadTheory(string filterName, string info, string path, int diameter, bool loadMatrix = false)
         {
-            showTheoryButton.Text = filterName;
+            showTheoryButton.Text = filterName + "; " + info;
             metroLabel6.Text = info;
-            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\sourceImage.jpg"));
+            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\source.jpg"));
             pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\result.jpg"));
-            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\formula.gif"));
+            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\formula.jpg"));
 
             if (loadMatrix)
             {
@@ -307,7 +307,7 @@ namespace ResearchWork
             RunProcessing("Соль и перец", new SaltPepper(saltPercent, pepperPercent));
         }
 
-        private void MetroButton8_Click(object sender, EventArgs e)
+        private void SwapButton_Click(object sender, EventArgs e)
         {
             if (sourceImage == null|| resultImage == null)
             {
@@ -354,62 +354,58 @@ namespace ResearchWork
             LoadTheory("Линейный фильтр расширенный", "Размер ядра: " + diameter, @"Images\smoothing\linear\extended\", diameter, true);
         }
 
-        private void ToolStripMenuItem7_Click(object sender, EventArgs e)
+        private void LoadTheoryGaussianStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadTheory("Фильтр Гаусса", "Размер ядра: " + diameter + "; Сигма: 3", @"Images\smoothing\gauss\", diameter);
         }
 
-        private void ToolStripMenuItem10_Click(object sender, EventArgs e)
+        private void LoadTheoryLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3, @"Images\sharpness\laplas\mask\common\", 3, true);
+            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\common\", 3, true);
         }
 
-        private void ToolStripMenuItem11_Click(object sender, EventArgs e)
+        private void LoadTheoryExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3, @"Images\sharpness\laplas\mask\extended\", 3, true);
+            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\extended\", 3, true);
         }
 
-        private void ToolStripMenuItem14_Click(object sender, EventArgs e)
+        private void LoadTheoryRestoredLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplas\background\common\", 3, true);
+            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\common\", 3, true);
         }
 
-        private void ToolStripMenuItem15_Click(object sender, EventArgs e)
+        private void LoadTheoryRestoredExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplas\background\extended\", 3, true);
+            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\extended\", 3, true);
         }
 
-        private void ToolStripMenuItem17_Click(object sender, EventArgs e)
+        private void LoadTheoryFrequencyIncreaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Подъем высоких частот", "Размер ядра: " + diameter + "; k = 3", @"Images\sharpness\frequency\", diameter);
+            LoadTheory("Подъем высоких частот", "Размер ядра: " + diameter + "; k = 3", @"Images\sharpness\frequencyincrease\", diameter);
         }
 
-        private void ToolStripMenuItem18_Click(object sender, EventArgs e)
+        private void LoadTheorySobelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadTheory("Оператор Собеля", "Размер ядра: " + 3, @"Images\sharpness\sobel\", 3, true);
         }
-        private void НаращиваниеToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void LoadTheoryDilationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Дилатация", "Размер ядра: " + diameter, @"Images\morphology\Dilation\", diameter, true);
+            LoadTheory("Дилатация", "Размер ядра: " + diameter, @"Images\morphology\dilation\", diameter, true);
         }
 
-        private void ЭрозияToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void LoadTheoryErosionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Эрозия", "Размер ядра: " + diameter, @"Images\morphology\Erosion\", diameter, true);
+            LoadTheory("Эрозия", "Размер ядра: " + diameter, @"Images\morphology\erosion\", diameter, true);
         }
 
-        private void ОткрытиеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadTheoryOpeningToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Размыкание", "Размер ядра: " + diameter, @"Images\morphology\Opening\", diameter, true);
+            LoadTheory("Размыкание", "Размер ядра: " + diameter, @"Images\morphology\opening\", diameter, true);
         }
 
-        private void ЗакрытиеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadTheoryClosingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Замыкание", "Размер ядра: " + diameter, @"Images\morphology\Closing\", diameter, true);
-        }
-        private void ImageProcessing_Rediameter(object sender, EventArgs e)
-        {
-            Alignment();
+            LoadTheory("Замыкание", "Размер ядра: " + diameter, @"Images\morphology\closing\", diameter, true);
         }
 
         private void ImageProcessing_Activated(object sender, EventArgs e)
@@ -439,22 +435,22 @@ namespace ResearchWork
             Alignment();
         }
 
-        private void НаращиваниеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DilationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Дилатация", new Dilation(diameter));
         }
 
-        private void ЭрозияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ErosionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Эрозия", new Erosion(diameter));
         }
 
-        private void РазмыканиеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpeningToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Размыкание", new Opening(diameter));
         }
 
-        private void ЗамыканиеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClosingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Замыкание", new Closing(diameter));
         }
@@ -657,6 +653,5 @@ namespace ResearchWork
         {
             RunProcessing("Оператор Собеля для цветного изображения", new SobelMean());
         }
-
     }
 }
