@@ -2,39 +2,34 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
 
 namespace ResearchWork
 {
-    
     public class ImageWrapper : IDisposable, IEnumerable<Point>
     {
-        public int Width { get; private set; }
-        
-        public int Height { get; private set; }
-        
-        public Color DefaultColor { get; set; }
+        public int width { get; private set; }
+        public int height { get; private set; }
+        public Color defaultColor { get; set; }
 
         private byte[] data;
         private byte[] outData;
         private int stride;
-        private BitmapData bmpData;
-        private Bitmap bmp;
+        private BitmapData imageData;
+        private Bitmap image;
 
-        public ImageWrapper(Bitmap bmp, bool copySourceToOutput = false)
+        public ImageWrapper(Bitmap image, bool copySourceToOutput = false)
         {
-            Width = bmp.Width;
-            Height = bmp.Height;
-            this.bmp = bmp;
+            width = image.Width;
+            height = image.Height;
+            this.image = image;
 
-            bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            stride = bmpData.Stride;
+            imageData = image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+            stride = imageData.Stride;
 
-            data = new byte[stride * Height];
-            System.Runtime.InteropServices.Marshal.Copy(bmpData.Scan0, data, 0, data.Length);
+            data = new byte[stride * height];
+            System.Runtime.InteropServices.Marshal.Copy(imageData.Scan0, data, 0, data.Length);
 
-            outData = copySourceToOutput ? (byte[])data.Clone() : new byte[stride * Height];
+            outData = copySourceToOutput ? (byte[])data.Clone() : new byte[stride * height];
         }
 
         public Color this[int x, int y]
@@ -42,9 +37,8 @@ namespace ResearchWork
             get
             {
                 var i = GetIndex(x, y);
-                return i < 0 ? DefaultColor : Color.FromArgb(data[i + 3], data[i + 2], data[i + 1], data[i]);
+                return i < 0 ? defaultColor : Color.FromArgb(data[i + 3], data[i + 2], data[i + 1], data[i]);
             }
-
             set
             {
                 var i = GetIndex(x, y);
@@ -57,44 +51,44 @@ namespace ResearchWork
                 };
             }
         }
-        public Color this[Point p]
+        public Color this[Point point]
         {
-            get { return this[p.X, p.Y]; }
-            set { this[p.X, p.Y] = value; }
+            get { return this[point.X, point.Y]; }
+            set { this[point.X, point.Y] = value; }
         }
 
-        public void SetPixel(Point p, double r, double g, double b)
+        public void SetPixel(Point point, double red, double green, double blue)
         {
-            if (r < 0) r = 0;
-            if (r >= 256) r = 255;
-            if (g < 0) g = 0;
-            if (g >= 256) g = 255;
-            if (b < 0) b = 0;
-            if (b >= 256) b = 255;
+            if (red < 0) red = 0;
+            if (red >= 256) red = 255;
+            if (green < 0) green = 0;
+            if (green >= 256) green = 255;
+            if (blue < 0) blue = 0;
+            if (blue >= 256) blue = 255;
 
-            this[p.X, p.Y] = Color.FromArgb((int)r, (int)g, (int)b);
+            this[point.X, point.Y] = Color.FromArgb((int)red, (int)green, (int)blue);
         }
 
-        public void SetPixel(Point p, Color color)
+        public void SetPixel(Point point, Color color)
         { 
-            this[p.X, p.Y] = color;
+            this[point.X, point.Y] = color;
         }
 
         int GetIndex(int x, int y)
         {
-            return (x < 0 || x >= Width || y < 0 || y >= Height) ? -1 : x * 4 + y * stride;
+            return (x < 0 || x >= width || y < 0 || y >= height) ? -1 : x * 4 + y * stride;
         }
 
         public void Dispose()
         {
-            System.Runtime.InteropServices.Marshal.Copy(outData, 0, bmpData.Scan0, outData.Length);
-            bmp.UnlockBits(bmpData);
+            System.Runtime.InteropServices.Marshal.Copy(outData, 0, imageData.Scan0, outData.Length);
+            image.UnlockBits(imageData);
         }
 
         public IEnumerator<Point> GetEnumerator()
         {
-            for (int y = 0; y < Height; y++)
-                for (int x = 0; x < Width; x++)
+            for (int y = 0; y < height; ++y)
+                for (int x = 0; x < width; ++x)
                     yield return new Point(x, y);
         }
 
