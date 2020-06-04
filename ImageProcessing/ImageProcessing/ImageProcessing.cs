@@ -96,22 +96,13 @@ namespace ResearchWork
             return 1;
         }
 
-        private int LoadTheory(string filterName, string info, string path, int diameter, bool loadMatrix = false)
+        private int LoadTheory(string filterName, string info, string path, int diameter)
         {
             showTheoryButton.Text = filterName + "; " + info;
-            metroLabel6.Text = info;
             pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\source.jpg"));
             pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\result.jpg"));
             pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\formula.jpg"));
-
-            if (loadMatrix)
-            {
-                pictureBox6.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\matrix.gif"));
-            }
-            else
-            {
-                pictureBox6.Image = null;
-            }
+            pictureBox6.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\matrix.jpg"));
 
             pictureBox3.Refresh();
             pictureBox4.Refresh();
@@ -346,12 +337,12 @@ namespace ResearchWork
 
         private void LoadTheoryLinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Линейный фильтр", "Размер ядра: " + diameter, @"Images\smoothing\linear\common\", diameter, true);
+            LoadTheory("Линейный фильтр", "Размер ядра: " + diameter, @"Images\smoothing\linear\common\", diameter);
         }
 
         private void LoadTheoryExtendedLinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Линейный фильтр расширенный", "Размер ядра: " + diameter, @"Images\smoothing\linear\extended\", diameter, true);
+            LoadTheory("Линейный фильтр расширенный", "Размер ядра: " + diameter, @"Images\smoothing\linear\extended\", diameter);
         }
 
         private void LoadTheoryGaussianStripMenuItem_Click(object sender, EventArgs e)
@@ -361,22 +352,22 @@ namespace ResearchWork
 
         private void LoadTheoryLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\common\", 3, true);
+            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\common\", 3);
         }
 
         private void LoadTheoryExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\extended\", 3, true);
+            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\extended\", 3);
         }
 
         private void LoadTheoryRestoredLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\common\", 3, true);
+            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\common\", 3);
         }
 
         private void LoadTheoryRestoredExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\extended\", 3, true);
+            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\extended\", 3);
         }
 
         private void LoadTheoryFrequencyIncreaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -386,26 +377,26 @@ namespace ResearchWork
 
         private void LoadTheorySobelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Собеля", "Размер ядра: " + 3, @"Images\sharpness\sobel\", 3, true);
+            LoadTheory("Оператор Собеля", "Размер ядра: " + 3, @"Images\sharpness\sobel\", 3);
         }
         private void LoadTheoryDilationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Дилатация", "Размер ядра: " + diameter, @"Images\morphology\dilation\", diameter, true);
+            LoadTheory("Дилатация", "Размер ядра: " + diameter, @"Images\morphology\dilation\", diameter);
         }
 
         private void LoadTheoryErosionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Эрозия", "Размер ядра: " + diameter, @"Images\morphology\erosion\", diameter, true);
+            LoadTheory("Эрозия", "Размер ядра: " + diameter, @"Images\morphology\erosion\", diameter);
         }
 
         private void LoadTheoryOpeningToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Размыкание", "Размер ядра: " + diameter, @"Images\morphology\opening\", diameter, true);
+            LoadTheory("Размыкание", "Размер ядра: " + diameter, @"Images\morphology\opening\", diameter);
         }
 
         private void LoadTheoryClosingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Замыкание", "Размер ядра: " + diameter, @"Images\morphology\closing\", diameter, true);
+            LoadTheory("Замыкание", "Размер ядра: " + diameter, @"Images\morphology\closing\", diameter);
         }
 
         private void ImageProcessing_Activated(object sender, EventArgs e)
@@ -428,6 +419,17 @@ namespace ResearchWork
             pictureBox4.Location = new Point((int)(metroTabPage3.Width / 1.94), 3);
             pictureBox4.Height = (int)(metroTabPage3.Height / 1.4);
             pictureBox4.Width = (int)(metroTabPage3.Width / 2.07);
+
+            showTheoryButton.Location = new Point(pictureBox3.Location.X, pictureBox3.Location.Y + pictureBox3.Height + 5);
+            showTheoryButton.Width = pictureBox3.Width;
+
+            pictureBox6.Location = new Point(showTheoryButton.Location.X, showTheoryButton.Location.Y + showTheoryButton.Height + 5);
+            pictureBox6.Width = showTheoryButton.Width;
+            pictureBox6.Height = metroTabPage3.Height - pictureBox6.Location.Y;
+
+            pictureBox5.Location = new Point(pictureBox4.Location.X, pictureBox4.Location.Y + pictureBox4.Height + 5);
+            pictureBox5.Width = pictureBox4.Width;
+            pictureBox5.Height = metroTabPage3.Height - pictureBox5.Location.Y;
         }
 
         private void MetroTabControl1_Click(object sender, EventArgs e)

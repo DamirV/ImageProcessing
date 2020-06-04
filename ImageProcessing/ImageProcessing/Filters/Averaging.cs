@@ -54,7 +54,7 @@ namespace ResearchWork
         {
             double red = 0.0;
             double green = 0.0;
-            double  blue = 0.0;
+            double blue = 0.0;
 
             for (int i = -radius; i <= radius; ++i)
             {

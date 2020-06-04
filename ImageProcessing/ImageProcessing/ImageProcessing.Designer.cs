@@ -79,7 +79,6 @@
             this.showTheoryButton = new MetroFramework.Controls.MetroButton();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
@@ -200,7 +199,7 @@
             this.metroTabControl1.Multiline = true;
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(732, 494);
+            this.metroTabControl1.Size = new System.Drawing.Size(746, 534);
             this.metroTabControl1.TabIndex = 1;
             this.metroTabControl1.UseSelectable = true;
             this.metroTabControl1.Click += new System.EventHandler(this.MetroTabControl1_Click);
@@ -222,7 +221,7 @@
             this.metroTabPage1.HorizontalScrollbarSize = 10;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(724, 452);
+            this.metroTabPage1.Size = new System.Drawing.Size(738, 492);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Практика";
             this.metroTabPage1.ToolTipText = "Практическая часть";
@@ -233,7 +232,7 @@
             // saveImageButton
             // 
             this.saveImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveImageButton.Location = new System.Drawing.Point(91, 406);
+            this.saveImageButton.Location = new System.Drawing.Point(91, 446);
             this.saveImageButton.Name = "saveImageButton";
             this.saveImageButton.Size = new System.Drawing.Size(75, 23);
             this.saveImageButton.TabIndex = 14;
@@ -247,7 +246,7 @@
             this.metroLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.metroLabel14.AutoSize = true;
             this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel14.Location = new System.Drawing.Point(8, 378);
+            this.metroLabel14.Location = new System.Drawing.Point(8, 418);
             this.metroLabel14.Name = "metroLabel14";
             this.metroLabel14.Size = new System.Drawing.Size(182, 25);
             this.metroLabel14.TabIndex = 13;
@@ -257,7 +256,7 @@
             // backButton
             // 
             this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.Location = new System.Drawing.Point(646, 397);
+            this.backButton.Location = new System.Drawing.Point(660, 437);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 13;
@@ -269,7 +268,7 @@
             // swapButton
             // 
             this.swapButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.swapButton.Location = new System.Drawing.Point(343, 342);
+            this.swapButton.Location = new System.Drawing.Point(343, 382);
             this.swapButton.Name = "swapButton";
             this.swapButton.Size = new System.Drawing.Size(87, 33);
             this.swapButton.TabIndex = 11;
@@ -281,7 +280,7 @@
             // loadImageButton
             // 
             this.loadImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadImageButton.Location = new System.Drawing.Point(8, 406);
+            this.loadImageButton.Location = new System.Drawing.Point(8, 446);
             this.loadImageButton.Name = "loadImageButton";
             this.loadImageButton.Size = new System.Drawing.Size(75, 23);
             this.loadImageButton.TabIndex = 8;
@@ -293,7 +292,7 @@
             // cancelProcessingButton
             // 
             this.cancelProcessingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelProcessingButton.Location = new System.Drawing.Point(646, 426);
+            this.cancelProcessingButton.Location = new System.Drawing.Point(660, 466);
             this.cancelProcessingButton.Name = "cancelProcessingButton";
             this.cancelProcessingButton.Size = new System.Drawing.Size(75, 23);
             this.cancelProcessingButton.TabIndex = 6;
@@ -305,7 +304,7 @@
             // showFiltersButton
             // 
             this.showFiltersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.showFiltersButton.Location = new System.Drawing.Point(8, 342);
+            this.showFiltersButton.Location = new System.Drawing.Point(8, 382);
             this.showFiltersButton.Name = "showFiltersButton";
             this.showFiltersButton.Size = new System.Drawing.Size(329, 33);
             this.showFiltersButton.TabIndex = 9;
@@ -321,7 +320,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Location = new System.Drawing.Point(382, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(339, 300);
+            this.pictureBox2.Size = new System.Drawing.Size(353, 340);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
@@ -331,9 +330,9 @@
             // 
             this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroProgressBar1.Location = new System.Drawing.Point(1, 433);
+            this.metroProgressBar1.Location = new System.Drawing.Point(1, 473);
             this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.Size = new System.Drawing.Size(639, 12);
+            this.metroProgressBar1.Size = new System.Drawing.Size(653, 12);
             this.metroProgressBar1.TabIndex = 4;
             this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Индикатор выполнения");
             // 
@@ -344,7 +343,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(8, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(329, 300);
+            this.pictureBox1.Size = new System.Drawing.Size(343, 340);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -375,7 +374,7 @@
             this.metroTabControl2.Controls.Add(this.metroTabPage7);
             this.metroTabControl2.Location = new System.Drawing.Point(3, 3);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 0;
+            this.metroTabControl2.SelectedIndex = 4;
             this.metroTabControl2.Size = new System.Drawing.Size(732, 453);
             this.metroTabControl2.TabIndex = 27;
             this.metroTabControl2.UseSelectable = true;
@@ -703,7 +702,7 @@
             this.metroTextBox12.CustomButton.UseSelectable = true;
             this.metroTextBox12.CustomButton.Visible = false;
             this.metroTextBox12.Lines = new string[] {
-        "3"};
+        "30"};
             this.metroTextBox12.Location = new System.Drawing.Point(216, 157);
             this.metroTextBox12.MaxLength = 32767;
             this.metroTextBox12.Name = "metroTextBox12";
@@ -715,7 +714,7 @@
             this.metroTextBox12.ShortcutsEnabled = true;
             this.metroTextBox12.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox12.TabIndex = 27;
-            this.metroTextBox12.Text = "3";
+            this.metroTextBox12.Text = "30";
             this.metroToolTip1.SetToolTip(this.metroTextBox12, "Среднеквадратичное отклонение распределения гаусса");
             this.metroTextBox12.UseSelectable = true;
             this.metroTextBox12.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -779,7 +778,7 @@
             this.metroTextBox4.CustomButton.UseSelectable = true;
             this.metroTextBox4.CustomButton.Visible = false;
             this.metroTextBox4.Lines = new string[] {
-        "10"};
+        "3"};
             this.metroTextBox4.Location = new System.Drawing.Point(115, 12);
             this.metroTextBox4.MaxLength = 32767;
             this.metroTextBox4.Name = "metroTextBox4";
@@ -791,7 +790,7 @@
             this.metroTextBox4.ShortcutsEnabled = true;
             this.metroTextBox4.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox4.TabIndex = 13;
-            this.metroTextBox4.Text = "10";
+            this.metroTextBox4.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox4, "Процент показывающий силу шума >0 ");
             this.metroTextBox4.UseSelectable = true;
             this.metroTextBox4.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -865,7 +864,7 @@
             this.metroTextBox5.CustomButton.UseSelectable = true;
             this.metroTextBox5.CustomButton.Visible = false;
             this.metroTextBox5.Lines = new string[] {
-        "10"};
+        "3"};
             this.metroTextBox5.Location = new System.Drawing.Point(115, 41);
             this.metroTextBox5.MaxLength = 32767;
             this.metroTextBox5.Name = "metroTextBox5";
@@ -877,7 +876,7 @@
             this.metroTextBox5.ShortcutsEnabled = true;
             this.metroTextBox5.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox5.TabIndex = 15;
-            this.metroTextBox5.Text = "10";
+            this.metroTextBox5.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox5, "Процент показывающий силу шума >0 ");
             this.metroTextBox5.UseSelectable = true;
             this.metroTextBox5.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1036,9 +1035,9 @@
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox6.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox6.Location = new System.Drawing.Point(9, 357);
+            this.pictureBox6.Location = new System.Drawing.Point(9, 338);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(327, 92);
+            this.pictureBox6.Size = new System.Drawing.Size(327, 111);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 16;
             this.pictureBox6.TabStop = false;
@@ -1046,12 +1045,11 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox5.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox5.Location = new System.Drawing.Point(342, 332);
+            this.pictureBox5.Location = new System.Drawing.Point(381, 313);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(379, 117);
+            this.pictureBox5.Size = new System.Drawing.Size(340, 136);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 14;
             this.pictureBox5.TabStop = false;
@@ -1060,7 +1058,7 @@
             // showTheoryButton
             // 
             this.showTheoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.showTheoryButton.Location = new System.Drawing.Point(9, 332);
+            this.showTheoryButton.Location = new System.Drawing.Point(9, 313);
             this.showTheoryButton.Name = "showTheoryButton";
             this.showTheoryButton.Size = new System.Drawing.Size(327, 19);
             this.showTheoryButton.TabIndex = 13;
@@ -1094,17 +1092,6 @@
             this.pictureBox3.TabIndex = 11;
             this.pictureBox3.TabStop = false;
             this.metroToolTip1.SetToolTip(this.pictureBox3, "Исходное изображение");
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(263, 23);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(25, 19);
-            this.metroLabel6.TabIndex = 15;
-            this.metroLabel6.Text = "    ";
-            this.metroToolTip1.SetToolTip(this.metroLabel6, "Информация о фильтре");
             // 
             // metroStyleManager1
             // 
@@ -1738,14 +1725,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 580);
+            this.ClientSize = new System.Drawing.Size(780, 620);
             this.Controls.Add(this.metroLabel2);
-            this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.dpwnDiameterButton);
             this.Controls.Add(this.upDiameterButton);
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.metroUserControl1);
-            this.MinimumSize = new System.Drawing.Size(766, 580);
+            this.MinimumSize = new System.Drawing.Size(780, 620);
             this.Name = "ImageProcessing";
             this.Text = "ImageProcessing";
             this.Activated += new System.EventHandler(this.ImageProcessing_Activated);
@@ -1840,7 +1826,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.ToolStripMenuItem noiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saltPepperToolStripMenuItem;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroTextBox metroTextBox3;
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private System.Windows.Forms.PictureBox pictureBox6;
