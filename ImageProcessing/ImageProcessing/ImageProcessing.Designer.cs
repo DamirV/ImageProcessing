@@ -189,8 +189,8 @@
             // 
             // metroTabControl1
             // 
-            this.metroTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.metroTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
@@ -315,8 +315,8 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Location = new System.Drawing.Point(382, 3);
             this.pictureBox2.Name = "pictureBox2";
@@ -328,7 +328,7 @@
             // 
             // metroProgressBar1
             // 
-            this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroProgressBar1.Location = new System.Drawing.Point(1, 473);
             this.metroProgressBar1.Name = "metroProgressBar1";
@@ -338,8 +338,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(8, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -357,7 +357,7 @@
             this.metroTabPage2.HorizontalScrollbarSize = 10;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(724, 452);
+            this.metroTabPage2.Size = new System.Drawing.Size(738, 492);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Настройки";
             this.metroTabPage2.ToolTipText = "Настройки фильтров и шумов";
@@ -374,7 +374,7 @@
             this.metroTabControl2.Controls.Add(this.metroTabPage7);
             this.metroTabControl2.Location = new System.Drawing.Point(3, 3);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 4;
+            this.metroTabControl2.SelectedIndex = 0;
             this.metroTabControl2.Size = new System.Drawing.Size(732, 453);
             this.metroTabControl2.TabIndex = 27;
             this.metroTabControl2.UseSelectable = true;
@@ -399,7 +399,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(8, 7);
+            this.metroLabel1.Location = new System.Drawing.Point(9, 7);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(216, 19);
             this.metroLabel1.TabIndex = 10;
@@ -1069,8 +1069,8 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.Location = new System.Drawing.Point(381, 3);
             this.pictureBox4.Name = "pictureBox4";
@@ -1082,8 +1082,8 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Location = new System.Drawing.Point(8, 3);
             this.pictureBox3.Name = "pictureBox3";
@@ -1122,6 +1122,7 @@
             // 
             this.smoothingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.medianaToolStripMenuItem,
+            this.geometricMeanToolStripMenuItem,
             this.linearToolStripMenuItem,
             this.gaussianToolStripMenuItem});
             this.smoothingToolStripMenuItem.Name = "smoothingToolStripMenuItem";
@@ -1168,8 +1169,7 @@
             // averagingToolStripMenuItem
             // 
             this.averagingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.geometricMeanToolStripMenuItem,
-            this.harmonicMeanToolStripMenuItem,
+                this.harmonicMeanToolStripMenuItem,
             this.counterHarmonicMeanToolStripMenuItem,
             this.maximumToolStripMenuItem,
             this.minimumToolStripMenuItem,
@@ -1499,11 +1499,12 @@
             this.loadTheorySharpnessToolStripMenuItem,
             this.loadTheoryMorphologyToolStripMenuItem});
             this.metroContextMenu2.Name = "metroContextMenu1";
-            this.metroContextMenu2.Size = new System.Drawing.Size(246, 92);
+            this.metroContextMenu2.Size = new System.Drawing.Size(246, 114);
             // 
             // loadTheorySmoothingToolStripMenuItem
             // 
             this.loadTheorySmoothingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.loadTheoryGeometricMeanToolStripMenuItem,
             this.loadTheoryMedianaToolStripMenuItem,
             this.loadTheoryLinearToolStripMenuItem,
             this.loadTheoryGaussianStripMenuItem});
@@ -1551,8 +1552,7 @@
             // loadTheoryAveragingToolStripMenuItem
             // 
             this.loadTheoryAveragingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryGeometricMeanToolStripMenuItem,
-            this.loadTheoryHarmonicMeanToolStripMenuItem,
+                this.loadTheoryHarmonicMeanToolStripMenuItem,
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem,
             this.loadTheoryMaximumToolStripMenuItem,
             this.loadTheoryMinimumToolStripMenuItem,
@@ -1566,36 +1566,42 @@
             this.loadTheoryGeometricMeanToolStripMenuItem.Name = "loadTheoryGeometricMeanToolStripMenuItem";
             this.loadTheoryGeometricMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryGeometricMeanToolStripMenuItem.Text = "Среднее геометрическое";
+            this.loadTheoryGeometricMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryGeometricMeanToolStripMenuItem_Click);
             // 
             // loadTheoryHarmonicMeanToolStripMenuItem
             // 
             this.loadTheoryHarmonicMeanToolStripMenuItem.Name = "loadTheoryHarmonicMeanToolStripMenuItem";
             this.loadTheoryHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryHarmonicMeanToolStripMenuItem.Text = "Среднее гармоническое";
+            this.loadTheoryHarmonicMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryHarmonicMeanToolStripMenuItem_Click);
             // 
             // loadTheoryCounterHarmonicMeanToolStripMenuItem
             // 
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Name = "loadTheoryCounterHarmonicMeanToolStripMenuItem";
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Text = "Среднее контргармоническое";
+            this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryCounterHarmonicMeanToolStripMenuItem_Click);
             // 
             // loadTheoryMaximumToolStripMenuItem
             // 
             this.loadTheoryMaximumToolStripMenuItem.Name = "loadTheoryMaximumToolStripMenuItem";
             this.loadTheoryMaximumToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMaximumToolStripMenuItem.Text = "Фильтр максимума";
+            this.loadTheoryMaximumToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMaximumToolStripMenuItem_Click);
             // 
             // loadTheoryMinimumToolStripMenuItem
             // 
             this.loadTheoryMinimumToolStripMenuItem.Name = "loadTheoryMinimumToolStripMenuItem";
             this.loadTheoryMinimumToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMinimumToolStripMenuItem.Text = "Фильтр минимума";
+            this.loadTheoryMinimumToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMinimumToolStripMenuItem_Click);
             // 
             // loadTheoryMidPointToolStripMenuItem
             // 
             this.loadTheoryMidPointToolStripMenuItem.Name = "loadTheoryMidPointToolStripMenuItem";
             this.loadTheoryMidPointToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMidPointToolStripMenuItem.Text = "Фмльтр срединной точки";
+            this.loadTheoryMidPointToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMidPointToolStripMenuItem_Click);
             // 
             // loadTheorySharpnessToolStripMenuItem
             // 
@@ -1675,12 +1681,14 @@
             this.loadTheoryDiZenzoToolStripMenuItem.Name = "loadTheoryDiZenzoToolStripMenuItem";
             this.loadTheoryDiZenzoToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheoryDiZenzoToolStripMenuItem.Text = "Метод Ди Зензо";
+            this.loadTheoryDiZenzoToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryDiZenzoToolStripMenuItem_Click);
             // 
             // loadTheorySobelMeanToolStripMenuItem
             // 
             this.loadTheorySobelMeanToolStripMenuItem.Name = "loadTheorySobelMeanToolStripMenuItem";
             this.loadTheorySobelMeanToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheorySobelMeanToolStripMenuItem.Text = "Оператор Собеля для цветного изображения";
+            this.loadTheorySobelMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheorySobelMeanToolStripMenuItem_Click);
             // 
             // loadTheoryMorphologyToolStripMenuItem
             // 

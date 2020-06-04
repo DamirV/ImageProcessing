@@ -4,6 +4,40 @@ using System.Drawing;
 
 namespace ResearchWork
 {
+    class GeometricMean : Filter
+    {
+        public GeometricMean(int diameter)
+        {
+            this.diameter = diameter;
+            this.radius = diameter / 2;
+        }
+
+        protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
+        {
+            double red = 1.0;
+            double green = 1.0;
+            double blue = 1.0;
+
+            for (int i = -radius; i <= radius; ++i)
+            {
+                for (int j = -radius; j <= radius; ++j)
+                {
+                    int idX = BorderProcessing(x + j, 0, width - 1);
+                    int idY = BorderProcessing(y + i, 0, height - 1);
+
+                    red *= wrapImage[idX, idY].R;
+                    green *= wrapImage[idX, idY].G;
+                    blue *= wrapImage[idX, idY].B;
+                }
+            }
+
+            red = Math.Pow(red, 1.0 / (diameter * diameter));
+            green = Math.Pow(green, 1.0 / (diameter * diameter));
+            blue = Math.Pow(blue, 1.0 / (diameter * diameter));
+
+            return Color.FromArgb((int)red, (int)green, (int)blue);
+        }
+    }
     class Gaussian : Filter
     {
         private double sigma;

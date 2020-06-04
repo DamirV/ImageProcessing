@@ -156,7 +156,7 @@ namespace ResearchWork
             gxx = Math.Pow(redX, 2) + Math.Pow(greenX, 2) + Math.Pow(blueX, 2);
             gyy = Math.Pow(redY, 2) + Math.Pow(greenY, 2) + Math.Pow(blueY, 2);
             gxy = redX * redY +  greenX * greenY + blueX * blueY;
-            double angle = Math.Atan(2 * gxy / Math.Abs(gxx - gyy))/2;
+            double angle = 0.5 * Math.Atan(2 * gxy / Math.Abs(gxx - gyy));
 
             int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + (gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
             

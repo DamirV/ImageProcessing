@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MetroFramework;
 
 struct Images
 {
@@ -98,16 +99,23 @@ namespace ResearchWork
 
         private int LoadTheory(string filterName, string info, string path, int diameter)
         {
-            showTheoryButton.Text = filterName + "; " + info;
-            pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\source.jpg"));
-            pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\result.jpg"));
-            pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\formula.jpg"));
-            pictureBox6.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\matrix.jpg"));
+            try
+            {
+                showTheoryButton.Text = filterName + "; " + info;
+                pictureBox3.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\source.jpg"));
+                pictureBox4.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\result.jpg"));
+                pictureBox5.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\formula.jpg"));
+                pictureBox6.Image = new Bitmap((Bitmap)Image.FromFile(path + diameter + "\\matrix.jpg"));
 
-            pictureBox3.Refresh();
-            pictureBox4.Refresh();
-            pictureBox5.Refresh();
-            pictureBox6.Refresh();
+                pictureBox3.Refresh();
+                pictureBox4.Refresh();
+                pictureBox5.Refresh();
+                pictureBox6.Refresh();
+            }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             return 1;
         }
@@ -300,7 +308,7 @@ namespace ResearchWork
 
         private void SwapButton_Click(object sender, EventArgs e)
         {
-            if (sourceImage == null|| resultImage == null)
+            if (sourceImage == null || resultImage == null)
             {
                 return;
             }
@@ -332,7 +340,7 @@ namespace ResearchWork
 
         private void LoadTheoryMedianaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Медианный фильтр", "Размер ядра: " + diameter,@"Images\smoothing\median\", diameter);
+            LoadTheory("Медианный фильтр", "Размер ядра: " + diameter, @"Images\smoothing\median\", diameter);
         }
 
         private void LoadTheoryLinearSmoothingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -478,7 +486,7 @@ namespace ResearchWork
             {
                 int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
                 RunProcessing("Перец", new Pepper(pepperPercent));
-             
+
             }
             catch
             {
@@ -505,7 +513,7 @@ namespace ResearchWork
                 pictureBox2.Image = resultImage;
 
                 metroLabel14.Text = "Ширина: " + width + "; Высота: " + height + ";";
-                
+
                 pictureBox1.Refresh();
                 pictureBox2.Refresh();
             }
@@ -648,12 +656,52 @@ namespace ResearchWork
         {
             int a = Convert.ToInt32(metroTextBox9.Text);
             int b = Convert.ToInt32(metroTextBox10.Text);
-            RunProcessing("Равномерный шум", new UniformNoise(a,b));
+            RunProcessing("Равномерный шум", new UniformNoise(a, b));
         }
 
         private void SobelMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RunProcessing("Оператор Собеля для цветного изображения", new SobelMean());
+        }
+
+        private void LoadTheoryDiZenzoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Метод Ди Зензо", "Размер ядра: 3", @"Images\sharpness\dizenzo\", 3);
+        }
+
+        private void LoadTheorySobelMeanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Оператор Собеля для цветного изображения", "Размер ядра: 3", @"Images\sharpness\sobelmean\", 3);
+        }
+
+        private void LoadTheoryGeometricMeanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Среднее геометрическое", "Размер ядра: " + diameter, @"Images\averaging\geometric\", diameter);
+        }
+
+        private void LoadTheoryHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Среднее гармоническое", "Размер ядра: " + diameter, @"Images\averaging\harmonic\", diameter);
+        }
+
+        private void LoadTheoryCounterHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Среднее контргармоническое", "Размер ядра: " + diameter, @"Images\averaging\counterharmonic\", diameter);
+        }
+
+        private void LoadTheoryMaximumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Фильтр максимума", "Размер ядра: " + diameter, @"Images\averaging\maximum\", diameter);
+        }
+
+        private void LoadTheoryMinimumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Фильтр минимума", "Размер ядра: " + diameter, @"Images\averaging\minimum\", diameter);
+        }
+
+        private void LoadTheoryMidPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadTheory("Фильтр срединной точки", "Размер ядра: " + diameter, @"Images\averaging\midpoint\", diameter);
         }
     }
 }
