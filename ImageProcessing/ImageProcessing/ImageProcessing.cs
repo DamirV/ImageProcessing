@@ -676,7 +676,7 @@ namespace ResearchWork
 
         private void LoadTheoryGeometricMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Среднее геометрическое", "Размер ядра: " + diameter, @"Images\averaging\geometric\", diameter);
+            LoadTheory("Среднее геометрическое", "Размер ядра: " + diameter, @"Images\smoothing\geometric\", diameter);
         }
 
         private void LoadTheoryHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)

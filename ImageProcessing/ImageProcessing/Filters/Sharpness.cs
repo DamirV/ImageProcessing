@@ -131,8 +131,8 @@ namespace ResearchWork
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
 
-            double redX = 0, greenX = 0, blueX = 0;
-            double redY = 0, greenY = 0, blueY = 0;
+            double redX = 0.0, greenX = 0.0, blueX = 0.0;
+            double redY = 0.0, greenY = 0.0, blueY = 0.0;
 
             for (int i = -radius; i <= radius; ++i)
             {
@@ -141,13 +141,13 @@ namespace ResearchWork
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius];
-                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius];
-                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius];
+                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius] * 1/2;
+                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius] * 1/2;
+                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius] * 1/2;
 
-                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius];
-                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius];
-                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius];
+                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius] * 1/2;
+                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius] * 1/2;
+                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius] * 1/2;
                 }
             }
 
@@ -158,7 +158,7 @@ namespace ResearchWork
             gxy = redX * redY +  greenX * greenY + blueX * blueY;
             double angle = 0.5 * Math.Atan(2 * gxy / Math.Abs(gxx - gyy));
 
-            int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + (gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
+            int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + Math.Abs(gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
             
             return Color.FromArgb(result, result, result);
         }
