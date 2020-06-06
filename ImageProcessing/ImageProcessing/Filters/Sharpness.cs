@@ -130,7 +130,6 @@ namespace ResearchWork
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-
             double redX = 0.0, greenX = 0.0, blueX = 0.0;
             double redY = 0.0, greenY = 0.0, blueY = 0.0;
 
