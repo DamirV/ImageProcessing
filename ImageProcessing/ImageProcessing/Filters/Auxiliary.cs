@@ -6,7 +6,7 @@ namespace ResearchWork
     {
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-             
+
             int red = wrapImage[x, y].R;
             int green = wrapImage[x, y].G;
             int blue = wrapImage[x, y].B;

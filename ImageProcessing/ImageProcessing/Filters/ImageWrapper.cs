@@ -70,7 +70,7 @@ namespace ResearchWork
         }
 
         public void SetPixel(Point point, Color color)
-        { 
+        {
             this[point.X, point.Y] = color;
         }
 

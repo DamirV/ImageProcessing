@@ -44,7 +44,7 @@ namespace ResearchWork
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
             int currentPercent = (int)(randomValue.NextDouble() * 100);
-            if ( 0 <= currentPercent && currentPercent < saltPercent)
+            if (0 <= currentPercent && currentPercent < saltPercent)
             {
                 return Color.FromArgb(255, 255, 255);
             }
@@ -146,13 +146,13 @@ namespace ResearchWork
 
             using (ImageWrapper wrapTempImage = new ImageWrapper(tempBitmap))
             {
-                using (ImageWrapper wrapImage = new ImageWrapper(resultImage,true))
+                using (ImageWrapper wrapImage = new ImageWrapper(resultImage, true))
                 {
                     for (int i = 0; i < height; ++i)
                     {
                         if (i > checkProgress)
                         {
-                            worker.ReportProgress((int) ((double) i / resultImage.Height * 100));
+                            worker.ReportProgress((int)((double)i / resultImage.Height * 100));
                             if (worker.CancellationPending)
                             {
                                 return null;
@@ -168,7 +168,7 @@ namespace ResearchWork
                             {
                                 wrapImage[j, i] = wrapTempImage[j, i];
                             }
-                            
+
                         }
                     }
                 }
@@ -185,7 +185,7 @@ namespace ResearchWork
     class WhiteHoles : Filter
     {
         private int percent;
-       
+
 
         public WhiteHoles(int diameter, int percent)
         {
@@ -317,16 +317,16 @@ namespace ResearchWork
 
     class UniformNoise : Filter
     {
-        private  Random randomValue;
+        private Random randomValue;
         private int leftValue;
-        private  int rightValue;
-        private  double constant;
-        public UniformNoise (int leftValue, int rightValue)
+        private int rightValue;
+        private double constant;
+        public UniformNoise(int leftValue, int rightValue)
         {
             this.leftValue = leftValue;
             this.rightValue = rightValue;
             randomValue = new Random();
-            constant = (rightValue-leftValue);
+            constant = (rightValue - leftValue);
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {

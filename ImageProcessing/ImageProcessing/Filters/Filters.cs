@@ -14,7 +14,7 @@ namespace ResearchWork
         protected int radius;
 
         protected abstract Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y);
-     
+
         public int Clamp(int value, int min, int max)
         {
             if (value < min)

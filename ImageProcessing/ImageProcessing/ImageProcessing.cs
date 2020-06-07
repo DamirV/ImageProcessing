@@ -223,14 +223,32 @@ namespace ResearchWork
 
         private void LaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            double k = Convert.ToDouble(metroTextBox3.Text);
-            RunProcessing("Маска Лапласа", new Laplace(k));
+            try
+            {
+                double k = Convert.ToDouble(metroTextBox3.Text);
+                RunProcessing("Маска Лапласа", new Laplace(k));
+            }
+            catch
+
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Warning", "Неверные коэффициенты",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void ExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            double k = Convert.ToDouble(metroTextBox3.Text);
-            RunProcessing("Маска Лапласа", new ExtendedLaplace(k));
+            try
+            {
+                double k = Convert.ToDouble(metroTextBox3.Text);
+                RunProcessing("Маска Лапласа", new ExtendedLaplace(k));
+            }
+            catch
+
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Warning", "Неверные коэффициенты",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void RestoredLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -301,9 +319,17 @@ namespace ResearchWork
 
         private void SaltPepperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int saltPercent = (int)Convert.ToDouble(metroTextBox4.Text);
-            int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
-            RunProcessing("Соль и перец", new SaltPepper(saltPercent, pepperPercent));
+            try
+            {
+                int saltPercent = (int)Convert.ToDouble(metroTextBox4.Text);
+                int pepperPercent = (int)Convert.ToDouble(metroTextBox5.Text);
+                RunProcessing("Соль и перец", new SaltPepper(saltPercent, pepperPercent));
+            }
+            catch
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Warning", "Неверные коэффициенты",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void SwapButton_Click(object sender, EventArgs e)
@@ -360,27 +386,27 @@ namespace ResearchWork
 
         private void LoadTheoryLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\common\", 3);
+            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; Вес маски: = 1", @"Images\sharpness\laplace\notrestored\common\", 3);
         }
 
         private void LoadTheoryExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\notrestored\extended\", 3);
+            LoadTheory("Оператор Лапласа", "Размер ядра: " + 3 + "; Вес маски = 1", @"Images\sharpness\laplace\notrestored\extended\", 3);
         }
 
         private void LoadTheoryRestoredLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\common\", 3);
+            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; Вес маски = 1", @"Images\sharpness\laplace\restored\common\", 3);
         }
 
         private void LoadTheoryRestoredExtendedLaplaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; k = 1", @"Images\sharpness\laplace\restored\extended\", 3);
+            LoadTheory("Оператор Лапласа с восстановленным фоном", "Размер ядра: " + 3 + "; Вес маски = 1", @"Images\sharpness\laplace\restored\extended\", 3);
         }
 
         private void LoadTheoryFrequencyIncreaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Подъем высоких частот", "Размер ядра: " + diameter + "; k = 3", @"Images\sharpness\frequencyincrease\", diameter);
+            LoadTheory("Подъем высоких частот", "Размер ядра: " + diameter + "; k = 3; Сигма = 3", @"Images\sharpness\frequencyincrease\", diameter);
         }
 
         private void LoadTheorySobelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -616,9 +642,17 @@ namespace ResearchWork
 
         private void GaussianNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            double sigma = Convert.ToDouble(metroTextBox12.Text);
-            int middle = Convert.ToInt32(metroTextBox11.Text);
-            RunProcessing("Гауссовский шум", new GaussianNoise(sigma, middle));
+            try
+            {
+                double sigma = Convert.ToDouble(metroTextBox12.Text);
+                int middle = Convert.ToInt32(metroTextBox11.Text);
+                RunProcessing("Гауссовский шум", new GaussianNoise(sigma, middle));
+            }
+            catch
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Warning", "Неверные коэффициенты",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void GeometricMeanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -633,8 +667,16 @@ namespace ResearchWork
 
         private void CounterHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            double order = Convert.ToDouble(metroTextBox8.Text);
-            RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
+            try
+            {
+                double order = Convert.ToDouble(metroTextBox8.Text);
+                RunProcessing("Среднее контргармоническое", new CounterHarmonicMean(diameter, order));
+            }
+            catch
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Warning", "Неверные коэффициенты",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void MaximumToolStripMenuItem_Click(object sender, EventArgs e)
@@ -654,9 +696,17 @@ namespace ResearchWork
 
         private void UniformNoiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int a = Convert.ToInt32(metroTextBox9.Text);
-            int b = Convert.ToInt32(metroTextBox10.Text);
-            RunProcessing("Равномерный шум", new UniformNoise(a, b));
+            try
+            {
+                int a = Convert.ToInt32(metroTextBox9.Text);
+                int b = Convert.ToInt32(metroTextBox10.Text);
+                RunProcessing("Равномерный шум", new UniformNoise(a, b));
+            }
+            catch
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Warning", "Неверные коэффициенты",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void SobelMeanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -686,7 +736,7 @@ namespace ResearchWork
 
         private void LoadTheoryCounterHarmonicMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadTheory("Среднее контргармоническое", "Размер ядра: " + diameter, @"Images\averaging\counterharmonic\", diameter);
+            LoadTheory("Среднее контргармоническое", "Размер ядра: " + diameter + "; " + "Порядок фильтра: 1", @"Images\averaging\counterharmonic\", diameter);
         }
 
         private void LoadTheoryMaximumToolStripMenuItem_Click(object sender, EventArgs e)

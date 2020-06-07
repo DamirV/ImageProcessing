@@ -53,7 +53,7 @@ namespace ResearchWork
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            double red= 0.0;
+            double red = 0.0;
             double green = 0.0;
             double blue = 0.0;
 
@@ -140,9 +140,9 @@ namespace ResearchWork
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int[] red= new int[diameter * diameter];
+            int[] red = new int[diameter * diameter];
             int[] green = new int[diameter * diameter];
-            int[]  blue = new int[diameter * diameter];
+            int[] blue = new int[diameter * diameter];
             int currentIndex = 0;
             int firstIndex = 0;
 
@@ -179,9 +179,9 @@ namespace ResearchWork
 
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            int[] red= new int[diameter * diameter];
+            int[] red = new int[diameter * diameter];
             int[] green = new int[diameter * diameter];
-            int[]  blue = new int[diameter * diameter];
+            int[] blue = new int[diameter * diameter];
             int firstIndex = 0;
             int lastIndex = diameter * diameter - 1;
             int currentIndex = 0;
@@ -214,6 +214,4 @@ namespace ResearchWork
             return Color.FromArgb(resultR, resultG, resultB);
         }
     }
-
-
 }

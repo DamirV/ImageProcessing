@@ -40,7 +40,7 @@ namespace ResearchWork
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    int intensity = (wrapImage[idX, idY].R + wrapImage[idX, idY].G+ wrapImage[idX, idY].B)/3;
+                    int intensity = (wrapImage[idX, idY].R + wrapImage[idX, idY].G + wrapImage[idX, idY].B) / 3;
                     if ((kernel[j + radius, i + radius] > 0) && (intensity > max))
                     {
                         max = intensity;
@@ -84,7 +84,7 @@ namespace ResearchWork
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                    int intensity = (wrapImage[idX, idY].R + wrapImage[idX, idY].G+ wrapImage[idX, idY].B)/3;
+                    int intensity = (wrapImage[idX, idY].R + wrapImage[idX, idY].G + wrapImage[idX, idY].B) / 3;
 
                     if ((kernel[j + radius, i + radius] > 0) && (intensity < min))
                     {
@@ -151,7 +151,7 @@ namespace ResearchWork
         }
         protected override Color CalculateNewPixelColor(ImageWrapper wrapImage, int x, int y)
         {
-            return wrapImage[x,y];
+            return wrapImage[x, y];
         }
     }
 }

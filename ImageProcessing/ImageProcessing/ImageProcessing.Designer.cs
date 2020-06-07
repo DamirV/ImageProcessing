@@ -84,12 +84,12 @@
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.smoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medianaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.geometricMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linearSmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extendedLinearSmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gaussianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.averagingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.geometricMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.harmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.counterHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maximumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,13 +130,13 @@
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.metroContextMenu2 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.loadTheorySmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadTheoryGeometricMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryMedianaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryLinearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryLinearSmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryExtendedLinearSmoothingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryGaussianStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryAveragingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadTheoryGeometricMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadTheoryMaximumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,27 +181,25 @@
             // 
             // metroUserControl1
             // 
-            this.metroUserControl1.Location = new System.Drawing.Point(141, 113);
-            this.metroUserControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroUserControl1.Location = new System.Drawing.Point(106, 92);
             this.metroUserControl1.Name = "metroUserControl1";
-            this.metroUserControl1.Size = new System.Drawing.Size(200, 185);
+            this.metroUserControl1.Size = new System.Drawing.Size(150, 150);
             this.metroUserControl1.TabIndex = 0;
             this.metroUserControl1.UseSelectable = true;
             // 
             // metroTabControl1
             // 
-            this.metroTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.metroTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
-            this.metroTabControl1.Location = new System.Drawing.Point(15, 78);
-            this.metroTabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTabControl1.Location = new System.Drawing.Point(11, 63);
             this.metroTabControl1.Multiline = true;
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(995, 657);
+            this.metroTabControl1.Size = new System.Drawing.Size(746, 534);
             this.metroTabControl1.TabIndex = 1;
             this.metroTabControl1.UseSelectable = true;
             this.metroTabControl1.Click += new System.EventHandler(this.MetroTabControl1_Click);
@@ -220,25 +218,23 @@
             this.metroTabPage1.Controls.Add(this.pictureBox1);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.HorizontalScrollbarSize = 12;
+            this.metroTabPage1.HorizontalScrollbarSize = 10;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(987, 615);
+            this.metroTabPage1.Size = new System.Drawing.Size(738, 492);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Практика";
             this.metroTabPage1.ToolTipText = "Практическая часть";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage1.VerticalScrollbarSize = 13;
+            this.metroTabPage1.VerticalScrollbarSize = 10;
             // 
             // saveImageButton
             // 
             this.saveImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveImageButton.Location = new System.Drawing.Point(121, 549);
-            this.saveImageButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveImageButton.Location = new System.Drawing.Point(91, 446);
             this.saveImageButton.Name = "saveImageButton";
-            this.saveImageButton.Size = new System.Drawing.Size(100, 28);
+            this.saveImageButton.Size = new System.Drawing.Size(75, 23);
             this.saveImageButton.TabIndex = 14;
             this.saveImageButton.Text = "Сохранить";
             this.metroToolTip1.SetToolTip(this.saveImageButton, "Сохранение результата обработки изображения");
@@ -250,10 +246,9 @@
             this.metroLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.metroLabel14.AutoSize = true;
             this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel14.Location = new System.Drawing.Point(11, 514);
-            this.metroLabel14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel14.Location = new System.Drawing.Point(8, 418);
             this.metroLabel14.Name = "metroLabel14";
-            this.metroLabel14.Size = new System.Drawing.Size(186, 25);
+            this.metroLabel14.Size = new System.Drawing.Size(182, 25);
             this.metroLabel14.TabIndex = 13;
             this.metroLabel14.Text = "Ширина: 0; Высота: 0;";
             this.metroToolTip1.SetToolTip(this.metroLabel14, "Ширина и высота текущего изображения");
@@ -261,10 +256,9 @@
             // backButton
             // 
             this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.Location = new System.Drawing.Point(880, 538);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backButton.Location = new System.Drawing.Point(660, 437);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(100, 28);
+            this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 13;
             this.backButton.Text = "Назад";
             this.metroToolTip1.SetToolTip(this.backButton, "Вернуться к предудыщему результату");
@@ -274,10 +268,9 @@
             // swapButton
             // 
             this.swapButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.swapButton.Location = new System.Drawing.Point(457, 470);
-            this.swapButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.swapButton.Location = new System.Drawing.Point(343, 382);
             this.swapButton.Name = "swapButton";
-            this.swapButton.Size = new System.Drawing.Size(116, 41);
+            this.swapButton.Size = new System.Drawing.Size(87, 33);
             this.swapButton.TabIndex = 11;
             this.swapButton.Text = "Переставить";
             this.metroToolTip1.SetToolTip(this.swapButton, "Поменять местами исходное изображение с результатом");
@@ -287,10 +280,9 @@
             // loadImageButton
             // 
             this.loadImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.loadImageButton.Location = new System.Drawing.Point(11, 549);
-            this.loadImageButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadImageButton.Location = new System.Drawing.Point(8, 446);
             this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(100, 28);
+            this.loadImageButton.Size = new System.Drawing.Size(75, 23);
             this.loadImageButton.TabIndex = 8;
             this.loadImageButton.Text = "Загрузить";
             this.metroToolTip1.SetToolTip(this.loadImageButton, "Загрузка исходного изображения");
@@ -300,10 +292,9 @@
             // cancelProcessingButton
             // 
             this.cancelProcessingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelProcessingButton.Location = new System.Drawing.Point(880, 574);
-            this.cancelProcessingButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelProcessingButton.Location = new System.Drawing.Point(660, 466);
             this.cancelProcessingButton.Name = "cancelProcessingButton";
-            this.cancelProcessingButton.Size = new System.Drawing.Size(100, 28);
+            this.cancelProcessingButton.Size = new System.Drawing.Size(75, 23);
             this.cancelProcessingButton.TabIndex = 6;
             this.cancelProcessingButton.Text = "Отмена";
             this.metroToolTip1.SetToolTip(this.cancelProcessingButton, "Отмена обработки");
@@ -313,10 +304,9 @@
             // showFiltersButton
             // 
             this.showFiltersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.showFiltersButton.Location = new System.Drawing.Point(11, 470);
-            this.showFiltersButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showFiltersButton.Location = new System.Drawing.Point(8, 382);
             this.showFiltersButton.Name = "showFiltersButton";
-            this.showFiltersButton.Size = new System.Drawing.Size(439, 41);
+            this.showFiltersButton.Size = new System.Drawing.Size(329, 33);
             this.showFiltersButton.TabIndex = 9;
             this.showFiltersButton.Text = "Фильтр";
             this.metroToolTip1.SetToolTip(this.showFiltersButton, "Выбор фильтров");
@@ -325,13 +315,12 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Location = new System.Drawing.Point(509, 4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(382, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(471, 418);
+            this.pictureBox2.Size = new System.Drawing.Size(353, 340);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
@@ -339,24 +328,22 @@
             // 
             // metroProgressBar1
             // 
-            this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.metroProgressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroProgressBar1.Location = new System.Drawing.Point(1, 582);
-            this.metroProgressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroProgressBar1.Location = new System.Drawing.Point(1, 473);
             this.metroProgressBar1.Name = "metroProgressBar1";
-            this.metroProgressBar1.Size = new System.Drawing.Size(871, 15);
+            this.metroProgressBar1.Size = new System.Drawing.Size(653, 12);
             this.metroProgressBar1.TabIndex = 4;
             this.metroToolTip1.SetToolTip(this.metroProgressBar1, "Индикатор выполнения");
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(8, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(457, 418);
+            this.pictureBox1.Size = new System.Drawing.Size(343, 340);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -367,17 +354,16 @@
             this.metroTabPage2.Controls.Add(this.metroTabControl2);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.HorizontalScrollbarSize = 12;
+            this.metroTabPage2.HorizontalScrollbarSize = 10;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(987, 615);
+            this.metroTabPage2.Size = new System.Drawing.Size(738, 492);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Настройки";
             this.metroTabPage2.ToolTipText = "Настройки фильтров и шумов";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage2.VerticalScrollbarSize = 13;
+            this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
             // metroTabControl2
             // 
@@ -386,11 +372,10 @@
             this.metroTabControl2.Controls.Add(this.metroTabPage6);
             this.metroTabControl2.Controls.Add(this.metroTabPage8);
             this.metroTabControl2.Controls.Add(this.metroTabPage7);
-            this.metroTabControl2.Location = new System.Drawing.Point(4, 4);
-            this.metroTabControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTabControl2.Location = new System.Drawing.Point(3, 3);
             this.metroTabControl2.Name = "metroTabControl2";
             this.metroTabControl2.SelectedIndex = 0;
-            this.metroTabControl2.Size = new System.Drawing.Size(976, 558);
+            this.metroTabControl2.Size = new System.Drawing.Size(732, 453);
             this.metroTabControl2.TabIndex = 27;
             this.metroTabControl2.UseSelectable = true;
             // 
@@ -401,24 +386,22 @@
             this.metroTabPage4.Controls.Add(this.metroTextBox1);
             this.metroTabPage4.HorizontalScrollbarBarColor = true;
             this.metroTabPage4.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage4.HorizontalScrollbarSize = 12;
+            this.metroTabPage4.HorizontalScrollbarSize = 10;
             this.metroTabPage4.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage4.Name = "metroTabPage4";
-            this.metroTabPage4.Size = new System.Drawing.Size(968, 516);
+            this.metroTabPage4.Size = new System.Drawing.Size(724, 411);
             this.metroTabPage4.TabIndex = 0;
             this.metroTabPage4.Text = "Фильтр Гаусса";
             this.metroTabPage4.VerticalScrollbarBarColor = true;
             this.metroTabPage4.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage4.VerticalScrollbarSize = 13;
+            this.metroTabPage4.VerticalScrollbarSize = 10;
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(12, 9);
-            this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel1.Location = new System.Drawing.Point(9, 7);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(229, 20);
+            this.metroLabel1.Size = new System.Drawing.Size(216, 19);
             this.metroLabel1.TabIndex = 10;
             this.metroLabel1.Text = "Среднеквадратичное отклонение";
             this.metroToolTip1.SetToolTip(this.metroLabel1, "Среднеквадратичное отклонение распределения гаусса");
@@ -426,8 +409,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 9);
-            this.metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel3.Location = new System.Drawing.Point(3, 7);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(0, 0);
             this.metroLabel3.TabIndex = 3;
@@ -439,10 +421,9 @@
             // 
             // 
             this.metroTextBox1.CustomButton.Image = null;
-            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox1.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox1.CustomButton.Name = "";
-            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox1.CustomButton.TabIndex = 1;
             this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -450,8 +431,7 @@
             this.metroTextBox1.CustomButton.Visible = false;
             this.metroTextBox1.Lines = new string[] {
         "3"};
-            this.metroTextBox1.Location = new System.Drawing.Point(307, 9);
-            this.metroTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox1.Location = new System.Drawing.Point(230, 7);
             this.metroTextBox1.MaxLength = 32767;
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.PasswordChar = '\0';
@@ -460,7 +440,7 @@
             this.metroTextBox1.SelectionLength = 0;
             this.metroTextBox1.SelectionStart = 0;
             this.metroTextBox1.ShortcutsEnabled = true;
-            this.metroTextBox1.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox1.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox1.TabIndex = 6;
             this.metroTextBox1.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox1, "Среднеквадратичное отклонение распределения гаусса");
@@ -474,24 +454,22 @@
             this.metroTabPage5.Controls.Add(this.metroTextBox3);
             this.metroTabPage5.HorizontalScrollbarBarColor = true;
             this.metroTabPage5.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage5.HorizontalScrollbarSize = 12;
+            this.metroTabPage5.HorizontalScrollbarSize = 10;
             this.metroTabPage5.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage5.Name = "metroTabPage5";
-            this.metroTabPage5.Size = new System.Drawing.Size(968, 516);
+            this.metroTabPage5.Size = new System.Drawing.Size(724, 411);
             this.metroTabPage5.TabIndex = 1;
             this.metroTabPage5.Text = "Оператор Лапласса";
             this.metroTabPage5.VerticalScrollbarBarColor = true;
             this.metroTabPage5.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage5.VerticalScrollbarSize = 13;
+            this.metroTabPage5.VerticalScrollbarSize = 10;
             // 
             // metroLabel8
             // 
             this.metroLabel8.AutoSize = true;
-            this.metroLabel8.Location = new System.Drawing.Point(4, 9);
-            this.metroLabel8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel8.Location = new System.Drawing.Point(3, 7);
             this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(75, 20);
+            this.metroLabel8.Size = new System.Drawing.Size(70, 19);
             this.metroLabel8.TabIndex = 9;
             this.metroLabel8.Text = "Вес маски";
             this.metroToolTip1.SetToolTip(this.metroLabel8, "Константа определяющая вес маски >=1");
@@ -502,10 +480,9 @@
             // 
             // 
             this.metroTextBox3.CustomButton.Image = null;
-            this.metroTextBox3.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox3.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox3.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox3.CustomButton.Name = "";
-            this.metroTextBox3.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox3.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox3.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox3.CustomButton.TabIndex = 1;
             this.metroTextBox3.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -513,8 +490,7 @@
             this.metroTextBox3.CustomButton.Visible = false;
             this.metroTextBox3.Lines = new string[] {
         "1"};
-            this.metroTextBox3.Location = new System.Drawing.Point(105, 9);
-            this.metroTextBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox3.Location = new System.Drawing.Point(79, 7);
             this.metroTextBox3.MaxLength = 32767;
             this.metroTextBox3.Name = "metroTextBox3";
             this.metroTextBox3.PasswordChar = '\0';
@@ -523,7 +499,7 @@
             this.metroTextBox3.SelectionLength = 0;
             this.metroTextBox3.SelectionStart = 0;
             this.metroTextBox3.ShortcutsEnabled = true;
-            this.metroTextBox3.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox3.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox3.TabIndex = 10;
             this.metroTextBox3.Text = "1";
             this.metroToolTip1.SetToolTip(this.metroTextBox3, "Константа определяющая вес маски >=1");
@@ -538,16 +514,15 @@
             this.metroTabPage6.Controls.Add(this.metroTextBox2);
             this.metroTabPage6.HorizontalScrollbarBarColor = true;
             this.metroTabPage6.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage6.HorizontalScrollbarSize = 12;
+            this.metroTabPage6.HorizontalScrollbarSize = 10;
             this.metroTabPage6.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage6.Name = "metroTabPage6";
-            this.metroTabPage6.Size = new System.Drawing.Size(968, 516);
+            this.metroTabPage6.Size = new System.Drawing.Size(724, 411);
             this.metroTabPage6.TabIndex = 2;
             this.metroTabPage6.Text = "Подъем высоких частот";
             this.metroTabPage6.VerticalScrollbarBarColor = true;
             this.metroTabPage6.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage6.VerticalScrollbarSize = 13;
+            this.metroTabPage6.VerticalScrollbarSize = 10;
             // 
             // metroTextBox13
             // 
@@ -555,10 +530,9 @@
             // 
             // 
             this.metroTextBox13.CustomButton.Image = null;
-            this.metroTextBox13.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox13.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox13.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox13.CustomButton.Name = "";
-            this.metroTextBox13.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox13.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox13.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox13.CustomButton.TabIndex = 1;
             this.metroTextBox13.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -566,8 +540,7 @@
             this.metroTextBox13.CustomButton.Visible = false;
             this.metroTextBox13.Lines = new string[] {
         "3"};
-            this.metroTextBox13.Location = new System.Drawing.Point(500, 20);
-            this.metroTextBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox13.Location = new System.Drawing.Point(375, 16);
             this.metroTextBox13.MaxLength = 32767;
             this.metroTextBox13.Name = "metroTextBox13";
             this.metroTextBox13.PasswordChar = '\0';
@@ -576,7 +549,7 @@
             this.metroTextBox13.SelectionLength = 0;
             this.metroTextBox13.SelectionStart = 0;
             this.metroTextBox13.ShortcutsEnabled = true;
-            this.metroTextBox13.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox13.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox13.TabIndex = 8;
             this.metroTextBox13.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox13, "Среднеквадратичное отклонение");
@@ -587,10 +560,9 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(4, 20);
-            this.metroLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel5.Location = new System.Drawing.Point(3, 16);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(309, 20);
+            this.metroLabel5.Size = new System.Drawing.Size(290, 19);
             this.metroLabel5.TabIndex = 5;
             this.metroLabel5.Text = "Вес маски и среднеквадратичное отклонение";
             this.metroToolTip1.SetToolTip(this.metroLabel5, "Константа определяющая вес маски >1 и среднеквадратичное отклонение");
@@ -601,10 +573,9 @@
             // 
             // 
             this.metroTextBox2.CustomButton.Image = null;
-            this.metroTextBox2.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox2.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox2.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox2.CustomButton.Name = "";
-            this.metroTextBox2.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox2.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox2.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox2.CustomButton.TabIndex = 1;
             this.metroTextBox2.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -612,8 +583,7 @@
             this.metroTextBox2.CustomButton.Visible = false;
             this.metroTextBox2.Lines = new string[] {
         "3"};
-            this.metroTextBox2.Location = new System.Drawing.Point(392, 20);
-            this.metroTextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox2.Location = new System.Drawing.Point(294, 16);
             this.metroTextBox2.MaxLength = 32767;
             this.metroTextBox2.Name = "metroTextBox2";
             this.metroTextBox2.PasswordChar = '\0';
@@ -622,7 +592,7 @@
             this.metroTextBox2.SelectionLength = 0;
             this.metroTextBox2.SelectionStart = 0;
             this.metroTextBox2.ShortcutsEnabled = true;
-            this.metroTextBox2.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox2.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox2.TabIndex = 7;
             this.metroTextBox2.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox2, "Константа определяющая вес маски >1");
@@ -636,16 +606,15 @@
             this.metroTabPage8.Controls.Add(this.metroLabel15);
             this.metroTabPage8.HorizontalScrollbarBarColor = true;
             this.metroTabPage8.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage8.HorizontalScrollbarSize = 12;
+            this.metroTabPage8.HorizontalScrollbarSize = 10;
             this.metroTabPage8.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage8.Name = "metroTabPage8";
-            this.metroTabPage8.Size = new System.Drawing.Size(968, 516);
+            this.metroTabPage8.Size = new System.Drawing.Size(724, 411);
             this.metroTabPage8.TabIndex = 4;
             this.metroTabPage8.Text = "Среднее контргармоническое";
             this.metroTabPage8.VerticalScrollbarBarColor = true;
             this.metroTabPage8.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage8.VerticalScrollbarSize = 13;
+            this.metroTabPage8.VerticalScrollbarSize = 10;
             // 
             // metroTextBox8
             // 
@@ -653,10 +622,9 @@
             // 
             // 
             this.metroTextBox8.CustomButton.Image = null;
-            this.metroTextBox8.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox8.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox8.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox8.CustomButton.Name = "";
-            this.metroTextBox8.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox8.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox8.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox8.CustomButton.TabIndex = 1;
             this.metroTextBox8.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -664,8 +632,7 @@
             this.metroTextBox8.CustomButton.Visible = false;
             this.metroTextBox8.Lines = new string[] {
         "1"};
-            this.metroTextBox8.Location = new System.Drawing.Point(271, 17);
-            this.metroTextBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox8.Location = new System.Drawing.Point(203, 14);
             this.metroTextBox8.MaxLength = 32767;
             this.metroTextBox8.Name = "metroTextBox8";
             this.metroTextBox8.PasswordChar = '\0';
@@ -674,7 +641,7 @@
             this.metroTextBox8.SelectionLength = 0;
             this.metroTextBox8.SelectionStart = 0;
             this.metroTextBox8.ShortcutsEnabled = true;
-            this.metroTextBox8.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox8.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox8.TabIndex = 23;
             this.metroTextBox8.Text = "1";
             this.metroToolTip1.SetToolTip(this.metroTextBox8, "Порядок фильтра");
@@ -685,10 +652,9 @@
             // metroLabel15
             // 
             this.metroLabel15.AutoSize = true;
-            this.metroLabel15.Location = new System.Drawing.Point(4, 17);
-            this.metroLabel15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel15.Location = new System.Drawing.Point(3, 14);
             this.metroLabel15.Name = "metroLabel15";
-            this.metroLabel15.Size = new System.Drawing.Size(207, 20);
+            this.metroLabel15.Size = new System.Drawing.Size(194, 19);
             this.metroLabel15.TabIndex = 22;
             this.metroLabel15.Text = "Среднее контргармоническое";
             this.metroToolTip1.SetToolTip(this.metroLabel15, "Порядок фильтра");
@@ -711,16 +677,15 @@
             this.metroTabPage7.Controls.Add(this.metroTextBox7);
             this.metroTabPage7.HorizontalScrollbarBarColor = true;
             this.metroTabPage7.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage7.HorizontalScrollbarSize = 12;
+            this.metroTabPage7.HorizontalScrollbarSize = 10;
             this.metroTabPage7.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage7.Name = "metroTabPage7";
-            this.metroTabPage7.Size = new System.Drawing.Size(968, 516);
+            this.metroTabPage7.Size = new System.Drawing.Size(724, 411);
             this.metroTabPage7.TabIndex = 3;
             this.metroTabPage7.Text = "Шумы";
             this.metroTabPage7.VerticalScrollbarBarColor = true;
             this.metroTabPage7.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage7.VerticalScrollbarSize = 13;
+            this.metroTabPage7.VerticalScrollbarSize = 10;
             // 
             // metroTextBox12
             // 
@@ -728,10 +693,9 @@
             // 
             // 
             this.metroTextBox12.CustomButton.Image = null;
-            this.metroTextBox12.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox12.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox12.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox12.CustomButton.Name = "";
-            this.metroTextBox12.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox12.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox12.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox12.CustomButton.TabIndex = 1;
             this.metroTextBox12.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -739,8 +703,7 @@
             this.metroTextBox12.CustomButton.Visible = false;
             this.metroTextBox12.Lines = new string[] {
         "30"};
-            this.metroTextBox12.Location = new System.Drawing.Point(288, 193);
-            this.metroTextBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox12.Location = new System.Drawing.Point(216, 157);
             this.metroTextBox12.MaxLength = 32767;
             this.metroTextBox12.Name = "metroTextBox12";
             this.metroTextBox12.PasswordChar = '\0';
@@ -749,7 +712,7 @@
             this.metroTextBox12.SelectionLength = 0;
             this.metroTextBox12.SelectionStart = 0;
             this.metroTextBox12.ShortcutsEnabled = true;
-            this.metroTextBox12.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox12.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox12.TabIndex = 27;
             this.metroTextBox12.Text = "30";
             this.metroToolTip1.SetToolTip(this.metroTextBox12, "Среднеквадратичное отклонение распределения гаусса");
@@ -760,10 +723,9 @@
             // metroLabel10
             // 
             this.metroLabel10.AutoSize = true;
-            this.metroLabel10.Location = new System.Drawing.Point(4, 15);
-            this.metroLabel10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel10.Location = new System.Drawing.Point(3, 12);
             this.metroLabel10.Name = "metroLabel10";
-            this.metroLabel10.Size = new System.Drawing.Size(41, 20);
+            this.metroLabel10.Size = new System.Drawing.Size(39, 19);
             this.metroLabel10.TabIndex = 12;
             this.metroLabel10.Text = "Соль";
             this.metroToolTip1.SetToolTip(this.metroLabel10, "Процент показывающий силу шума >0 ");
@@ -774,10 +736,9 @@
             // 
             // 
             this.metroTextBox11.CustomButton.Image = null;
-            this.metroTextBox11.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox11.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox11.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox11.CustomButton.Name = "";
-            this.metroTextBox11.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox11.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox11.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox11.CustomButton.TabIndex = 1;
             this.metroTextBox11.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -785,8 +746,7 @@
             this.metroTextBox11.CustomButton.Visible = false;
             this.metroTextBox11.Lines = new string[] {
         "0"};
-            this.metroTextBox11.Location = new System.Drawing.Point(180, 193);
-            this.metroTextBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox11.Location = new System.Drawing.Point(135, 157);
             this.metroTextBox11.MaxLength = 32767;
             this.metroTextBox11.Name = "metroTextBox11";
             this.metroTextBox11.PasswordChar = '\0';
@@ -795,7 +755,7 @@
             this.metroTextBox11.SelectionLength = 0;
             this.metroTextBox11.SelectionStart = 0;
             this.metroTextBox11.ShortcutsEnabled = true;
-            this.metroTextBox11.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox11.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox11.TabIndex = 26;
             this.metroTextBox11.Text = "0";
             this.metroToolTip1.SetToolTip(this.metroTextBox11, "Среднее значение шума");
@@ -809,10 +769,9 @@
             // 
             // 
             this.metroTextBox4.CustomButton.Image = null;
-            this.metroTextBox4.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox4.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox4.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox4.CustomButton.Name = "";
-            this.metroTextBox4.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox4.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox4.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox4.CustomButton.TabIndex = 1;
             this.metroTextBox4.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -820,8 +779,7 @@
             this.metroTextBox4.CustomButton.Visible = false;
             this.metroTextBox4.Lines = new string[] {
         "3"};
-            this.metroTextBox4.Location = new System.Drawing.Point(153, 15);
-            this.metroTextBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox4.Location = new System.Drawing.Point(115, 12);
             this.metroTextBox4.MaxLength = 32767;
             this.metroTextBox4.Name = "metroTextBox4";
             this.metroTextBox4.PasswordChar = '\0';
@@ -830,7 +788,7 @@
             this.metroTextBox4.SelectionLength = 0;
             this.metroTextBox4.SelectionStart = 0;
             this.metroTextBox4.ShortcutsEnabled = true;
-            this.metroTextBox4.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox4.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox4.TabIndex = 13;
             this.metroTextBox4.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox4, "Процент показывающий силу шума >0 ");
@@ -841,10 +799,9 @@
             // metroLabel17
             // 
             this.metroLabel17.AutoSize = true;
-            this.metroLabel17.Location = new System.Drawing.Point(4, 193);
-            this.metroLabel17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel17.Location = new System.Drawing.Point(3, 157);
             this.metroLabel17.Name = "metroLabel17";
-            this.metroLabel17.Size = new System.Drawing.Size(85, 20);
+            this.metroLabel17.Size = new System.Drawing.Size(78, 19);
             this.metroLabel17.TabIndex = 25;
             this.metroLabel17.Text = "Шум Гаусса";
             this.metroToolTip1.SetToolTip(this.metroLabel17, "Среднее значение шума и среднеквадратичное отклонение распределения гаусса");
@@ -852,10 +809,9 @@
             // metroLabel11
             // 
             this.metroLabel11.AutoSize = true;
-            this.metroLabel11.Location = new System.Drawing.Point(4, 50);
-            this.metroLabel11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel11.Location = new System.Drawing.Point(3, 41);
             this.metroLabel11.Name = "metroLabel11";
-            this.metroLabel11.Size = new System.Drawing.Size(51, 20);
+            this.metroLabel11.Size = new System.Drawing.Size(48, 19);
             this.metroLabel11.TabIndex = 14;
             this.metroLabel11.Text = "Перец";
             this.metroToolTip1.SetToolTip(this.metroLabel11, "Процент показывающий силу шума >0 ");
@@ -866,10 +822,9 @@
             // 
             // 
             this.metroTextBox10.CustomButton.Image = null;
-            this.metroTextBox10.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox10.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox10.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox10.CustomButton.Name = "";
-            this.metroTextBox10.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox10.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox10.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox10.CustomButton.TabIndex = 1;
             this.metroTextBox10.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -877,8 +832,7 @@
             this.metroTextBox10.CustomButton.Visible = false;
             this.metroTextBox10.Lines = new string[] {
         "30"};
-            this.metroTextBox10.Location = new System.Drawing.Point(288, 158);
-            this.metroTextBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox10.Location = new System.Drawing.Point(216, 128);
             this.metroTextBox10.MaxLength = 32767;
             this.metroTextBox10.Name = "metroTextBox10";
             this.metroTextBox10.PasswordChar = '\0';
@@ -887,7 +841,7 @@
             this.metroTextBox10.SelectionLength = 0;
             this.metroTextBox10.SelectionStart = 0;
             this.metroTextBox10.ShortcutsEnabled = true;
-            this.metroTextBox10.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox10.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox10.TabIndex = 24;
             this.metroTextBox10.Text = "30";
             this.metroToolTip1.SetToolTip(this.metroTextBox10, "Правое значение шума");
@@ -901,10 +855,9 @@
             // 
             // 
             this.metroTextBox5.CustomButton.Image = null;
-            this.metroTextBox5.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox5.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox5.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox5.CustomButton.Name = "";
-            this.metroTextBox5.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox5.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox5.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox5.CustomButton.TabIndex = 1;
             this.metroTextBox5.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -912,8 +865,7 @@
             this.metroTextBox5.CustomButton.Visible = false;
             this.metroTextBox5.Lines = new string[] {
         "3"};
-            this.metroTextBox5.Location = new System.Drawing.Point(153, 50);
-            this.metroTextBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox5.Location = new System.Drawing.Point(115, 41);
             this.metroTextBox5.MaxLength = 32767;
             this.metroTextBox5.Name = "metroTextBox5";
             this.metroTextBox5.PasswordChar = '\0';
@@ -922,7 +874,7 @@
             this.metroTextBox5.SelectionLength = 0;
             this.metroTextBox5.SelectionStart = 0;
             this.metroTextBox5.ShortcutsEnabled = true;
-            this.metroTextBox5.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox5.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox5.TabIndex = 15;
             this.metroTextBox5.Text = "3";
             this.metroToolTip1.SetToolTip(this.metroTextBox5, "Процент показывающий силу шума >0 ");
@@ -936,10 +888,9 @@
             // 
             // 
             this.metroTextBox9.CustomButton.Image = null;
-            this.metroTextBox9.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox9.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox9.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox9.CustomButton.Name = "";
-            this.metroTextBox9.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox9.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox9.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox9.CustomButton.TabIndex = 1;
             this.metroTextBox9.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -947,8 +898,7 @@
             this.metroTextBox9.CustomButton.Visible = false;
             this.metroTextBox9.Lines = new string[] {
         "-30"};
-            this.metroTextBox9.Location = new System.Drawing.Point(180, 158);
-            this.metroTextBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox9.Location = new System.Drawing.Point(135, 128);
             this.metroTextBox9.MaxLength = 32767;
             this.metroTextBox9.Name = "metroTextBox9";
             this.metroTextBox9.PasswordChar = '\0';
@@ -957,7 +907,7 @@
             this.metroTextBox9.SelectionLength = 0;
             this.metroTextBox9.SelectionStart = 0;
             this.metroTextBox9.ShortcutsEnabled = true;
-            this.metroTextBox9.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox9.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox9.TabIndex = 23;
             this.metroTextBox9.Text = "-30";
             this.metroToolTip1.SetToolTip(this.metroTextBox9, "Левое значение шума");
@@ -968,10 +918,9 @@
             // metroLabel12
             // 
             this.metroLabel12.AutoSize = true;
-            this.metroLabel12.Location = new System.Drawing.Point(4, 86);
-            this.metroLabel12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel12.Location = new System.Drawing.Point(3, 70);
             this.metroLabel12.Name = "metroLabel12";
-            this.metroLabel12.Size = new System.Drawing.Size(100, 20);
+            this.metroLabel12.Size = new System.Drawing.Size(94, 19);
             this.metroLabel12.TabIndex = 16;
             this.metroLabel12.Text = "Черные дыры";
             this.metroToolTip1.SetToolTip(this.metroLabel12, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
@@ -979,10 +928,9 @@
             // metroLabel16
             // 
             this.metroLabel16.AutoSize = true;
-            this.metroLabel16.Location = new System.Drawing.Point(4, 154);
-            this.metroLabel16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel16.Location = new System.Drawing.Point(3, 125);
             this.metroLabel16.Name = "metroLabel16";
-            this.metroLabel16.Size = new System.Drawing.Size(131, 20);
+            this.metroLabel16.Size = new System.Drawing.Size(126, 19);
             this.metroLabel16.TabIndex = 22;
             this.metroLabel16.Text = "Равномерный шум";
             this.metroToolTip1.SetToolTip(this.metroLabel16, "Левое и правое значение шума");
@@ -993,10 +941,9 @@
             // 
             // 
             this.metroTextBox6.CustomButton.Image = null;
-            this.metroTextBox6.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox6.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox6.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox6.CustomButton.Name = "";
-            this.metroTextBox6.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox6.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox6.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox6.CustomButton.TabIndex = 1;
             this.metroTextBox6.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1004,8 +951,7 @@
             this.metroTextBox6.CustomButton.Visible = false;
             this.metroTextBox6.Lines = new string[] {
         "1"};
-            this.metroTextBox6.Location = new System.Drawing.Point(153, 86);
-            this.metroTextBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox6.Location = new System.Drawing.Point(115, 70);
             this.metroTextBox6.MaxLength = 32767;
             this.metroTextBox6.Name = "metroTextBox6";
             this.metroTextBox6.PasswordChar = '\0';
@@ -1014,7 +960,7 @@
             this.metroTextBox6.SelectionLength = 0;
             this.metroTextBox6.SelectionStart = 0;
             this.metroTextBox6.ShortcutsEnabled = true;
-            this.metroTextBox6.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox6.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox6.TabIndex = 17;
             this.metroTextBox6.Text = "1";
             this.metroToolTip1.SetToolTip(this.metroTextBox6, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
@@ -1025,10 +971,9 @@
             // metroLabel13
             // 
             this.metroLabel13.AutoSize = true;
-            this.metroLabel13.Location = new System.Drawing.Point(4, 122);
-            this.metroLabel13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel13.Location = new System.Drawing.Point(3, 99);
             this.metroLabel13.Name = "metroLabel13";
-            this.metroLabel13.Size = new System.Drawing.Size(91, 20);
+            this.metroLabel13.Size = new System.Drawing.Size(84, 19);
             this.metroLabel13.TabIndex = 18;
             this.metroLabel13.Text = "Белые дыры";
             this.metroToolTip1.SetToolTip(this.metroLabel13, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
@@ -1039,10 +984,9 @@
             // 
             // 
             this.metroTextBox7.CustomButton.Image = null;
-            this.metroTextBox7.CustomButton.Location = new System.Drawing.Point(99, 2);
-            this.metroTextBox7.CustomButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.metroTextBox7.CustomButton.Location = new System.Drawing.Point(53, 1);
             this.metroTextBox7.CustomButton.Name = "";
-            this.metroTextBox7.CustomButton.Size = new System.Drawing.Size(31, 28);
+            this.metroTextBox7.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.metroTextBox7.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroTextBox7.CustomButton.TabIndex = 1;
             this.metroTextBox7.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -1050,8 +994,7 @@
             this.metroTextBox7.CustomButton.Visible = false;
             this.metroTextBox7.Lines = new string[] {
         "1"};
-            this.metroTextBox7.Location = new System.Drawing.Point(153, 122);
-            this.metroTextBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTextBox7.Location = new System.Drawing.Point(115, 99);
             this.metroTextBox7.MaxLength = 32767;
             this.metroTextBox7.Name = "metroTextBox7";
             this.metroTextBox7.PasswordChar = '\0';
@@ -1060,7 +1003,7 @@
             this.metroTextBox7.SelectionLength = 0;
             this.metroTextBox7.SelectionStart = 0;
             this.metroTextBox7.ShortcutsEnabled = true;
-            this.metroTextBox7.Size = new System.Drawing.Size(100, 28);
+            this.metroTextBox7.Size = new System.Drawing.Size(75, 23);
             this.metroTextBox7.TabIndex = 19;
             this.metroTextBox7.Text = "1";
             this.metroToolTip1.SetToolTip(this.metroTextBox7, "Коэффициент зашумленности >0 (Рекомендуемые значения от 1 до 5)");
@@ -1077,26 +1020,24 @@
             this.metroTabPage3.Controls.Add(this.pictureBox3);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.HorizontalScrollbarSize = 12;
+            this.metroTabPage3.HorizontalScrollbarSize = 10;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
-            this.metroTabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(987, 615);
+            this.metroTabPage3.Size = new System.Drawing.Size(724, 452);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Теория";
             this.metroTabPage3.ToolTipText = "Теоретическая часть";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
-            this.metroTabPage3.VerticalScrollbarSize = 13;
+            this.metroTabPage3.VerticalScrollbarSize = 10;
             // 
             // pictureBox6
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox6.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox6.Location = new System.Drawing.Point(12, 416);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Location = new System.Drawing.Point(9, 338);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(436, 137);
+            this.pictureBox6.Size = new System.Drawing.Size(327, 111);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 16;
             this.pictureBox6.TabStop = false;
@@ -1106,10 +1047,9 @@
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox5.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox5.Location = new System.Drawing.Point(508, 385);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Location = new System.Drawing.Point(381, 313);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(453, 167);
+            this.pictureBox5.Size = new System.Drawing.Size(340, 136);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 14;
             this.pictureBox5.TabStop = false;
@@ -1118,10 +1058,9 @@
             // showTheoryButton
             // 
             this.showTheoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.showTheoryButton.Location = new System.Drawing.Point(12, 385);
-            this.showTheoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showTheoryButton.Location = new System.Drawing.Point(9, 313);
             this.showTheoryButton.Name = "showTheoryButton";
-            this.showTheoryButton.Size = new System.Drawing.Size(436, 23);
+            this.showTheoryButton.Size = new System.Drawing.Size(327, 19);
             this.showTheoryButton.TabIndex = 13;
             this.showTheoryButton.Text = "Фильтр";
             this.metroToolTip1.SetToolTip(this.showTheoryButton, "Выбор теории");
@@ -1130,13 +1069,12 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Location = new System.Drawing.Point(508, 4);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Location = new System.Drawing.Point(381, 3);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(453, 374);
+            this.pictureBox4.Size = new System.Drawing.Size(340, 304);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 12;
             this.pictureBox4.TabStop = false;
@@ -1144,13 +1082,12 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.Location = new System.Drawing.Point(11, 4);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Location = new System.Drawing.Point(8, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(437, 374);
+            this.pictureBox3.Size = new System.Drawing.Size(328, 304);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 11;
             this.pictureBox3.TabStop = false;
@@ -1179,7 +1116,7 @@
             this.morphologyToolStripMenuItem,
             this.helperMethodsToolStripMenuItem});
             this.metroContextMenu1.Name = "metroContextMenu1";
-            this.metroContextMenu1.Size = new System.Drawing.Size(286, 136);
+            this.metroContextMenu1.Size = new System.Drawing.Size(246, 136);
             // 
             // smoothingToolStripMenuItem
             // 
@@ -1189,22 +1126,15 @@
             this.linearToolStripMenuItem,
             this.gaussianToolStripMenuItem});
             this.smoothingToolStripMenuItem.Name = "smoothingToolStripMenuItem";
-            this.smoothingToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.smoothingToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.smoothingToolStripMenuItem.Text = "Сглаживающие фильтры";
             // 
             // medianaToolStripMenuItem
             // 
             this.medianaToolStripMenuItem.Name = "medianaToolStripMenuItem";
-            this.medianaToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.medianaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.medianaToolStripMenuItem.Text = "Медианный";
             this.medianaToolStripMenuItem.Click += new System.EventHandler(this.MedianaToolStripMenuItem_Click);
-            // 
-            // geometricMeanToolStripMenuItem
-            // 
-            this.geometricMeanToolStripMenuItem.Name = "geometricMeanToolStripMenuItem";
-            this.geometricMeanToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
-            this.geometricMeanToolStripMenuItem.Text = "Среднее геометрическое";
-            this.geometricMeanToolStripMenuItem.Click += new System.EventHandler(this.GeometricMeanToolStripMenuItem_Click);
             // 
             // linearToolStripMenuItem
             // 
@@ -1212,74 +1142,81 @@
             this.linearSmoothingToolStripMenuItem,
             this.extendedLinearSmoothingToolStripMenuItem});
             this.linearToolStripMenuItem.Name = "linearToolStripMenuItem";
-            this.linearToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.linearToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.linearToolStripMenuItem.Text = "Линейный";
             // 
             // linearSmoothingToolStripMenuItem
             // 
             this.linearSmoothingToolStripMenuItem.Name = "linearSmoothingToolStripMenuItem";
-            this.linearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.linearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.linearSmoothingToolStripMenuItem.Text = "Обычная маска";
             this.linearSmoothingToolStripMenuItem.Click += new System.EventHandler(this.LinearSmoothingToolStripMenuItem_Click);
             // 
             // extendedLinearSmoothingToolStripMenuItem
             // 
             this.extendedLinearSmoothingToolStripMenuItem.Name = "extendedLinearSmoothingToolStripMenuItem";
-            this.extendedLinearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.extendedLinearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.extendedLinearSmoothingToolStripMenuItem.Text = "Расширенная маска";
             this.extendedLinearSmoothingToolStripMenuItem.Click += new System.EventHandler(this.ExtendedLinearSmoothingToolStripMenuItem_Click);
             // 
             // gaussianToolStripMenuItem
             // 
             this.gaussianToolStripMenuItem.Name = "gaussianToolStripMenuItem";
-            this.gaussianToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.gaussianToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.gaussianToolStripMenuItem.Text = "Фильтр Гаусса";
             this.gaussianToolStripMenuItem.Click += new System.EventHandler(this.GaussianToolStripMenuItem_Click);
             // 
             // averagingToolStripMenuItem
             // 
             this.averagingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.harmonicMeanToolStripMenuItem,
+                this.harmonicMeanToolStripMenuItem,
             this.counterHarmonicMeanToolStripMenuItem,
             this.maximumToolStripMenuItem,
             this.minimumToolStripMenuItem,
             this.midPointToolStripMenuItem});
             this.averagingToolStripMenuItem.Name = "averagingToolStripMenuItem";
-            this.averagingToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.averagingToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.averagingToolStripMenuItem.Text = "Усредняющие фильтры";
+            // 
+            // geometricMeanToolStripMenuItem
+            // 
+            this.geometricMeanToolStripMenuItem.Name = "geometricMeanToolStripMenuItem";
+            this.geometricMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.geometricMeanToolStripMenuItem.Text = "Среднее геометрическое";
+            this.geometricMeanToolStripMenuItem.Click += new System.EventHandler(this.GeometricMeanToolStripMenuItem_Click);
             // 
             // harmonicMeanToolStripMenuItem
             // 
             this.harmonicMeanToolStripMenuItem.Name = "harmonicMeanToolStripMenuItem";
-            this.harmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.harmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.harmonicMeanToolStripMenuItem.Text = "Среднее гармоническое";
             this.harmonicMeanToolStripMenuItem.Click += new System.EventHandler(this.HarmonicMeanToolStripMenuItem_Click);
             // 
             // counterHarmonicMeanToolStripMenuItem
             // 
             this.counterHarmonicMeanToolStripMenuItem.Name = "counterHarmonicMeanToolStripMenuItem";
-            this.counterHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.counterHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.counterHarmonicMeanToolStripMenuItem.Text = "Среднее контргармоническое";
             this.counterHarmonicMeanToolStripMenuItem.Click += new System.EventHandler(this.CounterHarmonicMeanToolStripMenuItem_Click);
             // 
             // maximumToolStripMenuItem
             // 
             this.maximumToolStripMenuItem.Name = "maximumToolStripMenuItem";
-            this.maximumToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.maximumToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.maximumToolStripMenuItem.Text = "Фильтр максимума";
             this.maximumToolStripMenuItem.Click += new System.EventHandler(this.MaximumToolStripMenuItem_Click);
             // 
             // minimumToolStripMenuItem
             // 
             this.minimumToolStripMenuItem.Name = "minimumToolStripMenuItem";
-            this.minimumToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.minimumToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.minimumToolStripMenuItem.Text = "Фильтр минимума";
             this.minimumToolStripMenuItem.Click += new System.EventHandler(this.MinimumToolStripMenuItem_Click);
             // 
             // midPointToolStripMenuItem
             // 
             this.midPointToolStripMenuItem.Name = "midPointToolStripMenuItem";
-            this.midPointToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.midPointToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.midPointToolStripMenuItem.Text = "Фильтр срединной точки";
             this.midPointToolStripMenuItem.Click += new System.EventHandler(this.MidPointToolStripMenuItem_Click);
             // 
@@ -1293,7 +1230,7 @@
             this.diZenzoToolStripMenuItem,
             this.sobelMeanToolStripMenuItem});
             this.sharpnessToolStripMenuItem.Name = "sharpnessToolStripMenuItem";
-            this.sharpnessToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.sharpnessToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.sharpnessToolStripMenuItem.Text = "Фильтры повышения резкости";
             // 
             // intermediateLaplaceToolStripMenuItem
@@ -1302,20 +1239,20 @@
             this.laplaceToolStripMenuItem,
             this.extendedLaplaceToolStripMenuItem});
             this.intermediateLaplaceToolStripMenuItem.Name = "intermediateLaplaceToolStripMenuItem";
-            this.intermediateLaplaceToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.intermediateLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.intermediateLaplaceToolStripMenuItem.Text = "Оператор Лапласа";
             // 
             // laplaceToolStripMenuItem
             // 
             this.laplaceToolStripMenuItem.Name = "laplaceToolStripMenuItem";
-            this.laplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.laplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.laplaceToolStripMenuItem.Text = "Обычная матрица";
             this.laplaceToolStripMenuItem.Click += new System.EventHandler(this.LaplaceToolStripMenuItem_Click);
             // 
             // extendedLaplaceToolStripMenuItem
             // 
             this.extendedLaplaceToolStripMenuItem.Name = "extendedLaplaceToolStripMenuItem";
-            this.extendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.extendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.extendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
             this.extendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.ExtendedLaplaceToolStripMenuItem_Click);
             // 
@@ -1325,48 +1262,48 @@
             this.restoredLaplaceToolStripMenuItem,
             this.restoredExtendedLaplaceToolStripMenuItem});
             this.intermediateRestoredLaplaceToolStripMenuItem.Name = "intermediateRestoredLaplaceToolStripMenuItem";
-            this.intermediateRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.intermediateRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.intermediateRestoredLaplaceToolStripMenuItem.Text = "Оператор Лапласа с восстановленным фоном";
             // 
             // restoredLaplaceToolStripMenuItem
             // 
             this.restoredLaplaceToolStripMenuItem.Name = "restoredLaplaceToolStripMenuItem";
-            this.restoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.restoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.restoredLaplaceToolStripMenuItem.Text = "Обычная матрица";
             this.restoredLaplaceToolStripMenuItem.Click += new System.EventHandler(this.RestoredLaplaceToolStripMenuItem_Click);
             // 
             // restoredExtendedLaplaceToolStripMenuItem
             // 
             this.restoredExtendedLaplaceToolStripMenuItem.Name = "restoredExtendedLaplaceToolStripMenuItem";
-            this.restoredExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.restoredExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.restoredExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
             this.restoredExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.RestoredExtendedLaplaceToolStripMenuItem_Click);
             // 
             // frequencyIncreaseToolStripMenuItem
             // 
             this.frequencyIncreaseToolStripMenuItem.Name = "frequencyIncreaseToolStripMenuItem";
-            this.frequencyIncreaseToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.frequencyIncreaseToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.frequencyIncreaseToolStripMenuItem.Text = "Фильтрация с подъемом высоких частот";
             this.frequencyIncreaseToolStripMenuItem.Click += new System.EventHandler(this.FrequencyIncreaseToolStripMenuItem_Click);
             // 
             // sobelToolStripMenuItem
             // 
             this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
-            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.sobelToolStripMenuItem.Text = "Оператор Cобеля";
             this.sobelToolStripMenuItem.Click += new System.EventHandler(this.SobelToolStripMenuItem_Click);
             // 
             // diZenzoToolStripMenuItem
             // 
             this.diZenzoToolStripMenuItem.Name = "diZenzoToolStripMenuItem";
-            this.diZenzoToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.diZenzoToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.diZenzoToolStripMenuItem.Text = "Метод Ди Зензо";
             this.diZenzoToolStripMenuItem.Click += new System.EventHandler(this.DiZenzoToolStripMenuItem_Click);
             // 
             // sobelMeanToolStripMenuItem
             // 
             this.sobelMeanToolStripMenuItem.Name = "sobelMeanToolStripMenuItem";
-            this.sobelMeanToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.sobelMeanToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.sobelMeanToolStripMenuItem.Text = "Оператор Собеля для цветного изображения";
             this.sobelMeanToolStripMenuItem.Click += new System.EventHandler(this.SobelMeanToolStripMenuItem_Click);
             // 
@@ -1381,55 +1318,55 @@
             this.gaussianNoiseToolStripMenuItem,
             this.uniformNoiseToolStripMenuItem});
             this.noiseToolStripMenuItem.Name = "noiseToolStripMenuItem";
-            this.noiseToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.noiseToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.noiseToolStripMenuItem.Text = "Шумы";
             // 
             // saltPepperToolStripMenuItem
             // 
             this.saltPepperToolStripMenuItem.Name = "saltPepperToolStripMenuItem";
-            this.saltPepperToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.saltPepperToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.saltPepperToolStripMenuItem.Text = "Соль и перец";
             this.saltPepperToolStripMenuItem.Click += new System.EventHandler(this.SaltPepperToolStripMenuItem_Click);
             // 
             // saltToolStripMenuItem
             // 
             this.saltToolStripMenuItem.Name = "saltToolStripMenuItem";
-            this.saltToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.saltToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.saltToolStripMenuItem.Text = "Соль";
             this.saltToolStripMenuItem.Click += new System.EventHandler(this.SaltToolStripMenuItem_Click);
             // 
             // pepperToolStripMenuItem
             // 
             this.pepperToolStripMenuItem.Name = "pepperToolStripMenuItem";
-            this.pepperToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.pepperToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.pepperToolStripMenuItem.Text = "Перец";
             this.pepperToolStripMenuItem.Click += new System.EventHandler(this.PepperToolStripMenuItem_Click);
             // 
             // blackHolesToolStripMenuItem
             // 
             this.blackHolesToolStripMenuItem.Name = "blackHolesToolStripMenuItem";
-            this.blackHolesToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.blackHolesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.blackHolesToolStripMenuItem.Text = "Черные дыры";
             this.blackHolesToolStripMenuItem.Click += new System.EventHandler(this.BlackHolesToolStripMenuItem_Click);
             // 
             // whiteHolesToolStripMenuItem
             // 
             this.whiteHolesToolStripMenuItem.Name = "whiteHolesToolStripMenuItem";
-            this.whiteHolesToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.whiteHolesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.whiteHolesToolStripMenuItem.Text = "Белые дыры";
             this.whiteHolesToolStripMenuItem.Click += new System.EventHandler(this.WhiteHolesToolStripMenuItem_Click);
             // 
             // gaussianNoiseToolStripMenuItem
             // 
             this.gaussianNoiseToolStripMenuItem.Name = "gaussianNoiseToolStripMenuItem";
-            this.gaussianNoiseToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.gaussianNoiseToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.gaussianNoiseToolStripMenuItem.Text = "Гауссовский шум";
             this.gaussianNoiseToolStripMenuItem.Click += new System.EventHandler(this.GaussianNoiseToolStripMenuItem_Click);
             // 
             // uniformNoiseToolStripMenuItem
             // 
             this.uniformNoiseToolStripMenuItem.Name = "uniformNoiseToolStripMenuItem";
-            this.uniformNoiseToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
+            this.uniformNoiseToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.uniformNoiseToolStripMenuItem.Text = "Равномерный шум";
             this.uniformNoiseToolStripMenuItem.Click += new System.EventHandler(this.UniformNoiseToolStripMenuItem_Click);
             // 
@@ -1441,34 +1378,34 @@
             this.openingToolStripMenuItem,
             this.closingToolStripMenuItem});
             this.morphologyToolStripMenuItem.Name = "morphologyToolStripMenuItem";
-            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.morphologyToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.morphologyToolStripMenuItem.Text = "Математическая морфология";
             // 
             // dilationToolStripMenuItem
             // 
             this.dilationToolStripMenuItem.Name = "dilationToolStripMenuItem";
-            this.dilationToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.dilationToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.dilationToolStripMenuItem.Text = "Дилатация";
             this.dilationToolStripMenuItem.Click += new System.EventHandler(this.DilationToolStripMenuItem_Click);
             // 
             // erosionToolStripMenuItem
             // 
             this.erosionToolStripMenuItem.Name = "erosionToolStripMenuItem";
-            this.erosionToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.erosionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.erosionToolStripMenuItem.Text = "Эрозия";
             this.erosionToolStripMenuItem.Click += new System.EventHandler(this.ErosionToolStripMenuItem_Click);
             // 
             // openingToolStripMenuItem
             // 
             this.openingToolStripMenuItem.Name = "openingToolStripMenuItem";
-            this.openingToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.openingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.openingToolStripMenuItem.Text = "Размыкание";
             this.openingToolStripMenuItem.Click += new System.EventHandler(this.OpeningToolStripMenuItem_Click);
             // 
             // closingToolStripMenuItem
             // 
             this.closingToolStripMenuItem.Name = "closingToolStripMenuItem";
-            this.closingToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.closingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.closingToolStripMenuItem.Text = "Замыкание";
             this.closingToolStripMenuItem.Click += new System.EventHandler(this.ClosingToolStripMenuItem_Click);
             // 
@@ -1480,34 +1417,34 @@
             this.greenComponentToolStripMenuItem,
             this.blueComponentToolStripMenuItem});
             this.helperMethodsToolStripMenuItem.Name = "helperMethodsToolStripMenuItem";
-            this.helperMethodsToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.helperMethodsToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.helperMethodsToolStripMenuItem.Text = "Вспомогательные методы";
             // 
             // blackAndWhiteToolStripMenuItem
             // 
             this.blackAndWhiteToolStripMenuItem.Name = "blackAndWhiteToolStripMenuItem";
-            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.blackAndWhiteToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.blackAndWhiteToolStripMenuItem.Text = "В черно белое";
             this.blackAndWhiteToolStripMenuItem.Click += new System.EventHandler(this.BlackAndWhiteToolStripMenuItem_Click);
             // 
             // redComponentToolStripMenuItem
             // 
             this.redComponentToolStripMenuItem.Name = "redComponentToolStripMenuItem";
-            this.redComponentToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.redComponentToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.redComponentToolStripMenuItem.Text = "Красная компонента";
             this.redComponentToolStripMenuItem.Click += new System.EventHandler(this.RedComponentToolStripMenuItem_Click);
             // 
             // greenComponentToolStripMenuItem
             // 
             this.greenComponentToolStripMenuItem.Name = "greenComponentToolStripMenuItem";
-            this.greenComponentToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.greenComponentToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.greenComponentToolStripMenuItem.Text = "Зеленая компонента";
             this.greenComponentToolStripMenuItem.Click += new System.EventHandler(this.GreenComponentToolStripMenuItem_Click);
             // 
             // blueComponentToolStripMenuItem
             // 
             this.blueComponentToolStripMenuItem.Name = "blueComponentToolStripMenuItem";
-            this.blueComponentToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.blueComponentToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.blueComponentToolStripMenuItem.Text = "Синяя компонента";
             this.blueComponentToolStripMenuItem.Click += new System.EventHandler(this.BlueComponentToolStripMenuItem_Click);
             // 
@@ -1516,10 +1453,9 @@
             this.upDiameterButton.BackgroundImage = global::ResearchWork.Properties.Resources.arrow_up_23783;
             this.upDiameterButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.upDiameterButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.upDiameterButton.Location = new System.Drawing.Point(311, 23);
-            this.upDiameterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.upDiameterButton.Location = new System.Drawing.Point(233, 19);
             this.upDiameterButton.Name = "upDiameterButton";
-            this.upDiameterButton.Size = new System.Drawing.Size(32, 28);
+            this.upDiameterButton.Size = new System.Drawing.Size(24, 23);
             this.upDiameterButton.TabIndex = 10;
             this.metroToolTip1.SetToolTip(this.upDiameterButton, "Кнопка увеличения размера ядра на 2");
             this.upDiameterButton.UseSelectable = true;
@@ -1529,10 +1465,9 @@
             // 
             this.dpwnDiameterButton.BackgroundImage = global::ResearchWork.Properties.Resources.arrow_down_23783;
             this.dpwnDiameterButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.dpwnDiameterButton.Location = new System.Drawing.Point(311, 59);
-            this.dpwnDiameterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dpwnDiameterButton.Location = new System.Drawing.Point(233, 48);
             this.dpwnDiameterButton.Name = "dpwnDiameterButton";
-            this.dpwnDiameterButton.Size = new System.Drawing.Size(31, 28);
+            this.dpwnDiameterButton.Size = new System.Drawing.Size(23, 23);
             this.dpwnDiameterButton.TabIndex = 11;
             this.metroToolTip1.SetToolTip(this.dpwnDiameterButton, "Кнопка уменьшения размера ядра на 2");
             this.dpwnDiameterButton.UseSelectable = true;
@@ -1542,10 +1477,9 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel2.Location = new System.Drawing.Point(349, 43);
-            this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel2.Location = new System.Drawing.Point(262, 35);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(136, 25);
+            this.metroLabel2.Size = new System.Drawing.Size(129, 25);
             this.metroLabel2.TabIndex = 12;
             this.metroLabel2.Text = "Размер ядра: 3";
             this.metroToolTip1.SetToolTip(this.metroLabel2, "Диаметр ядра");
@@ -1565,30 +1499,23 @@
             this.loadTheorySharpnessToolStripMenuItem,
             this.loadTheoryMorphologyToolStripMenuItem});
             this.metroContextMenu2.Name = "metroContextMenu1";
-            this.metroContextMenu2.Size = new System.Drawing.Size(286, 92);
+            this.metroContextMenu2.Size = new System.Drawing.Size(246, 114);
             // 
             // loadTheorySmoothingToolStripMenuItem
             // 
             this.loadTheorySmoothingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryGeometricMeanToolStripMenuItem,
+                this.loadTheoryGeometricMeanToolStripMenuItem,
             this.loadTheoryMedianaToolStripMenuItem,
             this.loadTheoryLinearToolStripMenuItem,
             this.loadTheoryGaussianStripMenuItem});
             this.loadTheorySmoothingToolStripMenuItem.Name = "loadTheorySmoothingToolStripMenuItem";
-            this.loadTheorySmoothingToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.loadTheorySmoothingToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.loadTheorySmoothingToolStripMenuItem.Text = "Сглаживающие фильтры";
-            // 
-            // loadTheoryGeometricMeanToolStripMenuItem
-            // 
-            this.loadTheoryGeometricMeanToolStripMenuItem.Name = "loadTheoryGeometricMeanToolStripMenuItem";
-            this.loadTheoryGeometricMeanToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
-            this.loadTheoryGeometricMeanToolStripMenuItem.Text = "Среднее геометрическое";
-            this.loadTheoryGeometricMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryGeometricMeanToolStripMenuItem_Click);
             // 
             // loadTheoryMedianaToolStripMenuItem
             // 
             this.loadTheoryMedianaToolStripMenuItem.Name = "loadTheoryMedianaToolStripMenuItem";
-            this.loadTheoryMedianaToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.loadTheoryMedianaToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.loadTheoryMedianaToolStripMenuItem.Text = "Медианный";
             this.loadTheoryMedianaToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMedianaToolStripMenuItem_Click);
             // 
@@ -1598,74 +1525,81 @@
             this.loadTheoryLinearSmoothingToolStripMenuItem,
             this.loadTheoryExtendedLinearSmoothingToolStripMenuItem});
             this.loadTheoryLinearToolStripMenuItem.Name = "loadTheoryLinearToolStripMenuItem";
-            this.loadTheoryLinearToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.loadTheoryLinearToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.loadTheoryLinearToolStripMenuItem.Text = "Линейный";
             // 
             // loadTheoryLinearSmoothingToolStripMenuItem
             // 
             this.loadTheoryLinearSmoothingToolStripMenuItem.Name = "loadTheoryLinearSmoothingToolStripMenuItem";
-            this.loadTheoryLinearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.loadTheoryLinearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.loadTheoryLinearSmoothingToolStripMenuItem.Text = "Обычная маска";
             this.loadTheoryLinearSmoothingToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryLinearSmoothingToolStripMenuItem_Click);
             // 
             // loadTheoryExtendedLinearSmoothingToolStripMenuItem
             // 
             this.loadTheoryExtendedLinearSmoothingToolStripMenuItem.Name = "loadTheoryExtendedLinearSmoothingToolStripMenuItem";
-            this.loadTheoryExtendedLinearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(226, 26);
+            this.loadTheoryExtendedLinearSmoothingToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.loadTheoryExtendedLinearSmoothingToolStripMenuItem.Text = "Расширенная маска";
             this.loadTheoryExtendedLinearSmoothingToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryExtendedLinearSmoothingToolStripMenuItem_Click);
             // 
             // loadTheoryGaussianStripMenuItem
             // 
             this.loadTheoryGaussianStripMenuItem.Name = "loadTheoryGaussianStripMenuItem";
-            this.loadTheoryGaussianStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.loadTheoryGaussianStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.loadTheoryGaussianStripMenuItem.Text = "Фильтр Гаусса";
             this.loadTheoryGaussianStripMenuItem.Click += new System.EventHandler(this.LoadTheoryGaussianStripMenuItem_Click);
             // 
             // loadTheoryAveragingToolStripMenuItem
             // 
             this.loadTheoryAveragingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadTheoryHarmonicMeanToolStripMenuItem,
+                this.loadTheoryHarmonicMeanToolStripMenuItem,
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem,
             this.loadTheoryMaximumToolStripMenuItem,
             this.loadTheoryMinimumToolStripMenuItem,
             this.loadTheoryMidPointToolStripMenuItem});
             this.loadTheoryAveragingToolStripMenuItem.Name = "loadTheoryAveragingToolStripMenuItem";
-            this.loadTheoryAveragingToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.loadTheoryAveragingToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.loadTheoryAveragingToolStripMenuItem.Text = "Усредняющие фильтры";
+            // 
+            // loadTheoryGeometricMeanToolStripMenuItem
+            // 
+            this.loadTheoryGeometricMeanToolStripMenuItem.Name = "loadTheoryGeometricMeanToolStripMenuItem";
+            this.loadTheoryGeometricMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
+            this.loadTheoryGeometricMeanToolStripMenuItem.Text = "Среднее геометрическое";
+            this.loadTheoryGeometricMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryGeometricMeanToolStripMenuItem_Click);
             // 
             // loadTheoryHarmonicMeanToolStripMenuItem
             // 
             this.loadTheoryHarmonicMeanToolStripMenuItem.Name = "loadTheoryHarmonicMeanToolStripMenuItem";
-            this.loadTheoryHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.loadTheoryHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryHarmonicMeanToolStripMenuItem.Text = "Среднее гармоническое";
             this.loadTheoryHarmonicMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryHarmonicMeanToolStripMenuItem_Click);
             // 
             // loadTheoryCounterHarmonicMeanToolStripMenuItem
             // 
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Name = "loadTheoryCounterHarmonicMeanToolStripMenuItem";
-            this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Text = "Среднее контргармоническое";
             this.loadTheoryCounterHarmonicMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryCounterHarmonicMeanToolStripMenuItem_Click);
             // 
             // loadTheoryMaximumToolStripMenuItem
             // 
             this.loadTheoryMaximumToolStripMenuItem.Name = "loadTheoryMaximumToolStripMenuItem";
-            this.loadTheoryMaximumToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.loadTheoryMaximumToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMaximumToolStripMenuItem.Text = "Фильтр максимума";
             this.loadTheoryMaximumToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMaximumToolStripMenuItem_Click);
             // 
             // loadTheoryMinimumToolStripMenuItem
             // 
             this.loadTheoryMinimumToolStripMenuItem.Name = "loadTheoryMinimumToolStripMenuItem";
-            this.loadTheoryMinimumToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.loadTheoryMinimumToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMinimumToolStripMenuItem.Text = "Фильтр минимума";
             this.loadTheoryMinimumToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMinimumToolStripMenuItem_Click);
             // 
             // loadTheoryMidPointToolStripMenuItem
             // 
             this.loadTheoryMidPointToolStripMenuItem.Name = "loadTheoryMidPointToolStripMenuItem";
-            this.loadTheoryMidPointToolStripMenuItem.Size = new System.Drawing.Size(293, 26);
+            this.loadTheoryMidPointToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.loadTheoryMidPointToolStripMenuItem.Text = "Фильтр срединной точки";
             this.loadTheoryMidPointToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryMidPointToolStripMenuItem_Click);
             // 
@@ -1679,7 +1613,7 @@
             this.loadTheoryDiZenzoToolStripMenuItem,
             this.loadTheorySobelMeanToolStripMenuItem});
             this.loadTheorySharpnessToolStripMenuItem.Name = "loadTheorySharpnessToolStripMenuItem";
-            this.loadTheorySharpnessToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.loadTheorySharpnessToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.loadTheorySharpnessToolStripMenuItem.Text = "Фильтры повышения резкости";
             // 
             // loadTheoryIntermediateLaplaceToolStripMenuItem
@@ -1688,20 +1622,20 @@
             this.loadTheoryLaplaceToolStripMenuItem,
             this.loadTheoryExtendedLaplaceToolStripMenuItem});
             this.loadTheoryIntermediateLaplaceToolStripMenuItem.Name = "loadTheoryIntermediateLaplaceToolStripMenuItem";
-            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.loadTheoryIntermediateLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheoryIntermediateLaplaceToolStripMenuItem.Text = "Оператор Лапласа";
             // 
             // loadTheoryLaplaceToolStripMenuItem
             // 
             this.loadTheoryLaplaceToolStripMenuItem.Name = "loadTheoryLaplaceToolStripMenuItem";
-            this.loadTheoryLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.loadTheoryLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.loadTheoryLaplaceToolStripMenuItem.Text = "Обычная матрица";
             this.loadTheoryLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryLaplaceToolStripMenuItem_Click);
             // 
             // loadTheoryExtendedLaplaceToolStripMenuItem
             // 
             this.loadTheoryExtendedLaplaceToolStripMenuItem.Name = "loadTheoryExtendedLaplaceToolStripMenuItem";
-            this.loadTheoryExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.loadTheoryExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.loadTheoryExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
             this.loadTheoryExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryExtendedLaplaceToolStripMenuItem_Click);
             // 
@@ -1711,48 +1645,48 @@
             this.loadTheoryRestoredLaplaceToolStripMenuItem,
             this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem});
             this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Name = "loadTheoryIntermediateRestoredLaplaceToolStripMenuItem";
-            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheoryIntermediateRestoredLaplaceToolStripMenuItem.Text = "Оператор Лапласа с восстановленным фоном";
             // 
             // loadTheoryRestoredLaplaceToolStripMenuItem
             // 
             this.loadTheoryRestoredLaplaceToolStripMenuItem.Name = "loadTheoryRestoredLaplaceToolStripMenuItem";
-            this.loadTheoryRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.loadTheoryRestoredLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.loadTheoryRestoredLaplaceToolStripMenuItem.Text = "Обычная матрица";
             this.loadTheoryRestoredLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryRestoredLaplaceToolStripMenuItem_Click);
             // 
             // loadTheoryRestoredExtendedLaplaceToolStripMenuItem
             // 
             this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Name = "loadTheoryRestoredExtendedLaplaceToolStripMenuItem";
-            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Text = "Расширенная матрица";
             this.loadTheoryRestoredExtendedLaplaceToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryRestoredExtendedLaplaceToolStripMenuItem_Click);
             // 
             // loadTheoryFrequencyIncreaseToolStripMenuItem
             // 
             this.loadTheoryFrequencyIncreaseToolStripMenuItem.Name = "loadTheoryFrequencyIncreaseToolStripMenuItem";
-            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.loadTheoryFrequencyIncreaseToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheoryFrequencyIncreaseToolStripMenuItem.Text = "Фильтрация с подъемом высоких частот";
             this.loadTheoryFrequencyIncreaseToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryFrequencyIncreaseToolStripMenuItem_Click);
             // 
             // loadTheorySobelToolStripMenuItem
             // 
             this.loadTheorySobelToolStripMenuItem.Name = "loadTheorySobelToolStripMenuItem";
-            this.loadTheorySobelToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.loadTheorySobelToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheorySobelToolStripMenuItem.Text = "Оператор Cобеля";
             this.loadTheorySobelToolStripMenuItem.Click += new System.EventHandler(this.LoadTheorySobelToolStripMenuItem_Click);
             // 
             // loadTheoryDiZenzoToolStripMenuItem
             // 
             this.loadTheoryDiZenzoToolStripMenuItem.Name = "loadTheoryDiZenzoToolStripMenuItem";
-            this.loadTheoryDiZenzoToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.loadTheoryDiZenzoToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheoryDiZenzoToolStripMenuItem.Text = "Метод Ди Зензо";
             this.loadTheoryDiZenzoToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryDiZenzoToolStripMenuItem_Click);
             // 
             // loadTheorySobelMeanToolStripMenuItem
             // 
             this.loadTheorySobelMeanToolStripMenuItem.Name = "loadTheorySobelMeanToolStripMenuItem";
-            this.loadTheorySobelMeanToolStripMenuItem.Size = new System.Drawing.Size(409, 26);
+            this.loadTheorySobelMeanToolStripMenuItem.Size = new System.Drawing.Size(332, 22);
             this.loadTheorySobelMeanToolStripMenuItem.Text = "Оператор Собеля для цветного изображения";
             this.loadTheorySobelMeanToolStripMenuItem.Click += new System.EventHandler(this.LoadTheorySobelMeanToolStripMenuItem_Click);
             // 
@@ -1764,51 +1698,49 @@
             this.loadTheoryOpeningToolStripMenuItem,
             this.loadTheoryClosingToolStripMenuItem});
             this.loadTheoryMorphologyToolStripMenuItem.Name = "loadTheoryMorphologyToolStripMenuItem";
-            this.loadTheoryMorphologyToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.loadTheoryMorphologyToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.loadTheoryMorphologyToolStripMenuItem.Text = "Математическая морфология";
             // 
             // loadTheoryDilationToolStripMenuItem
             // 
             this.loadTheoryDilationToolStripMenuItem.Name = "loadTheoryDilationToolStripMenuItem";
-            this.loadTheoryDilationToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.loadTheoryDilationToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadTheoryDilationToolStripMenuItem.Text = "Дилатация";
             this.loadTheoryDilationToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryDilationToolStripMenuItem_Click);
             // 
             // loadTheoryErosionToolStripMenuItem
             // 
             this.loadTheoryErosionToolStripMenuItem.Name = "loadTheoryErosionToolStripMenuItem";
-            this.loadTheoryErosionToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.loadTheoryErosionToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadTheoryErosionToolStripMenuItem.Text = "Эрозия";
             this.loadTheoryErosionToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryErosionToolStripMenuItem_Click);
             // 
             // loadTheoryOpeningToolStripMenuItem
             // 
             this.loadTheoryOpeningToolStripMenuItem.Name = "loadTheoryOpeningToolStripMenuItem";
-            this.loadTheoryOpeningToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.loadTheoryOpeningToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadTheoryOpeningToolStripMenuItem.Text = "Размыкание";
             this.loadTheoryOpeningToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryOpeningToolStripMenuItem_Click);
             // 
             // loadTheoryClosingToolStripMenuItem
             // 
             this.loadTheoryClosingToolStripMenuItem.Name = "loadTheoryClosingToolStripMenuItem";
-            this.loadTheoryClosingToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.loadTheoryClosingToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadTheoryClosingToolStripMenuItem.Text = "Замыкание";
             this.loadTheoryClosingToolStripMenuItem.Click += new System.EventHandler(this.LoadTheoryClosingToolStripMenuItem_Click);
             // 
             // ImageProcessing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 763);
+            this.ClientSize = new System.Drawing.Size(780, 620);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.dpwnDiameterButton);
             this.Controls.Add(this.upDiameterButton);
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.metroUserControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(1022, 714);
+            this.MinimumSize = new System.Drawing.Size(780, 620);
             this.Name = "ImageProcessing";
-            this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Text = "ImageProcessing";
             this.Activated += new System.EventHandler(this.ImageProcessing_Activated);
             this.Resize += new System.EventHandler(this.ImageProcessing_Resize);

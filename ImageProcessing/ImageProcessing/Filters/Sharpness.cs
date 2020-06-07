@@ -5,22 +5,22 @@ namespace ResearchWork
 {
     class Sobel : Filter
     {
-        private  double[,] kernelX;
-        private  double[,] kernelY;
+        private double[,] kernelX;
+        private double[,] kernelY;
 
         public Sobel()
         {
             this.diameter = 3;
             this.radius = diameter / 2;
-            this.kernelX = new double[,] { 
+            this.kernelX = new double[,] {
                 { -1, 0, 1 },
-                { -2, 0, 2 }, 
+                { -2, 0, 2 },
                 { -1, 0, 1 } };
 
             this.kernelY = new double[,]
             {
-                { -1, -2, -1 }, 
-                { 0, 0, 0 }, 
+                { -1, -2, -1 },
+                { 0, 0, 0 },
                 { 1, 2, 1 }
             };
         }
@@ -89,7 +89,7 @@ namespace ResearchWork
                 {
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
-                   
+
                     redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius];
                     greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius];
                     blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius];
@@ -99,17 +99,17 @@ namespace ResearchWork
                     blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius];
                 }
             }
-            int result  = Clamp((int)(
-                (Math.Sqrt(redX * redX + redY * redY) + 
+            int result = Clamp((int)(
+                (Math.Sqrt(redX * redX + redY * redY) +
                 Math.Sqrt(greenX * greenX + greenY * greenY) +
-                Math.Sqrt(blueX * blueX + blueY * blueY))/3), 0, 255);
+                Math.Sqrt(blueX * blueX + blueY * blueY)) / 3), 0, 255);
             return Color.FromArgb(result, result, result);
         }
     }
 
     class DiZenzo : Filter
     {
-        private  double[,] kernelX;
+        private double[,] kernelX;
         private double[,] kernelY;
 
         public DiZenzo()
@@ -140,13 +140,13 @@ namespace ResearchWork
                     int idX = BorderProcessing(x + j, 0, width - 1);
                     int idY = BorderProcessing(y + i, 0, height - 1);
 
-                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius] * 1/2;
-                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius] * 1/2;
-                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius] * 1/2;
+                    redX += wrapImage[idX, idY].R * kernelX[j + radius, i + radius] * 1 / 2;
+                    greenX += wrapImage[idX, idY].G * kernelX[j + radius, i + radius] * 1 / 2;
+                    blueX += wrapImage[idX, idY].B * kernelX[j + radius, i + radius] * 1 / 2;
 
-                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius] * 1/2;
-                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius] * 1/2;
-                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius] * 1/2;
+                    redY += wrapImage[idX, idY].R * kernelY[j + radius, i + radius] * 1 / 2;
+                    greenY += wrapImage[idX, idY].G * kernelY[j + radius, i + radius] * 1 / 2;
+                    blueY += wrapImage[idX, idY].B * kernelY[j + radius, i + radius] * 1 / 2;
                 }
             }
 
@@ -154,18 +154,18 @@ namespace ResearchWork
 
             gxx = Math.Pow(redX, 2) + Math.Pow(greenX, 2) + Math.Pow(blueX, 2);
             gyy = Math.Pow(redY, 2) + Math.Pow(greenY, 2) + Math.Pow(blueY, 2);
-            gxy = redX * redY +  greenX * greenY + blueX * blueY;
+            gxy = redX * redY + greenX * greenY + blueX * blueY;
             double angle = 0.5 * Math.Atan(2 * gxy / Math.Abs(gxx - gyy));
 
-            int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + Math.Abs(gxx - gyy)*Math.Cos(2*angle) + 2 * gxy * Math.Sin(2*angle))), 0, 255);
-            
+            int result = Clamp((int)Math.Sqrt(0.5 * (gxx + gyy + Math.Abs(gxx - gyy) * Math.Cos(2 * angle) + 2 * gxy * Math.Sin(2 * angle))), 0, 255);
+
             return Color.FromArgb(result, result, result);
         }
     }
 
     class Laplace : Filter
     {
-        private  double multiplier;
+        private double multiplier;
         public Laplace(double multiplier)
         {
             this.multiplier = multiplier;
@@ -334,7 +334,7 @@ namespace ResearchWork
             red = wrapImage[x, y].R + -red;
             green = wrapImage[x, y].G + -green;
             blue = wrapImage[x, y].B + -blue;
-            
+
 
             red = Clamp((int)red, 0, 255);
             green = Clamp((int)green, 0, 255);
@@ -399,7 +399,6 @@ namespace ResearchWork
                     green += wrapImage[idX, idY].G * kernel[j + radius, i + radius];
                     blue += wrapImage[idX, idY].B * kernel[j + radius, i + radius];
                 }
-
             }
 
             red = Clamp(wrapImage[x, y].R + (int)(multiplier * (wrapImage[x, y].R - red)), 0, 255);
